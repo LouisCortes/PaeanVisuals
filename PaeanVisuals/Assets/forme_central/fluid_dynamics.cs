@@ -1,5 +1,4 @@
-﻿//Load fluid_dynamics.compute into Unity 3D engine.
-using UnityEngine;
+﻿using UnityEngine;
 
 public class fluid_dynamics : MonoBehaviour
 {
@@ -7,7 +6,7 @@ public class fluid_dynamics : MonoBehaviour
     RenderTexture A;
     RenderTexture B;
     public Material material;
-
+    public Texture texture1;
     int handle_main;
 
     void Start()
@@ -23,7 +22,8 @@ public class fluid_dynamics : MonoBehaviour
 
     void Update()
     {
-        
+        compute_shader.SetFloat("time", Time.time);
+        compute_shader.SetTexture(handle_main, "texture1", texture1);
         compute_shader.SetTexture(handle_main, "reader", A);
         compute_shader.SetTexture(handle_main, "writer", B);
         compute_shader.Dispatch(handle_main, A.width / 8, A.height / 8, 1);
