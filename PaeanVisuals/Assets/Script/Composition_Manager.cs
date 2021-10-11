@@ -33,6 +33,10 @@ public class Composition_Manager : MonoBehaviour
     {
         if (Input.GetKeyDown("return"))
         {
+            int R = 0; R = Random.Range(0, 12);
+            if (R == 10){
+                CM.A0[0].backgroundColor = new Color(0, 0, 1);
+            }
             AssignScene = true;
         }
         if (Input.GetKeyDown(KeyCode.Keypad1))
@@ -46,6 +50,11 @@ public class Composition_Manager : MonoBehaviour
             LY = LayerMask.GetMask(LayerNameToAssign);
         }
         if (Input.GetKeyDown(KeyCode.Keypad3))
+        {
+            LayerNameToAssign = "Rock03";
+            LY = LayerMask.GetMask(LayerNameToAssign);
+        }
+        if (Input.GetKeyDown(KeyCode.Keypad7))
         {
             LayerNameToAssign = "Water01";
             LY = LayerMask.GetMask(LayerNameToAssign);
