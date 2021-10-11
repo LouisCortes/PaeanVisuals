@@ -6,8 +6,13 @@ public class Composition_Manager : MonoBehaviour
 {
     public Cam_Manager CM;
     public string LayerNameToAssign;
-    public GameObject ABLandscape;
+    public bool AssignScene;
     private LayerMask LY;
+    public bool ShaderRock02;
+    public bool ShaderRock03;
+    public GameObject RT_ShaderRock02;
+    public GameObject RT_ShaderRock03;
+    public GameObject ABLandscape;
     public GameObject A;
     public GameObject[] A0;
     public GameObject[] A1_0;
@@ -17,12 +22,13 @@ public class Composition_Manager : MonoBehaviour
     public GameObject[] B0;
     public GameObject[] B1_0;
     public GameObject[] B2_0;
-
-    public bool AssignScene;
+    
     private int i;
 
     void Start()
     {
+        RT_ShaderRock02.SetActive(false);
+        RT_ShaderRock03.SetActive(false);
         AssignScene = false;
         i = 0;
         CleanA();
@@ -31,12 +37,21 @@ public class Composition_Manager : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown("return"))
+        if (Input.GetKeyDown("space")) ////////// clean RT SHADER FOR OPTI
         {
-            int R = 0; R = Random.Range(0, 12);
+            if (AssignScene)
+            {
+                RT_ShaderRock02.SetActive(false);
+                RT_ShaderRock03.SetActive(false);
+            }
+        }
+
+       if (Input.GetKeyDown("return"))
+        {
+           /* int R = 0; R = Random.Range(0, 12);
             if (R == 10){
                 CM.A0[0].backgroundColor = new Color(0, 0, 1);
-            }
+            }*/
             AssignScene = true;
         }
         if (Input.GetKeyDown(KeyCode.Keypad1))
@@ -46,14 +61,32 @@ public class Composition_Manager : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.Keypad2))
         {
-            LayerNameToAssign = "Rock02";
+            if (!ShaderRock02)
+            {
+                LayerNameToAssign = "Rock02";
+                LY = LayerMask.GetMask(LayerNameToAssign);
+                RT_ShaderRock02.SetActive(true);
+                ShaderRock02 = true;
+            }else{
+                RT_ShaderRock02.SetActive(false);
+                ShaderRock02 = false;
+            }
             LY = LayerMask.GetMask(LayerNameToAssign);
         }
+
         if (Input.GetKeyDown(KeyCode.Keypad3))
         {
-            LayerNameToAssign = "Rock03";
-            LY = LayerMask.GetMask(LayerNameToAssign);
+            if (!ShaderRock03)
+            {
+                LayerNameToAssign = "Rock03";
+                LY = LayerMask.GetMask(LayerNameToAssign);
+                RT_ShaderRock03.SetActive(true);
+            }else{
+                RT_ShaderRock03.SetActive(false);
+                ShaderRock03 = false;
+            }
         }
+
         if (Input.GetKeyDown(KeyCode.Keypad7))
         {
             LayerNameToAssign = "Water01";

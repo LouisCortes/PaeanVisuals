@@ -56,7 +56,6 @@ public class Render_Manager : MonoBehaviour
                   Clean();
                   Compo.SetupTotalFragmentation();              // TotalFragmentation
               }
-
         }
 
         if (Input.GetKeyDown("q")) /////// Full Landscape
