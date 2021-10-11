@@ -11,7 +11,7 @@ float SpectrumAccumulation1;
 float spectrum2;
 int _rx;
 int _ry;
-
+float audio;
 
 float rd(float se) { return (frac(sin((se += 1.0)) * 43758.5453)); }
 float3 rdv(float se) {
@@ -139,6 +139,6 @@ void CSMain (uint2 id : SV_DispatchThreadID)
 	float t2 = max(pow(spectrum2, 3.)*step(f.y, 1.),reader.SampleLevel(_LinearRepeat, uc + 0.5 / res-float2(0.,1.)/res, 0).z*step(1.,f.y));
 	float td = max(reader.SampleLevel(_LinearRepeat, uc + 0.5 / res , 0).y*0.95,
 		reader.SampleLevel(_LinearRepeat, float2(0.,smoothstep(0.,15.,d)), 0).z);
-	writer[id]=float4(r2,td,t2, result2);
+	writer[id]=float4(r2,lerp(1.,td,audio),t2, result2);
 
 }

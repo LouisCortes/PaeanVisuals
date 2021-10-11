@@ -8,7 +8,7 @@ public class fluid_dynamics : MonoBehaviour
     public Material material;
     public Texture texture1;
     int handle_main;
-
+    public GameObject Shader03;
     void Start()
     {
         A = new RenderTexture(1024, 1024, 0);
@@ -30,6 +30,7 @@ public class fluid_dynamics : MonoBehaviour
         compute_shader.SetTexture(handle_main, "reader", B);
         compute_shader.SetTexture(handle_main, "writer", A);
         compute_shader.Dispatch(handle_main, B.width / 8, B.height / 8, 1);
-        material.mainTexture = B;
+        material.mainTexture = B;  
+       // Shader03.
     }
 }

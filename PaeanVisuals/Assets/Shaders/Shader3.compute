@@ -133,11 +133,11 @@ void CSMain (uint2 id : SV_DispatchThreadID)
 	float prevColor = reader.SampleLevel(_PointClamp, uc + 0.5 / res, 0).a;
 	float result2 = max(color, prevColor*0.016);
 	float r2 = step(0.001, result2);
-	float t2 = max(pow(spectrum2, 3.)*step(f.y, 1.),reader.SampleLevel(_LinearRepeat, uc + 0.5 / res-float2(0.,1.)/res, 0).z*step(1.,f.y));
+	/*float t2 = max(pow(spectrum2, 3.)*step(f.y, 1.),reader.SampleLevel(_LinearRepeat, uc + 0.5 / res-float2(0.,1.)/res, 0).z*step(1.,f.y));
 	float td = max(reader.SampleLevel(_LinearRepeat, uc + 0.5 / res , 0).y*0.95,
-		reader.SampleLevel(_LinearRepeat, float2(0.,smoothstep(0.,15.,d)), 0).z);
+		reader.SampleLevel(_LinearRepeat, float2(0.,smoothstep(0.,15.,d)), 0).z);*/
 
 
-	writer[id]=float4(r2,td*0.+1.,t2, result2);
+	writer[id]=float4(r2,r2,r2, result2);
 
 }
