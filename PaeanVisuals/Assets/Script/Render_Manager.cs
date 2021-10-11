@@ -77,14 +77,14 @@ public class Render_Manager : MonoBehaviour
             }
         }
 
-        if (Input.GetKeyDown("y")) /////// Cam Ortho A
+    /*    if (Input.GetKeyDown("y")) /////// Cam Ortho A
         {
             Cam.SetCamOrthoA();
         }
         if (Input.GetKeyDown("u")) /////// Cam Ortho B
         {
             Cam.SetCamOrthoB();
-        }
+        }*/
         if (Input.GetKeyDown("w")) /////// Cam random set translation
         {
             TranslationIntensity++;
@@ -103,7 +103,10 @@ public class Render_Manager : MonoBehaviour
         {
             Scene.TextPaeanApparition();
         }
-
+        if (Input.GetKeyDown("u")) /////// TEXT PAEAN
+        {
+            Scene.UIGPSApparition();
+        }
 
         if (Input.GetKeyDown("space"))  /////// Just Clean
         {
