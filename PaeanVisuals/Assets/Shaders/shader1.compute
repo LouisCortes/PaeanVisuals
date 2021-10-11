@@ -1,0 +1,75 @@
+﻿#pragma kernel CSMain
+
+RWTexture2D<float4> reader;
+Texture2D<float4> texture0;
+Texture2D<float4> texture1;
+TextureCube<float4> ref;
+SamplerState _LinearRepeat;
+float _time;
+float liquide;
+int _rx;
+int _ry;
+
+float rd(float t) { return frac(sin(dot(floor(t), 45.))*7845.236); }
+float hs(float3 t) { return frac(sin(dot(t, float3(98., 178., 45.)))*7845.236); }
+float no(float t) { return lerp(rd(t), rd(t + 1.), smoothstep(0., 1., frac(t))); }
+float no(float2 p) {
+	float2 f = floor(p); p = smoothstep(0., 1., frac(p));
+	float2 se = float2(45., 98.);
+	float2 v1 = dot(se, f) + float2(0., se.y);
+	float2 v2 = lerp(frac(sin(v1)*7845.236), frac(sin(v1 + se.x)*7845.236), p.x);
+	return lerp(v2.x, v2.y, p.y);
+}
+
+float2x2 rot(float r) { float c = cos(r); float s = sin(r); return float2x2(c, s, -s, c); }
+float lo;
+float map(float3 p) {
+	float d1 = 1000.;
+	float bi = frac(_time*0.1)*100. + liquide * 20.-5.;
+	float li = smoothstep(bi,bi+1., p.z+no(p.x*2.+_time*5.));
+	if (p.y < 5.) {
+		d1 = dot(p, float3(0., 1., 0.)) + (texture1.SampleLevel(_LinearRepeat, p.xz*0.01,0. ).x*10.
+			+ texture1.SampleLevel(_LinearRepeat, p.xz*0.1, 0.).x)*li+lerp(no(p.xz*float2(6.,1.5)
+				+float2(_time*0.2,_time*4.))*0.25+ no(p.xz*float2(6., 1.5) + float2(-_time*0.2,- _time*4.))*0.25 +0.25,0.,li);
+	}
+	lo = li;
+	return d1;
+}
+float3 nor(float3 p) { float2 e = float2(0.0001, 0.); return normalize(map(p) - float3(map(p - e.xyy), map(p - e.yxy), map(p - e.yyx))); }
+
+[numthreads(8,8,1)]
+void CSMain (uint2 id : SV_DispatchThreadID) 
+{
+	//float prevColor = reader.SampleLevel(_PointClamp, uc + 0.5 / res, 0).a;
+	float2 f = float2(id.x,id.y);
+	float2 res=float2(_rx,_ry); 
+	float2 uv = ((f / res)-0.5)*2.;
+	uv.x *= res.x / res.y;
+	float3 p = float3(0., 0., frac(_time*0.1)*100.);
+	float3 r = normalize(float3(uv, 1.));
+	r.yz = mul(r.yz,rot(0.8));
+	float dd = 0.; float dm = 100.;
+	for (int i = 0; i < 100; i++) {
+
+		float d = map(p);
+		if (dd > dm) { dd = dm; break; }
+		if (d < 0.001) { break; }
+		p += r * d;
+		dd += d;
+	}
+	float s = smoothstep(dm, 0., dd);
+	float3 n = nor(p);
+	float ld = clamp(dot(n, -r), 0., 1.);
+	float t0 = texture0.SampleLevel(_LinearRepeat, p.xz*0.1 + 0.5 / res,0.).x;
+	float t1 = smoothstep(.4, 0., t0);
+	float t2 = t0;
+	float fres = pow(1. - ld, lerp(5., 10., t2))*pow(t2, 0.8);
+	float dao = 1.;
+	float ao = clamp(map(p + n * dao) / dao, 0., 1.);
+	fres *= ao;
+	float r1 = smoothstep(-0.05,0.8,sqrt(fres));
+	float r2 = lerp(pow(1.-ld,5.)*0.2+ pow(1. - ld, 10.)*0.5+pow(ld, 200.)*0.25, r1, lo);
+	float3 r3 = ref.SampleLevel(_LinearRepeat, n, 0).xyz;
+	reader[id] = float4(r3+r2,1.);
+
+}

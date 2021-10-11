@@ -1,0 +1,144 @@
+﻿#pragma kernel CSMain
+
+Texture2D<float4> reader; 
+RWTexture2D<float4> writer;
+Texture2D<float4> texture0;
+Texture2D<float4> texture1;
+SamplerState _LinearRepeat;
+SamplerState _PointClamp;
+float time;
+float SpectrumAccumulation1;
+float spectrum2;
+int _rx;
+int _ry;
+
+
+float rd(float se) { return (frac(sin((se += 1.0)) * 43758.5453)); }
+float3 rdv(float se) {
+	float theta = rd(se) * (6.283);
+	float z = rd(se) * 2.0 - 1.0;
+	float a = sqrt(1.0 - z * z);
+	float3 v = float3(a * cos(theta), a * sin(theta), z);
+	return v * sqrt(rd(se));
+}
+float map(float value, float min1, float max1, float min2, float max2) {
+	return min2 + (value - min1) * (max2 - min2) / (max1 - min1);
+}
+float3 mod(float3 x, float3 y)
+{
+	return x - y * floor(x / y);
+}
+float2x2 rot(float r) { float c = cos(r); float s = sin(r); return float2x2(c, s, -s, c); }
+float box(float3 p, float3 s) {
+	float3 d = abs(p) - s;
+	return length(max(d, 0.0)) + min(max(d.x, max(d.y, d.z)), 0.0);
+}
+float bl(float2 p, float2 s) {
+	float2 d = abs(p) - s;
+	return length(max(d, 0.0)) + min(max(d.x, d.y), 0.0);
+}
+float2 opOR(in float2 a, in float2 b) {
+	if (a.x < b.x) { return a; }
+	return b;
+}
+
+float pat(float3 p) {
+	
+	
+	float 	d1 = dot(p, float3(0., 1., 0.)) + (texture1.SampleLevel(_LinearRepeat, p.xz*0.01, 0.).x*10.
+			+ texture1.SampleLevel(_LinearRepeat, p.xz*0.1, 0.).x);
+
+	return d1;
+}
+float2 map(float3 p) {
+	float3 p1 = p;
+
+
+	float f1 = pat(p1);
+	float b1 = box(p1-float3(0.,10.,0.),float3(10.,1.,10.));
+
+	float2 art = float2(f1,0.);
+	float2 m1 = float2(b1, 1.);
+	float2 r0 = opOR(art, m1);
+	return r0;
+}
+float3 norm(float3 p) {
+	float2 e = float2(0, 0.01); return normalize(map(p).x
+		- float3(map(p - e.yxx).x, map(p - e.xyx).x, map(p - e.xxy).x));
+}
+float d;
+float2 raymarch(in float3 ro, in float3 rd) {
+
+	float t = 0.0; float tt = 0.;
+	float2 float2Output = float2(50., 0.);
+	for (int i = 0; i < 64; ++i) {
+		float2 sce = map(ro + rd * t);
+		if (t>25.) { t = 25.; break; }
+		if (sce.x < 0.01) {
+			float2Output = float2(t, sce.y);
+
+			break;
+		}
+		t += sce.x;
+	}
+	
+	return float2Output;
+}
+float raytrace(in float2 uv,float se) {
+	float3 ro = float3(uv, -20.);
+
+	float3 rd = normalize(float3(uv, 1.8));
+	rd.zy = mul(rd.zy, rot(-0.8));
+	float ti = time*0.1+ SpectrumAccumulation1*0.2;
+	ro.xz = mul(ro.xz, rot(ti));
+	rd.xz = mul(rd.xz, rot(ti));
+	float color = 0.;
+	float mco = 0.;
+	float atten = 1.0;
+	float bounces = 1.;
+	for (int i = 0; i < 2; ++i)
+	{
+		float2 sce = raymarch(ro, rd);
+		if (i == 0) d = sce.x;
+		if (sce.y == 0.)
+		{
+			float3 p = ro + rd * sce.x;
+			float3 n = norm(p);
+			rd = n + rdv(se) * 1.5;
+			ro = p + rd * 0.1;
+			mco += atten;
+			bounces += 1.0;
+			atten *= 0.5;
+		}
+		else
+		{
+			color = lerp(1., mco , max(0.0, float(i)));
+			break;
+		}
+
+	}
+	color /= bounces;
+	
+	return color;
+}
+
+[numthreads(8,8,1)]
+void CSMain (uint2 id : SV_DispatchThreadID) 
+{
+	float2 f = float2(id.x,id.y);
+	float2 res=float2(_rx,_ry); 
+	float2 uc = f / res;
+	float2 uv =( uc-0.5)*2.;
+	float se = (res.y*uc.x + uc.y);
+	se += time;
+	uv.x *= res.x / res.y;
+	float color = raytrace(uv,se);
+	float prevColor = reader.SampleLevel(_PointClamp, uc + 0.5 / res, 0).a;
+	float result2 = max(color, prevColor*0.016);
+	float r2 = step(0.001, result2);
+	float t2 = max(pow(spectrum2, 3.)*step(f.y, 1.),reader.SampleLevel(_LinearRepeat, uc + 0.5 / res-float2(0.,1.)/res, 0).z*step(1.,f.y));
+	float td = max(reader.SampleLevel(_LinearRepeat, uc + 0.5 / res , 0).y*0.95,
+		reader.SampleLevel(_LinearRepeat, float2(0.,smoothstep(0.,15.,d)), 0).z);
+	writer[id]=float4(r2,td,t2, result2);
+
+}
