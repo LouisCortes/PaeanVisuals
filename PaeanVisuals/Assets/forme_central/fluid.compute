@@ -1,24 +1,27 @@
-﻿float myFloat;
-#pragma kernel CSMain
+﻿#pragma kernel CSMain
 
 Texture2D<float4> reader; 
 RWTexture2D<float4> writer;
-SamplerState _LinearClamp;
-float _pos1;
-float _pos2;
-float _pos3;
-float _pos4;
+Texture2D<float4> texture1;
+SamplerState _LinearRepeat;
+float time;
 [numthreads(8,8,1)]
 void CSMain (uint2 id : SV_DispatchThreadID) 
 {
-	float2 f = float2(id.x,id.y);  //fragCoord
-	float2 b = float2(0.31,0.95);
-	float2 iResolution=float2(1024,1024); //texture resolution
+	float2 f = float2(id.x,id.y);  
+	float2 resolution = float2(1024, 1024);
+	float2 uv = f / resolution;
+	float n2 = frac(texture1.SampleLevel(_LinearRepeat, uv*0.1+time, 0.).x+time);
+	float n3 = texture1.SampleLevel(_LinearRepeat, float2(0.25, time*.02), 0.).x-0.5;
+	float n4 = texture1.SampleLevel(_LinearRepeat, float2(0.75, time*0.02), 0.).x-0.5;
+	float n5 = lerp(-1.,1.,smoothstep(0.4,0.6,texture1.SampleLevel(_LinearRepeat, uv*0.3+time*0.05, 0.).x ));
+	float n6 = lerp(-1.,1., smoothstep(0.4, 0.6, texture1.SampleLevel(_LinearRepeat, uv*0.3 - time * 0.05, 0.).x ));
+	float2 b = float2(0.31, 0.95);
 	float2 v = float2(0.0,0.0);
-	float4 c = float4(0,0,0,1);   //initial color
-	for(int l=0;l<5;l++)
+	float4 c = float4(0,0,0,1);   
+	for(int l=0;l<4;l++)
 	{
-		if ( dot(b,b) > pow(iResolution.y,2.0) ) break;
+		if ( dot(b,b) > pow(resolution.y,2.0) ) break;
 		float2 p = b;
 		for(int i=0;i<5;i++)
 		{          
@@ -26,7 +29,7 @@ void CSMain (uint2 id : SV_DispatchThreadID)
 			float rot=0.0;
 			for(int i=0;i<5;i++)
 			{
-				rot+=dot(reader.SampleLevel(_LinearClamp,float2(frac((pos+p)/iResolution.xy)),0).xy-float2(0.5,0.5),mul(float2(1,1),p.yx));
+				rot+=dot(reader.SampleLevel(_LinearRepeat,float2(frac((pos+p)/resolution.xy)),0).xy-float2(0.5,0.5),mul(float2(n5,n6),p.yx));
 				p=float2(0.31*p.x+0.95*p.y,-0.95*p.x+0.31*p.y); 
 			}
 			v+=p.yx* rot/5.0/dot(b,b);      
@@ -34,11 +37,9 @@ void CSMain (uint2 id : SV_DispatchThreadID)
 		}
 		b*=4.0;
 	}   
-	float4 color=reader.SampleLevel(_LinearClamp,frac((f+v*float2(-2,2))/iResolution.xy),0)*0.98; 
-	float2 s=(f.xy/iResolution.xy)*2.0-float2(1.0,1.0);
+	float4 color=reader.SampleLevel(_LinearRepeat,frac((f+v*float2(-2,2))/resolution.xy),0)*(1.-n2*0.005); 
 	
-	color += smoothstep(50.,0.,distance(f,float2(0.5*1024.,512.)))*0.1;
-	color += smoothstep(50.,0.,distance(f,float2(256.,800.)))*0.1;
+	color += smoothstep(0.7,1.,texture1.SampleLevel(_LinearRepeat, uv+float2(n3,n4)*0.5, 0.).x);
 	c = color; 
 	writer[id]=c;
 }

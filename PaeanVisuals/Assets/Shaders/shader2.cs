@@ -12,7 +12,8 @@ public class shader2 : MonoBehaviour
     public int resx;
     public int resy;
     int handle_main;
-
+    [Range(0, 1)]
+    public float audioreaction;
     void Start()
     { 
   
@@ -35,6 +36,7 @@ public class shader2 : MonoBehaviour
     {
          float SpectrumAccumulation1 = audioCapture.SpectrumAccumulation1;
         compute_shader.SetFloat("spectrum2", audioCapture.Spectrum2);
+        compute_shader.SetFloat("audio", audioreaction);
         compute_shader.SetFloat("SpectrumAccumulation1", SpectrumAccumulation1);
         compute_shader.SetTexture(handle_main, "texture1", texture1);
         compute_shader.SetTexture(handle_main, "reader", A);
