@@ -2,6 +2,7 @@
 
 Texture2D<float4> reader; 
 RWTexture2D<float4> writer;
+Texture2D<float4> texture1;
 SamplerState _LinearRepeat;
 SamplerState _PointClamp;
 float time;
@@ -42,8 +43,8 @@ float2 opOR(in float2 a, in float2 b) {
 
 float pat(float3 p) {
 	
-	
-	float 	d1 = dot(p, float3(0., 1., 0.)) +1.;
+	float s = dot(p, float3(0., 1., 0.));
+	float 	d1 = max(s + texture1.SampleLevel(_LinearRepeat, p.xz*0.1, 0.).x,s);
 
 	return d1;
 }
@@ -82,7 +83,7 @@ float2 raymarch(in float3 ro, in float3 rd) {
 	return float2Output;
 }
 float raytrace(in float2 uv,float se) {
-	float3 ro = float3(uv, -20.);
+	float3 ro = float3(uv+float2(0.,1.), -20.);
 
 	float3 rd = normalize(float3(uv, 1.8));
 	rd.zy = mul(rd.zy, rot(-0.8));

@@ -430,6 +430,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   compute_shader: {fileID: 7200000, guid: d17075a46f2647a45913419047dcc3e0, type: 3}
+  texture1: {fileID: 2800000, guid: 6c1bdc3340cbe584e996b350abd28c93, type: 3}
   img1: {fileID: 1021174309}
   audioCapture: {fileID: 671472339}
   resx: 720
@@ -459,13 +460,17 @@ PrefabInstance:
       propertyPath: m_Name
       value: test
       objectReference: {fileID: 0}
+    - target: {fileID: 1739661016373574, guid: c80ba9c53e20afb4091f2a5ec28460ac, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4716196527700254, guid: c80ba9c53e20afb4091f2a5ec28460ac, type: 3}
       propertyPath: m_RootOrder
       value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 4716196527700254, guid: c80ba9c53e20afb4091f2a5ec28460ac, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -5.448
+      value: -8.43
       objectReference: {fileID: 0}
     - target: {fileID: 4716196527700254, guid: c80ba9c53e20afb4091f2a5ec28460ac, type: 3}
       propertyPath: m_LocalPosition.y
@@ -503,7 +508,28 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 23926801894949198, guid: c80ba9c53e20afb4091f2a5ec28460ac,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 64996205718988720, guid: c80ba9c53e20afb4091f2a5ec28460ac,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114941340551444766, guid: c80ba9c53e20afb4091f2a5ec28460ac,
+        type: 3}
+      propertyPath: shader3
+      value: 
+      objectReference: {fileID: 1021174313}
+    - target: {fileID: 114941340551444766, guid: c80ba9c53e20afb4091f2a5ec28460ac,
+        type: 3}
+      propertyPath: texture1
+      value: 
+      objectReference: {fileID: 2800000, guid: 6c1bdc3340cbe584e996b350abd28c93, type: 3}
+    m_RemovedComponents:
+    - {fileID: 64996205718988720, guid: c80ba9c53e20afb4091f2a5ec28460ac, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: c80ba9c53e20afb4091f2a5ec28460ac, type: 3}
 --- !u!1 &1541356308
 GameObject:
@@ -707,6 +733,7 @@ MonoBehaviour:
   texture1: {fileID: 2800000, guid: ab99eb6183f8c2248bc1dd521cb4bddf, type: 3}
   resx: 1280
   resy: 480
+  audioreaction: 0
 --- !u!4 &1763530288
 Transform:
   m_ObjectHideFlags: 0
