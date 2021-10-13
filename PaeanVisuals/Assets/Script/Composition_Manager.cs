@@ -22,9 +22,13 @@ public class Composition_Manager : MonoBehaviour
     public GameObject UniversWater01;
     public GameObject UniversWater02;
     public GameObject UniversWater03;
+    public GameObject UniversWater04;
+
     public GameObject UniversRock01;
     public GameObject UniversRock02;
     public GameObject UniversRock03;
+    public GameObject UniversRock04;
+
     public GameObject ABLandscape;
     public GameObject A;
     public GameObject[] A0;
@@ -37,6 +41,8 @@ public class Composition_Manager : MonoBehaviour
     public GameObject[] B10;
     public GameObject[] B1_0;
     public GameObject[] B2_0;
+
+    public GameObject Fluide;
     
     private int i;
 
@@ -61,6 +67,12 @@ public class Composition_Manager : MonoBehaviour
 
     void Update()
     {               
+       if(Rock04 || Water01)
+        {
+            Fluide.SetActive(true);
+        }else{
+            Fluide.SetActive(false);
+        }
         
         if (Blink){
             CM.A0[Random.Range(0, 2)].backgroundColor = new Color(0, 0, ValueBlink);
@@ -113,8 +125,21 @@ public class Composition_Manager : MonoBehaviour
                 UniversRock03.SetActive(false);
             }
          }
-         ///////////////////////////////////////// WATER UNIVERS
-         if (Input.GetKeyDown(KeyCode.Keypad7))
+
+        if (Input.GetKeyDown(KeyCode.Keypad4))
+        {
+            if (Rock04) Rock04 = false; else Rock04 = true;
+            if (Rock04){
+                LayerNameToAssign = "Rock04";
+                LY = LayerMask.GetMask(LayerNameToAssign);
+                UniversRock04.SetActive(true);
+            }else
+            {
+                UniversRock04.SetActive(false);
+            }
+        }
+        ///////////////////////////////////////// WATER UNIVERS
+        if (Input.GetKeyDown(KeyCode.Keypad7))
          {
             if (Water01) Water01 = false; else Water01 = true;
             if (Water01){
@@ -454,8 +479,10 @@ public class Composition_Manager : MonoBehaviour
         UniversRock01.SetActive(false);
         UniversRock02.SetActive(false);
         UniversRock03.SetActive(false);
+        UniversRock04.SetActive(false);
         UniversWater01.SetActive(false);
         UniversWater02.SetActive(false);
         UniversWater03.SetActive(false);
+        UniversWater04.SetActive(false);
     }
 }
