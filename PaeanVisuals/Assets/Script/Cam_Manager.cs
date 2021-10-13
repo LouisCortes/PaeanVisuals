@@ -10,10 +10,12 @@ public class Cam_Manager : MonoBehaviour
     public Camera AB;
     public Camera A;
     public Camera[] A0;
+    public Camera[] A10;
     public Camera[] A1_0;
     public Camera[] A2_0;
     public Camera B;
     public Camera[] B0;
+    public Camera[] B10;
     public Camera[] B1_0;
     public Camera[] B2_0;
 

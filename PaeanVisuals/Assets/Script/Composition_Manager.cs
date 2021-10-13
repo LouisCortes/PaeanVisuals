@@ -15,11 +15,13 @@ public class Composition_Manager : MonoBehaviour
     public GameObject ABLandscape;
     public GameObject A;
     public GameObject[] A0;
+    public GameObject[] A10;
     public GameObject[] A1_0;
     public GameObject[] A2_0;
 
     public GameObject B;
     public GameObject[] B0;
+    public GameObject[] B10;
     public GameObject[] B1_0;
     public GameObject[] B2_0;
     
@@ -93,7 +95,73 @@ public class Composition_Manager : MonoBehaviour
             LY = LayerMask.GetMask(LayerNameToAssign);
         }
     }
+    /////////////////////////////////////////SLICED
+    public void SlicedScreenA()
+    {
+        int R; R = Random.Range(0, 4);
+        if (R == 0){
+            if (AssignScene == true){
+                CM.A10[0].cullingMask = LY;
+            }
+                A10[0].SetActive(true);
+        }else if (R == 1){
+            if (AssignScene == true){
+                CM.A10[1].cullingMask = LY;
+            }
+            A10[1].SetActive(true);
+        }
+        else if (R == 2){
+            if (AssignScene == true){
+                CM.A10[1].cullingMask = LY;
+            }
+            A10[2].SetActive(true);
+        }
+        else if (R == 3){
+            if (AssignScene == true){
+                CM.A10[0].cullingMask = LY;
+            }
+            A10[3].SetActive(true);
+        }
+        AssignScene = false;
+    }
 
+    public void SlicedScreenB()
+    {
+        int R; R = Random.Range(0, 4);
+        if (R == 0)
+        {
+            if (AssignScene == true)
+            {
+                CM.B10[0].cullingMask = LY;
+            }
+            B10[0].SetActive(true);
+        }
+        else if (R == 1)
+        {
+            if (AssignScene == true)
+            {
+                CM.B10[1].cullingMask = LY;
+            }
+            B10[1].SetActive(true);
+        }
+        else if (R == 2)
+        {
+            if (AssignScene == true)
+            {
+                CM.B10[0].cullingMask = LY;
+            }
+            B10[2].SetActive(true);
+        }
+        else if (R == 3)
+        {
+            if (AssignScene == true)
+            {
+                CM.B10[1].cullingMask = LY;
+            }
+            B10[3].SetActive(true);
+        }
+        AssignScene = false;
+    }
     /////////////////////////////////////////FRAGMENTATION
     public void SetupTotalFragmentation()
     {
@@ -319,6 +387,11 @@ public class Composition_Manager : MonoBehaviour
 
         A0[0].SetActive(false);     B0[0].SetActive(false);
         A0[1].SetActive(false);     B0[1].SetActive(false);
+
+        A10[0].SetActive(false);    B10[0].SetActive(false);
+        A10[1].SetActive(false);    B10[1].SetActive(false);
+        A10[2].SetActive(false);    B10[2].SetActive(false);
+        A10[3].SetActive(false);    B10[3].SetActive(false);
 
         A1_0[0].SetActive(false);   B1_0[0].SetActive(false);
         A1_0[1].SetActive(false);   B1_0[1].SetActive(false);

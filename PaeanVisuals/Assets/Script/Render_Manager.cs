@@ -45,6 +45,17 @@ public class Render_Manager : MonoBehaviour
         {
             Compo.SetupVerticalFragmentationB();
         }
+        if (Input.GetKeyDown("e"))  /////// Screen B full
+        {
+            Compo.SlicedScreenA();
+            //Compo.ScreenB();
+        }
+        if (Input.GetKeyDown("i"))  /////// Screen B full
+        {
+            Compo.SlicedScreenB();
+            //Compo.ScreenB();
+        }
+
         if (Input.GetKeyDown("m")) /////// fragmentation AB
         {
               FragmentationIntensity++;
