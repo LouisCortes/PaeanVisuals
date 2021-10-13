@@ -39,7 +39,7 @@ public class shader2 : MonoBehaviour
     {
         //  float SpectrumAccumulation1 = audioCapture.SpectrumAccumulation1;
         compute_shader.SetTexture(handle_main, "noise", noise);
-        compute_shader.SetFloat("audio1", osc.audio1 + osc.low * osc.audio2);
+        compute_shader.SetFloat("audio1", osc.audio1 + osc.low * osc.audio2*osc.fac2 * osc.address01);
         compute_shader.SetFloat("rotationv", osc.rotationv);
         compute_shader.SetFloat("zoom", osc.zoom);
         compute_shader.SetFloat("spectrum1", audioCapture.Spectrum1);
