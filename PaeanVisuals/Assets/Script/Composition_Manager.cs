@@ -27,7 +27,7 @@ public class Composition_Manager : MonoBehaviour
     public GameObject UniversRock01;
     public GameObject UniversRock02;
     public GameObject UniversRock03;
-    public GameObject[] UniversRock04;
+    public GameObject UniversRock04;
 
     public GameObject ABLandscape;
     public GameObject A;
@@ -132,12 +132,10 @@ public class Composition_Manager : MonoBehaviour
             if (Rock04){
                 LayerNameToAssign = "Rock04";
                 LY = LayerMask.GetMask(LayerNameToAssign);
-                UniversRock04[0].SetActive(true);
-                UniversRock04[1].SetActive(true);
+                UniversRock04.SetActive(true);
             }else
             {
-                UniversRock04[0].SetActive(false);
-                UniversRock04[1].SetActive(false);
+                UniversRock04.SetActive(false);
             }
         }
         ///////////////////////////////////////// WATER UNIVERS
@@ -481,8 +479,7 @@ public class Composition_Manager : MonoBehaviour
         UniversRock01.SetActive(false);
         UniversRock02.SetActive(false);
         UniversRock03.SetActive(false);
-        UniversRock04[0].SetActive(false);
-        UniversRock04[1].SetActive(false);
+        UniversRock04.SetActive(false);
         UniversWater01.SetActive(false);
         UniversWater02.SetActive(false);
         UniversWater03.SetActive(false);
