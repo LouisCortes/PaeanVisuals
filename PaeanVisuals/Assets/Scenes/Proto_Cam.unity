@@ -2259,6 +2259,12 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1020772013}
   m_CullTransparentMesh: 1
+--- !u!1 &1034407886 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: cb0fef6a89642cd4686a67f1de4e42eb,
+    type: 3}
+  m_PrefabInstance: {fileID: 2350657245307736358}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1053980158
 GameObject:
   m_ObjectHideFlags: 0
@@ -8273,7 +8279,7 @@ Camera:
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 119
+    m_Bits: 55
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 8400000, guid: 2553ac58fc94af14abc58c41e8590b73, type: 2}
   m_TargetDisplay: 0
@@ -8694,7 +8700,7 @@ MonoBehaviour:
   UniversWater01: {fileID: 1080950742}
   UniversWater02: {fileID: 1668280144}
   UniversWater03: {fileID: 0}
-  UniversRock01: {fileID: 0}
+  UniversRock01: {fileID: 1034407886}
   UniversRock02: {fileID: 304376300}
   UniversRock03: {fileID: 982399540}
   ABLandscape: {fileID: 336333111472892516}

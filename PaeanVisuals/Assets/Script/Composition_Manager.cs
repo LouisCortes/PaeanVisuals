@@ -40,6 +40,12 @@ public class Composition_Manager : MonoBehaviour
 
     void Start()
     {
+        Rock01 = false;
+        Rock02 = false;
+        Rock03 = false;
+        Water01 = false;
+        Water02 = false;
+        Water03 = false;
         CleanAllUnivers();
         Blink = false;
         AssignBlink = false;
@@ -69,8 +75,15 @@ public class Composition_Manager : MonoBehaviour
         ///////////////////////////////////////// Rock
         if (Input.GetKeyDown(KeyCode.Keypad1))
         {
-            LayerNameToAssign = "Rock01";
-            LY = LayerMask.GetMask(LayerNameToAssign);
+            if (Rock01) Rock01 = false;
+            else Rock01 = true;
+            if (Rock01){
+                LayerNameToAssign = "Rock01";
+                LY = LayerMask.GetMask(LayerNameToAssign);
+                UniversRock01.SetActive(true);
+            }else{
+                UniversRock01.SetActive(false);
+            }
         }
         if (Input.GetKeyDown(KeyCode.Keypad2))
         {
@@ -92,8 +105,7 @@ public class Composition_Manager : MonoBehaviour
                 LayerNameToAssign = "Rock03";
                 LY = LayerMask.GetMask(LayerNameToAssign);
                 UniversRock03.SetActive(true);
-            }else
-            {
+            }else{
                 UniversRock03.SetActive(false);
             }
          }
@@ -106,7 +118,7 @@ public class Composition_Manager : MonoBehaviour
                 LY = LayerMask.GetMask(LayerNameToAssign);
                 UniversWater01.SetActive(true);
             }else{
-                UniversWater02.SetActive(false);
+                UniversWater01.SetActive(false);
             }
         }
 
@@ -434,7 +446,7 @@ public class Composition_Manager : MonoBehaviour
 
     public void CleanAllUnivers()
     {
-        Debug.Log("ok clean");
+
         UniversRock01.SetActive(false);
         UniversRock02.SetActive(false);
         UniversRock03.SetActive(false);
