@@ -64,7 +64,14 @@ Shader "Hidden/RaymarchGeneric1"
 				o.ray = mul(_CameraInvViewMatrix, o.ray);
 				return o;
 			}
-
+			float smin(float a, float b, float t) {
+				float h = clamp(0.5 + 0.5*(b - a) / t, 0., 1.);
+				return lerp(b, a, h) - t * h*(1. - h);
+			}
+			float3 smin(float3 a, float3 b, float t) {
+				float3 h = clamp(0.5 + 0.5*(b - a) / t, 0., 1.);
+				return lerp(b, a, h) - t * h*(1. - h);
+			}
 
 			float3 ov(float3 a, float3 b) { return lerp(2.*a*b, 1. - 2.*(1. - a)*(1. - b), step(0.5, a)); }
 			
