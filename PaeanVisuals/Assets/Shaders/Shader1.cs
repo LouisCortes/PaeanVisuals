@@ -8,10 +8,12 @@ public class Shader1 : MonoBehaviour
     public int resx;
     public int resy;
     int handle_main;
+    public fluid_dynamics fluid;
     public Texture texture0;
     public Texture texture1;
     public Texture noise;
     public GameObject probe;
+    public GettingStartedReceiving osc;
     [Range(0, 1)]
     public float liquide;
     void Start()
@@ -30,12 +32,16 @@ public class Shader1 : MonoBehaviour
         compute_shader.SetTexture(handle_main, "reader", A);
         compute_shader.SetTexture(handle_main, "texture0", texture0);
         compute_shader.SetTexture(handle_main, "texture1", texture1);
+        compute_shader.SetTexture(handle_main, "texf", fluid.texture1);
         compute_shader.SetTexture(handle_main, "noise", noise);
         compute_shader.SetTexture(handle_main, "ref",probe.GetComponent<ReflectionProbe>().texture );
        compute_shader.SetFloat("_time", Time.time);
-        compute_shader.SetFloat("liquide", liquide);
+       // compute_shader.SetFloat("liquide", liquide);
         compute_shader.SetInt("_rx", resx);
         compute_shader.SetInt("_ry", resy);
+        compute_shader.SetFloat("liquide", osc.liquide);
+        compute_shader.SetFloat("audio1", osc.audio1+osc.low*osc.audio2);
+        compute_shader.SetFloat("zoom", osc.zoom);
         //compute_shader.SetTexture(handle_main, "writer", B);
         //compute_shader.Dispatch(handle_main, B.width / 8, B.height / 8, 1);
         //compute_shader.SetTexture(handle_main, "reader", B);

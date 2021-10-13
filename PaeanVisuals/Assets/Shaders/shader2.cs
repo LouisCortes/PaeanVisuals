@@ -14,6 +14,9 @@ public class shader2 : MonoBehaviour
     int handle_main;
     [Range(0, 1)]
     public float audioreaction;
+    public Texture noise;
+    public GettingStartedReceiving osc;
+
     void Start()
     { 
   
@@ -34,7 +37,11 @@ public class shader2 : MonoBehaviour
    
     void Update()
     {
-       //  float SpectrumAccumulation1 = audioCapture.SpectrumAccumulation1;
+        //  float SpectrumAccumulation1 = audioCapture.SpectrumAccumulation1;
+        compute_shader.SetTexture(handle_main, "noise", noise);
+        compute_shader.SetFloat("audio1", osc.audio1 + osc.low * osc.audio2);
+        compute_shader.SetFloat("rotationv", osc.rotationv);
+        compute_shader.SetFloat("zoom", osc.zoom);
         compute_shader.SetFloat("spectrum1", audioCapture.Spectrum1);
         compute_shader.SetFloat("spectrum2", audioCapture.Spectrum2);
         compute_shader.SetFloat("spectrum3", audioCapture.Spectrum3);

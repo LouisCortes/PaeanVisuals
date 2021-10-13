@@ -16,6 +16,10 @@ float rotation;
 float zoom;
 float neutre;
 float bleu;
+float audio2;
+float low;
+float mid;
+float high;
 int _rx;
 int _ry;
 
@@ -97,6 +101,7 @@ void CSMain (uint2 id : SV_DispatchThreadID)
 
 	float2 mt = float2(+0.9+noise.SampleLevel(_LinearRepeat, float2(0., _time),0.).x*audio1,
 		(noise.SampleLevel(_LinearRepeat, float2(0.25, _time), 0.).x-0.5)*audio1);
+	mt += float2(low, mid)*audio2;
 	float dd = 0.; float dm = 20.;
 	for (int j = 0; j < 100; j++) {
 
@@ -119,7 +124,7 @@ void CSMain (uint2 id : SV_DispatchThreadID)
 	float frl = pow(1. - ld, 5.)*0.7 + pow(ld, 500.);
 	float r1 = lerp(frl, al, ml);
 	float3 r3 = ref.SampleLevel(_LinearRepeat, n, 0).xyz;
-	float po = lerp(1.,pow((1.-noise.SampleLevel(_LinearRepeat, float2(0.75, _time), 0.).x),2.)*10.,audio1);
+	float po = lerp(lerp(1.,pow((1.-noise.SampleLevel(_LinearRepeat, float2(0.75, _time), 0.).x),2.)*10.,audio1),  pow(1. - high, 2.)*10.,audio2);
 	reader[id] = float4(pow(r1*neutre+r3*bleu,float3(po,po,po)), 1.)*s; 
 
 }
