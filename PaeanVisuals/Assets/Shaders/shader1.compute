@@ -3,6 +3,7 @@
 RWTexture2D<float4> reader;
 Texture2D<float4> texture0;
 Texture2D<float4> texture1;
+Texture2D<float4> noise;
 TextureCube<float4> ref;
 SamplerState _LinearRepeat;
 float _time;
@@ -23,7 +24,7 @@ float no(float2 p) {
 
 float2x2 rot(float r) { float c = cos(r); float s = sin(r); return float2x2(c, s, -s, c); }
 float lo;
-float map(float3 p) {
+float map(float3 p,float mv) {
 	float d1 = 1000.;
 	float bi = frac(_time*0.1)*100. + liquide * 20.-5.;
 	float li = smoothstep(bi,bi+1., p.z+no(p.x*2.+_time*5.));
@@ -35,7 +36,7 @@ float map(float3 p) {
 	lo = li;
 	return d1;
 }
-float3 nor(float3 p) { float2 e = float2(0.0001, 0.); return normalize(map(p) - float3(map(p - e.xyy), map(p - e.yxy), map(p - e.yyx))); }
+float3 nor(float3 p,float mv) { float2 e = float2(0.0001, 0.); return normalize(map(p,mv) - float3(map(p - e.xyy, mv), map(p - e.yxy, mv), map(p - e.yyx, mv))); }
 
 [numthreads(8,8,1)]
 void CSMain (uint2 id : SV_DispatchThreadID) 
@@ -49,23 +50,24 @@ void CSMain (uint2 id : SV_DispatchThreadID)
 	float3 r = normalize(float3(uv, 1.));
 	r.yz = mul(r.yz,rot(0.8));
 	float dd = 0.; float dm = 100.;
+	float mv = noise.SampleLevel(_LinearRepeat, float2(0., _time), 0.).x; 
 	for (int i = 0; i < 100; i++) {
 
-		float d = map(p);
+		float d = map(p, mv);
 		if (dd > dm) { dd = dm; break; }
 		if (d < 0.001) { break; }
 		p += r * d;
 		dd += d;
 	}
 	float s = smoothstep(dm, 0., dd);
-	float3 n = nor(p);
+	float3 n = nor(p, mv);
 	float ld = clamp(dot(n, -r), 0., 1.);
 	float t0 = texture0.SampleLevel(_LinearRepeat, p.xz*0.1 + 0.5 / res,0.).x;
 	float t1 = smoothstep(.4, 0., t0);
 	float t2 = t0;
 	float fres = pow(1. - ld, lerp(5., 10., t2))*pow(t2, 0.8);
 	float dao = 1.;
-	float ao = clamp(map(p + n * dao) / dao, 0., 1.);
+	float ao = clamp(map(p + n * dao, mv) / dao, 0., 1.);
 	fres *= ao;
 	float r1 = smoothstep(-0.05,0.8,sqrt(fres));
 	float r2 = lerp(pow(1.-ld,5.)*0.2+ pow(1. - ld, 10.)*0.5+pow(ld, 200.)*0.25, r1, lo);
