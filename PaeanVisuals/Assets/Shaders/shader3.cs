@@ -7,9 +7,10 @@ public class shader3 : MonoBehaviour
     RenderTexture B;
     RenderTexture C;
     RenderTexture D;
-    public Texture texture1;
+    //public Texture texture1;
     public GameObject img1;
     public spectrum audioCapture;
+    public fluid_dynamics fluid;
     public int resx;
     public int resy;
     int handle_main;
@@ -33,7 +34,7 @@ public class shader3 : MonoBehaviour
    
     void Update()
     {
-        compute_shader.SetTexture(handle_main, "texture1", texture1);
+        compute_shader.SetTexture(handle_main, "texture1", fluid.texture1);
         float SpectrumAccumulation1 = audioCapture.SpectrumAccumulation1;
         compute_shader.SetFloat("spectrum2", audioCapture.Spectrum2);
         compute_shader.SetFloat("SpectrumAccumulation1", SpectrumAccumulation1);

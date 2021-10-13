@@ -18,7 +18,8 @@ public class RaymarchGeneric1 : MonoBehaviour
     public Texture2D height;
     public Texture2D rough;
     public Texture2D albedo;
-
+    public Texture texture1;
+    public fluid_dynamics fluid;
     public Material EffectMaterial
     {
         get
@@ -80,7 +81,7 @@ public class RaymarchGeneric1 : MonoBehaviour
         EffectMaterial.SetTexture("_height", height);
         EffectMaterial.SetTexture("_rough", rough);
         EffectMaterial.SetTexture("_albedo", albedo);
-
+        EffectMaterial.SetTexture("_texture1", fluid.texture1);
         CustomGraphicsBlit(source, destination, EffectMaterial, 0);
     }
     private Matrix4x4 GetFrustumCorners(Camera cam)

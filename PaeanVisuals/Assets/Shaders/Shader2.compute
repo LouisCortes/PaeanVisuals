@@ -141,7 +141,7 @@ void CSMain (uint2 id : SV_DispatchThreadID)
 	float t2 = max(pow(spectrum2, 3.)*step(f.y, 1.),reader.SampleLevel(_LinearRepeat, uc + 0.5 / res-float2(0.,1.)/res, 0).z*step(1.,f.y));
 	float td = max(reader.SampleLevel(_LinearRepeat, uc + 0.5 / res , 0).y*0.95,
 		reader.SampleLevel(_LinearRepeat, float2(0.,smoothstep(0.,15.,d)), 0).z);
-	float s1 = lerp(lerp(step(uc.y, pow(spectrum1,2.)), step(uc.y, pow(spectrum2, 2.)),step(1./3.,uc.x)), step(uc.y, pow(spectrum3, 2.)),  step(2. / 3., uc.x));
-	writer[id]=float4(s1,s1,s1,s1);
+	//float s1 = lerp(lerp(step(uc.y, pow(spectrum1,2.)), step(uc.y, pow(spectrum2, 2.)),step(1./3.,uc.x)), step(uc.y, pow(spectrum3, 2.)),  step(2. / 3., uc.x));
+	writer[id]=float4(r2,lerp(1.,td,audio),t2,result2);
 
 }
