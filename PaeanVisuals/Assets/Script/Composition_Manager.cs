@@ -14,9 +14,11 @@ public class Composition_Manager : MonoBehaviour
     public bool Water01;
     public bool Water02;
     public bool Water03;
+    public bool Water04;
     public bool Rock01;
     public bool Rock02;
     public bool Rock03;
+    public bool Rock04;
     public GameObject UniversWater01;
     public GameObject UniversWater02;
     public GameObject UniversWater03;
@@ -43,9 +45,11 @@ public class Composition_Manager : MonoBehaviour
         Rock01 = false;
         Rock02 = false;
         Rock03 = false;
+        Rock04 = false;
         Water01 = false;
         Water02 = false;
         Water03 = false;
+        Water04 = false;
         CleanAllUnivers();
         Blink = false;
         AssignBlink = false;
