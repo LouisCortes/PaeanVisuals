@@ -42,16 +42,17 @@ float map(float3 p, float2 uv) {
 	p.xz = mul(p.xz, rot(rotation));
 	float3 pn = p;
 	float d1 = 100.; float d4 = 100.;
-	p.xz = mul(p.xz, rot(-0.5));
+	float vr1 = 0.5 + uv.y; float vr2 = 0.8 + uv.y;
+	p.xz = mul(p.xz, rot(-vr1));
 	float3 pl = p;
 	for (int k = 0; k < 6; k++) {
 		p -= uv.x;
-		p.xz = mul(p.xz, rot(0.5));
-		p.yz = mul(p.yz, rot(0.8));
+		p.xz = mul(p.xz, rot(vr1));
+		p.yz = mul(p.yz, rot(vr2));
 		p = abs(p);
 		pl -= uv.x;
-		pl.xz = mul(pl.xz, rot(0.5));
-		pl.yz = mul(pl.yz, rot(0.8));
+		pl.xz = mul(pl.xz, rot(vr1));
+		pl.yz = mul(pl.yz, rot(vr2));
 		pl = smin(pl, -pl, -0.8);
 		d1 = min(d1, box(p, float3(0.8, 0.6, 0.9)));
 		d4 = min(d4, box(pl, float3(0.8, 0.6, 0.9)));
@@ -95,7 +96,7 @@ void CSMain (uint2 id : SV_DispatchThreadID)
 	r.yz = mul(r.yz,rot(-0.8));
 
 	float2 mt = float2(+0.9+noise.SampleLevel(_LinearRepeat, float2(0., _time),0.).x*audio1,
-		0.);
+		(noise.SampleLevel(_LinearRepeat, float2(0.25, _time), 0.).x-0.5)*audio1);
 	float dd = 0.; float dm = 20.;
 	for (int j = 0; j < 100; j++) {
 
@@ -115,9 +116,10 @@ void CSMain (uint2 id : SV_DispatchThreadID)
 	float sha = lerp(pow(tt, 2.5), 1., getShadow(p, lp, 64., mt));
 	float l2 = sha * l1;
 	float al = ov(fres, l2);
-	float frl = pow(1. - ld, 5.) + pow(ld, 500.);
+	float frl = pow(1. - ld, 5.)*0.7 + pow(ld, 500.);
 	float r1 = lerp(frl, al, ml);
 	float3 r3 = ref.SampleLevel(_LinearRepeat, n, 0).xyz;
-	reader[id] = float4(r1*neutre+r3*bleu, 1.)*s;
+	float po = lerp(1.,pow((1.-noise.SampleLevel(_LinearRepeat, float2(0.75, _time), 0.).x),2.)*10.,audio1);
+	reader[id] = float4(pow(r1*neutre+r3*bleu,float3(po,po,po)), 1.)*s; 
 
 }

@@ -10,6 +10,7 @@ public class Shader1 : MonoBehaviour
     int handle_main;
     public Texture texture0;
     public Texture texture1;
+    public Texture noise;
     public GameObject probe;
     [Range(0, 1)]
     public float liquide;
@@ -29,6 +30,7 @@ public class Shader1 : MonoBehaviour
         compute_shader.SetTexture(handle_main, "reader", A);
         compute_shader.SetTexture(handle_main, "texture0", texture0);
         compute_shader.SetTexture(handle_main, "texture1", texture1);
+        compute_shader.SetTexture(handle_main, "noise", noise);
         compute_shader.SetTexture(handle_main, "ref",probe.GetComponent<ReflectionProbe>().texture );
        compute_shader.SetFloat("_time", Time.time);
         compute_shader.SetFloat("liquide", liquide);
