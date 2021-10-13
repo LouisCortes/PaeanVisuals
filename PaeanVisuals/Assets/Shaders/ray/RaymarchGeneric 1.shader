@@ -32,7 +32,7 @@ Shader "Hidden/RaymarchGeneric1"
 			uniform sampler2D _height;
 			uniform sampler2D _rough;
 			uniform sampler2D _albedo;
-
+			uniform sampler2D _texture1;
 			struct appdata
 			{
 				float4 vertex : POSITION;
@@ -80,36 +80,47 @@ Shader "Hidden/RaymarchGeneric1"
 				return length(max(q, float3(0.,0.,0.))) + min(0., max(q.x, max(q.z, q.y)));
 			}
 			float2x2 rot(float t) { float c = cos(t); float s = sin(t); return float2x2(c, -s, s, c); }
-			float ts; float tt; float ta; float2 tn; float tc;
-			float map(float3 p) {
+			float ts; float tt; float ta; float2 tn; float tc; float dl;
+			float map(float3 p,float2 uv) {
+				float3 pfc = p;
 				p += _wp;
 				p.xz = mul(p.xz,rot(_wr.z));
 				float3 pn = p;
-				float d1 = 100.;
+				float d1 = 100.; float d4 = 100.;
 				p.xz = mul(p.xz,rot(-0.5));
+				float3 pl = p;
 				for (int k = 0; k < 6; k++) {
 					p -= 0.9;
 					p.xz = mul(p.xz,rot(0.5));
 					p.yz  = mul (p.yz,rot(0.8));
 					p = abs(p);
+					pl -= 0.9;
+					pl.xz = mul(pl.xz, rot(0.5));
+					pl.yz = mul(pl.yz, rot(0.8));
+					pl = smin(pl, -pl, -0.8);
 					d1 = min(d1, box(p, float3(0.8, 0.6, 0.9)));
+					d4 = min(d4, box(pl, float3(0.8, 0.6, 0.9)));
 				}
 				tc = tex2D(_albedo, p.xz*0.5).x*0.35 + tex2D(_albedo, pn.xz*0.3).x*0.65;
 				ts = tex2D(_rough, p.xz*0.5).x*0.35 + tex2D(_rough, pn.xz*0.3).x*0.65;
 				tt = tex2D(_height, p.xz*0.5).x*0.35 + tex2D(_height, pn.xz*0.3).x*0.65;
 				ta = tex2D(_ao, p.xz*0.5).x*tex2D(_ao, pn.xz*0.3).x;
-				tn = (tex2D(_normal, p.xz*0.5).xy + tex2D(_normal, pn.xz*0.3).xy - 1.);
-				return d1 - tex2D(_height, p.xz*0.5).x*0.3 - tex2D(_height, pn.xz*0.3).x*0.6;
-				
+				//tn = (tex2D(_normal, p.xz*0.5).xy + tex2D(_normal, pn.xz*0.3).xy - 1.);
+				float d2 = d1 - tex2D(_height, p.xz*0.5).x*0.3 - tex2D(_height, pn.xz*0.3).x*0.6;
+				d4 += sin(_Time.y)*0.7+ tex2D(_texture1, frac(pfc.xy*0.1)).x*0.2;
+				//float d3 = max(d4 , -(pfc.x + tex2D(_texture1,frac( pfc.yz*0.1)).x*2. + sin(_Time.y)*10.));
+				dl = d4;
+
+				return min(d2, d4);
 			}
-			float3 nor(float3 p) { float2 e = float2(0.0001, 0.); return normalize(map(p) - float3(map(p - e.xyy), map(p - e.yxy), map(p - e.yyx))); }
-			float getShadow(float3 pos, float3 at, float k) {
+			float3 nor(float3 p,float2 uv) { float2 e = float2(0.0001, 0.); return normalize(map(p,uv) - float3(map(p - e.xyy, uv), map(p - e.yxy, uv), map(p - e.yyx, uv))); }
+			float getShadow(float3 pos, float3 at, float k,float2 uv) {
 				float3 dir = normalize(at - pos);
 				float maxt = length(at - pos);
 				float f = 1.;
 				float t = .01*10.;
 				for (float i = 0.; i <= 1.; i += 1. / 30.) {
-					float dist = map(pos + dir * t);
+					float dist = map(pos + dir * t, uv);
 					if (dist < .01) return 0.;
 					f = min(f, k * dist / t);
 					t += dist;
@@ -122,7 +133,7 @@ Shader "Hidden/RaymarchGeneric1"
 			{
 				float3 ray= normalize(i.ray.xyz);
 				float3 pos = _CameraWS;
-
+				float2 uv = i.uv;
 				float2 duv = i.uv;
 				#if UNITY_UV_STARTS_AT_TOP
 				if (_MainTex_TexelSize.y < 0)
@@ -143,23 +154,25 @@ Shader "Hidden/RaymarchGeneric1"
 					}
 				
 				 p = pos + ray*t;
-				float dist = map(p);
+				float dist = map(p, uv);
 				if (dist<0.01){
 				break;
 				}				 
 				 t += dist;
 				}
-				
+				float ml = step(0.01, dl);
 				float s = smoothstep(_DrawDistance, 0., t);
-				float3 n = nor(p) + float3(tn.x, 0., tn.y);
+				float3 n = nor(p, uv);
 				float ld = clamp(dot(n, -ray), 0., 1.);
 				float fres = ((pow(1. - ld, ts) + pow(ld, ts))*(1. - ts) + tc)*ta;
 				float3 lp = _LightDir;
 				float l1 = dot(n, normalize(lp));
-				float sha = lerp(pow(tt, 2.5), 1., getShadow(p, lp, 64.));
-				float l2 = sha * l1*s;
+				float sha = lerp(pow(tt, 2.5), 1., getShadow(p, lp, 64., uv));
+				float l2 = sha * l1;
 				float al = ov(fres, l2);
-				return fixed4 (al,al,al,1.);
+				float frl = pow(1. - ld, 5.) + pow(ld, 500.);
+				float r1 = lerp(frl, al, ml);
+				return fixed4 (r1,r1,r1,1.)*s;
 				
 			}    
 			ENDCG
