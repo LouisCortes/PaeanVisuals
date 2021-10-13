@@ -8,4 +8,6 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Proto_Cam.unity
     guid: 3ad0880d806ef28489a5c8e4ee451344
-  m_configObjects: {}
+  m_configObjects:
+    com.unity.input.settings: {fileID: 11400000, guid: 759c4ff0cd7aa3f43bb92b40b84d353e,
+      type: 2}
