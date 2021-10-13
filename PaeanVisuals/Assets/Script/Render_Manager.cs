@@ -9,7 +9,6 @@ public class Render_Manager : MonoBehaviour
     public Cam_Manager Cam;
     public Scene_Manager Scene;
 
-    public bool AssignScene;
 
     public int TranslationIntensity;
     public int LandscapeIntensity;
@@ -17,23 +16,20 @@ public class Render_Manager : MonoBehaviour
 
     void Start()
     {
-        AssignScene = false;
         FragmentationIntensity = 0;
     }
 
-
     void Update()
     {
-
         if (Input.GetKeyDown("a")) /////// Screen A full
         {
-            Compo.CleanA();
+            Compo.Clean();
             Compo.ScreenA();
         }
 
         if (Input.GetKeyDown("p"))  /////// Screen B full
         {
-            Compo.CleanA();
+            Compo.Clean();
             Compo.ScreenB();
         }
        
@@ -48,12 +44,10 @@ public class Render_Manager : MonoBehaviour
         if (Input.GetKeyDown("e"))  /////// Screen B full
         {
             Compo.SlicedScreenA();
-            //Compo.ScreenB();
         }
         if (Input.GetKeyDown("i"))  /////// Screen B full
         {
             Compo.SlicedScreenB();
-            //Compo.ScreenB();
         }
 
         if (Input.GetKeyDown("m")) /////// fragmentation AB
@@ -113,9 +107,19 @@ public class Render_Manager : MonoBehaviour
         {
             Scene.TextPaeanApparition();
         }
-        if (Input.GetKeyDown("u")) /////// TEXT PAEAN
+        if (Input.GetKeyDown("u")) /////// TEXT UI
         {
             Scene.UIGPSApparition();
+        }
+
+        if (Input.GetKeyDown("return")) /////// AssignScene
+        {
+            Compo.AssignScene = true;
+        }
+
+        if (Input.GetKeyDown("b")) ////////// Assign Blink
+        {
+            Compo.AssignBlink = true;
         }
 
         if (Input.GetKeyDown("space"))  /////// Just Clean
@@ -127,8 +131,13 @@ public class Render_Manager : MonoBehaviour
 
     void Clean()
     {
+        if (Compo.AssignScene){
+            
+                Compo.CleanAllUnivers();
+        }
+        
         TranslationIntensity = 0;
-        Compo.CleanA();
+        Compo.Clean();
         Cam.ResetAll();
         LandscapeIntensity = 0;
         FragmentationIntensity = 0;
