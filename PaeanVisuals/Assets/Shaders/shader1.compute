@@ -10,6 +10,7 @@ SamplerState _LinearRepeat;
 float _time;
 float liquide;
 float audio1;
+float audio2;
 float zoom;
 int _rx;
 int _ry;
@@ -35,7 +36,7 @@ float map(float3 p,float mv) {
 		d1 = dot(p, float3(0., 1., 0.)) +( (texture1.SampleLevel(_LinearRepeat, p.xz*0.01,0. ).x*10.
 			+ texture1.SampleLevel(_LinearRepeat, p.xz*0.1, 0.).x)*(1.-pow(liquide,2.5))+
 			(-texf.SampleLevel(_LinearRepeat, p.xz*0.25+0.5, 0.).x*0.1-texf.SampleLevel(_LinearRepeat, p.xz+0.5, 0.).x*0.05
-				+no(p.xz*float2(6.,1.5)+float2(_time,-_time))*0.05+no(p.xz*float2(6., 1.5) + float2(-_time, _time))*0.05+0.4 )*liquide)*mv;
+				+no(p.xz*float2(6.,1.5)+float2(_time,-_time))*(0.05+mv*0.1)*+no(p.xz*float2(6., 1.5) + float2(-_time, _time))*(0.05 + mv * 0.1) +0.4 )*liquide)*mv;
 	}
 	lo = li;
 	return d1;
@@ -73,7 +74,7 @@ void CSMain (uint2 id : SV_DispatchThreadID)
 	float dao = 0.75;
 	float ao = clamp(map(p + n * dao, mv) / dao, 0., 1.);
 	fres *= ao;
-	float r1 = smoothstep(-0.05,0.8,pow(fres,lerp(0.7, noise.SampleLevel(_LinearRepeat, float2(0.5, _time), 0.).x*2.,audio1))); 
+	float r1 = smoothstep(-0.05,0.8,pow(fres,lerp(0.7, noise.SampleLevel(_LinearRepeat, float2(0.5, _time), 0.).x*2.,audio2))); 
 	float3 r3 = ref.SampleLevel(_LinearRepeat, n, 0).xyz;
 	reader[id] = float4(r3+r1,1.);
 

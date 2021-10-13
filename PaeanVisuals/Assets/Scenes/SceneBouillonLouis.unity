@@ -650,7 +650,7 @@ PrefabInstance:
     - target: {fileID: 5600439615483780835, guid: bb1945e7ac5698044bb4bb736b5e7dde,
         type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bb1945e7ac5698044bb4bb736b5e7dde, type: 3}
@@ -952,6 +952,8 @@ MonoBehaviour:
   resx: 1280
   resy: 480
   audioreaction: 0
+  noise: {fileID: 2800000, guid: 6c1bdc3340cbe584e996b350abd28c93, type: 3}
+  osc: {fileID: 1775920356}
 --- !u!4 &1763530288
 Transform:
   m_ObjectHideFlags: 0
@@ -996,7 +998,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1867963417
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6027,7 +6029,7 @@ PrefabInstance:
     - target: {fileID: 7136973141739281504, guid: 0d7a27c39d9c5914dbfb43f708417ac7,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7136973141739281505, guid: 0d7a27c39d9c5914dbfb43f708417ac7,
         type: 3}
