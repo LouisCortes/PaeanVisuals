@@ -6,6 +6,7 @@ public class spectrum : MonoBehaviour {
     public float Spectrum1;
     public float Spectrum2;
     public float Spectrum3;
+    
     public float SpectrumAccumulation1;
 
     void Start () {
@@ -19,9 +20,9 @@ public class spectrum : MonoBehaviour {
 
 		for (int i=0; i<1; i++)
 		{
-            Spectrum1 = spectrum[256];
-            Spectrum2 = spectrum[512]*100000;
-            Spectrum3 = spectrum[i];
+            Spectrum1 = spectrum[256] * 1000;
+            Spectrum2 = spectrum[512]*10000;
+            Spectrum3 = spectrum[i] * 1000;
 
         }
         SpectrumAccumulation1 += Mathf.Pow(Spectrum3 * 10, 1.25f) * 10;

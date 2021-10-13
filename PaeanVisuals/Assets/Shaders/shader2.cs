@@ -34,10 +34,12 @@ public class shader2 : MonoBehaviour
    
     void Update()
     {
-         float SpectrumAccumulation1 = audioCapture.SpectrumAccumulation1;
+       //  float SpectrumAccumulation1 = audioCapture.SpectrumAccumulation1;
+        compute_shader.SetFloat("spectrum1", audioCapture.Spectrum1);
         compute_shader.SetFloat("spectrum2", audioCapture.Spectrum2);
+        compute_shader.SetFloat("spectrum3", audioCapture.Spectrum3);
         compute_shader.SetFloat("audio", audioreaction);
-        compute_shader.SetFloat("SpectrumAccumulation1", SpectrumAccumulation1);
+        //compute_shader.SetFloat("SpectrumAccumulation1", SpectrumAccumulation1);
         compute_shader.SetTexture(handle_main, "texture1", texture1);
         compute_shader.SetTexture(handle_main, "reader", A);
         compute_shader.SetFloat("time", Time.time);
