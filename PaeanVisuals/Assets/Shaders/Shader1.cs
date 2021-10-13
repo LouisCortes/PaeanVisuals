@@ -40,7 +40,7 @@ public class Shader1 : MonoBehaviour
         compute_shader.SetInt("_rx", resx);
         compute_shader.SetInt("_ry", resy);
         compute_shader.SetFloat("liquide", osc.liquide);
-        compute_shader.SetFloat("audio1", osc.audio1);
+        compute_shader.SetFloat("audio1", osc.audio1+osc.low*osc.audio2);
         compute_shader.SetFloat("zoom", osc.zoom);
         //compute_shader.SetTexture(handle_main, "writer", B);
         //compute_shader.Dispatch(handle_main, B.width / 8, B.height / 8, 1);
