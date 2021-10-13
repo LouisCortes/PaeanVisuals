@@ -1,0 +1,123 @@
+﻿#pragma kernel CSMain
+
+RWTexture2D<float4> reader;
+Texture2D<float4> ao;
+Texture2D<float4> height;
+Texture2D<float4> albedo;
+Texture2D<float4> rough;
+Texture2D<float4> fluid;
+Texture2D<float4> noise;
+TextureCube<float4> ref;
+SamplerState _LinearRepeat;
+float _time;
+float liquide;
+float audio1;
+float rotation;
+float zoom;
+float neutre;
+float bleu;
+int _rx;
+int _ry;
+
+float smin(float a, float b, float t) {
+	float h = clamp(0.5 + 0.5*(b - a) / t, 0., 1.);
+	return lerp(b, a, h) - t * h*(1. - h);
+}
+float3 smin(float3 a, float3 b, float t) {
+	float3 h = clamp(0.5 + 0.5*(b - a) / t, 0., 1.);
+	return lerp(b, a, h) - t * h*(1. - h);
+}
+
+float3 ov(float3 a, float3 b) { return lerp(2.*a*b, 1. - 2.*(1. - a)*(1. - b), step(0.5, a)); }
+
+float box(float3 p, float3 r) {
+	float3 q = abs(p) - r;
+	return length(max(q, float3(0., 0., 0.))) + min(0., max(q.x, max(q.z, q.y)));
+}
+float2x2 rot(float t) { float c = cos(t); float s = sin(t); return float2x2(c, -s, s, c); }
+float ts; float tt; float ta; float2 tn; float tc; float dl;
+float map(float3 p, float2 uv) {
+	
+	float3 pfc = p;
+	p.xz = mul(p.xz, rot(rotation));
+	float3 pn = p;
+	float d1 = 100.; float d4 = 100.;
+	p.xz = mul(p.xz, rot(-0.5));
+	float3 pl = p;
+	for (int k = 0; k < 6; k++) {
+		p -= uv.x;
+		p.xz = mul(p.xz, rot(0.5));
+		p.yz = mul(p.yz, rot(0.8));
+		p = abs(p);
+		pl -= uv.x;
+		pl.xz = mul(pl.xz, rot(0.5));
+		pl.yz = mul(pl.yz, rot(0.8));
+		pl = smin(pl, -pl, -0.8);
+		d1 = min(d1, box(p, float3(0.8, 0.6, 0.9)));
+		d4 = min(d4, box(pl, float3(0.8, 0.6, 0.9)));
+	}
+	tc = albedo.SampleLevel(_LinearRepeat, p.xz*0.5,0.).x*0.35 + albedo.SampleLevel(_LinearRepeat, pn.xz*0.3, 0.).x*0.65;
+	ts = rough.SampleLevel(_LinearRepeat, p.xz*0.5, 0.).x*0.35 + rough.SampleLevel(_LinearRepeat, pn.xz*0.3, 0.).x*0.65;
+	tt = height.SampleLevel(_LinearRepeat, p.xz*0.5, 0.).x*0.35 + height.SampleLevel(_LinearRepeat, pn.xz*0.3, 0.).x*0.65;
+	ta = ao.SampleLevel(_LinearRepeat, p.xz*0.5, 0.).x*ao.SampleLevel(_LinearRepeat, pn.xz*0.3, 0.).x;
+	float d2 = d1 - height.SampleLevel(_LinearRepeat, p.xz*0.5, 0.).x*0.3 - height.SampleLevel(_LinearRepeat, pn.xz*0.3, 0.).x*0.6;
+	d4 += lerp(0.,-1.,liquide) + fluid.SampleLevel(_LinearRepeat ,(pfc.xy*0.1+0.5), 0.).x*0.2+fluid.SampleLevel(_LinearRepeat, (pfc.xy*0.2 + 0.5), 0.).x*0.1;
+	dl = d4;
+
+	return min(d2, d4);
+}
+float3 nor(float3 p, float2 uv) { float2 e = float2(0.0001, 0.); return normalize(map(p, uv) - float3(map(p - e.xyy, uv), map(p - e.yxy, uv), map(p - e.yyx, uv))); }
+float getShadow(float3 pos, float3 at, float k, float2 uv) {
+	float3 dir = normalize(at - pos);
+	float maxt = length(at - pos);
+	float f = 1.;
+	float t = .01*10.;
+	for (float i = 0.; i <= 1.; i += 1. / 30.) {
+		float dist = map(pos + dir * t, uv);
+		if (dist < .01) return 0.;
+		f = min(f, k * dist / t);
+		t += dist;
+		if (t >= maxt) break;
+	}
+	return f;
+}
+
+[numthreads(8,8,1)]
+void CSMain (uint2 id : SV_DispatchThreadID) 
+{
+	//float prevColor = reader.SampleLevel(_LinearRepeat, uc + 0.5 / res, 0).a;
+	float2 f = float2(id.x,id.y);
+	float2 res=float2(_rx,_ry); 
+	float2 uv = ((f / res)-0.5)*2.;
+	uv.x *= res.x / res.y;
+	float3 p = float3(0., 7.5, -7);
+	float3 r = normalize(float3(uv, lerp(0.5,2.,zoom)));
+	r.yz = mul(r.yz,rot(-0.8));
+
+	float2 mt = float2(+0.9+noise.SampleLevel(_LinearRepeat, float2(0., _time),0.).x*audio1,
+		0.);
+	float dd = 0.; float dm = 20.;
+	for (int j = 0; j < 100; j++) {
+
+		float d = map(p,mt);
+		if (dd > dm) { dd = dm; break; }
+		if (d < 0.01) { break; }
+		p += r * d;
+		dd += d;
+	}
+	float ml = step(0.01, dl);
+	float s = smoothstep(dm, 0., dd);
+	float3 n = nor(p, mt);
+	float ld = clamp(dot(n, -r), 0., 1.);
+	float fres = ((pow(1. - ld, ts) + pow(ld, ts))*(1. - ts) + tc)*ta;
+	float3 lp =float3(-19.6,23.6,-6.1);
+	float l1 = dot(n, normalize(lp));
+	float sha = lerp(pow(tt, 2.5), 1., getShadow(p, lp, 64., mt));
+	float l2 = sha * l1;
+	float al = ov(fres, l2);
+	float frl = pow(1. - ld, 5.) + pow(ld, 500.);
+	float r1 = lerp(frl, al, ml);
+	float3 r3 = ref.SampleLevel(_LinearRepeat, n, 0).xyz;
+	reader[id] = float4(r1*neutre+r3*bleu, 1.)*s;
+
+}
