@@ -67,14 +67,15 @@ public class Composition_Manager : MonoBehaviour
 
     void Update()
     {
-        if (Rock04 || Water01)
-        {
-            Fluide.SetActive(true);
-        }
-        else
-        {
-            Fluide.SetActive(false);
-        }
+
+        /*  if (Rock04 || Water01)
+          {
+              Fluide.SetActive(true);
+          }
+          else
+          {
+              Fluide.SetActive(false);
+          }*/
 
         if (Blink)
         {
@@ -94,84 +95,87 @@ public class Composition_Manager : MonoBehaviour
         }
     }
 
-        ///////////////////////////////////////// Rock
-        /*  if (Input.GetKeyDown(KeyCode.Keypad1))
-          {
-              if (Rock01) Rock01 = false;
-              else Rock01 = true;
-              if (Rock01){
-                  LayerNameToAssign = "Rock01";
-                  LY = LayerMask.GetMask(LayerNameToAssign);
-                  UniversRock01.SetActive(true);
-              }else{
-                  UniversRock01.SetActive(false);
-              }
+    ///////////////////////////////////////// Rock
+    /*  if (Input.GetKeyDown(KeyCode.Keypad1))
+      {
+          if (Rock01) Rock01 = false;
+          else Rock01 = true;
+          if (Rock01){
+              LayerNameToAssign = "Rock01";
+              LY = LayerMask.GetMask(LayerNameToAssign);
+              UniversRock01.SetActive(true);
+          }else{
+              UniversRock01.SetActive(false);
           }
-          if (Input.GetKeyDown(KeyCode.Keypad2))
-          {
-              if (Rock02) Rock02 = false;
-              else Rock02 = true;
-              if (Rock02){
-                  LayerNameToAssign = "Rock02";
-                  LY = LayerMask.GetMask(LayerNameToAssign);
-                  UniversRock02.SetActive(true);
-              }else{
-                  UniversRock02.SetActive(false);
-              }
+      }
+      if (Input.GetKeyDown(KeyCode.Keypad2))
+      {
+          if (Rock02) Rock02 = false;
+          else Rock02 = true;
+          if (Rock02){
+              LayerNameToAssign = "Rock02";
+              LY = LayerMask.GetMask(LayerNameToAssign);
+              UniversRock02.SetActive(true);
+          }else{
+              UniversRock02.SetActive(false);
           }
+      }
 
-           if (Input.GetKeyDown(KeyCode.Keypad3))
-           {
-              if (Rock03) Rock03 = false; else Rock03 = true;
-              if (Rock03){
-                  LayerNameToAssign = "Rock03";
+       if (Input.GetKeyDown(KeyCode.Keypad3))
+       {
+          if (Rock03) Rock03 = false; else Rock03 = true;
+          if (Rock03){
+              LayerNameToAssign = "Rock03";
+              LY = LayerMask.GetMask(LayerNameToAssign);
+              UniversRock03.SetActive(true);
+          }else{
+              UniversRock03.SetActive(false);
+          }
+       }
+
+      if (Input.GetKeyDown(KeyCode.Keypad4))
+      {
+          if (Rock04) Rock04 = false; else Rock04 = true;
+          if (Rock04){
+              LayerNameToAssign = "Rock04";
+              LY = LayerMask.GetMask(LayerNameToAssign);
+              UniversRock04.SetActive(true);
+          }else
+          {
+              UniversRock04.SetActive(false);
+          }
+      }
+      ///////////////////////////////////////// WATER UNIVERS
+      if (Input.GetKeyDown(KeyCode.Keypad7))
+       {
+          if (Water01) Water01 = false; else Water01 = true;
+          if (Water01){
+              LayerNameToAssign = "Water01";
+              LY = LayerMask.GetMask(LayerNameToAssign);
+              UniversWater01.SetActive(true);
+          }else{
+              UniversWater01.SetActive(false);
+          }
+      }
+
+       if (Input.GetKeyDown(KeyCode.Keypad8))
+       {
+           if (Water02) Water02 = false; else Water02 = true;
+           if (Water02){
+                  LayerNameToAssign = "Water02";
                   LY = LayerMask.GetMask(LayerNameToAssign);
-                  UniversRock03.SetActive(true);
-              }else{
-                  UniversRock03.SetActive(false);
-              }
+                  UniversWater02.SetActive(true);
+           }else{
+                  UniversWater02.SetActive(false);
            }
-
-          if (Input.GetKeyDown(KeyCode.Keypad4))
-          {
-              if (Rock04) Rock04 = false; else Rock04 = true;
-              if (Rock04){
-                  LayerNameToAssign = "Rock04";
-                  LY = LayerMask.GetMask(LayerNameToAssign);
-                  UniversRock04.SetActive(true);
-              }else
-              {
-                  UniversRock04.SetActive(false);
-              }
-          }
-          ///////////////////////////////////////// WATER UNIVERS
-          if (Input.GetKeyDown(KeyCode.Keypad7))
-           {
-              if (Water01) Water01 = false; else Water01 = true;
-              if (Water01){
-                  LayerNameToAssign = "Water01";
-                  LY = LayerMask.GetMask(LayerNameToAssign);
-                  UniversWater01.SetActive(true);
-              }else{
-                  UniversWater01.SetActive(false);
-              }
-          }
-
-           if (Input.GetKeyDown(KeyCode.Keypad8))
-           {
-               if (Water02) Water02 = false; else Water02 = true;
-               if (Water02){
-                      LayerNameToAssign = "Water02";
-                      LY = LayerMask.GetMask(LayerNameToAssign);
-                      UniversWater02.SetActive(true);
-               }else{
-                      UniversWater02.SetActive(false);
-               }
-           }        
-      }*/
-
-        /////////////////////////////////////////SLICED
-        public void SlicedScreenA()
+       }        
+  }*/
+    public void Reset()
+    {
+        Application.LoadLevel(Application.loadedLevel);
+    }
+    /////////////////////////////////////////SLICED
+    public void SlicedScreenA()
         {
             int R; R = Random.Range(0, 4);
             if (AssignBlink == true) {
@@ -491,7 +495,7 @@ public class Composition_Manager : MonoBehaviour
             if (Rock03){
                 LayerNameToAssign = "Rock03";
                 LY = LayerMask.GetMask(LayerNameToAssign);
-                UniversRock02.SetActive(true);
+                UniversRock03.SetActive(true);
             }else{
                 UniversRock03.SetActive(false);
             }     
@@ -504,7 +508,7 @@ public class Composition_Manager : MonoBehaviour
         if (Rock04){
             LayerNameToAssign = "Rock04";
             LY = LayerMask.GetMask(LayerNameToAssign);
-            UniversRock02.SetActive(true);
+            UniversRock04.SetActive(true);
         }else{
             UniversRock04.SetActive(false);
         }
@@ -533,7 +537,7 @@ public class Composition_Manager : MonoBehaviour
         {
             LayerNameToAssign = "Water02";
             LY = LayerMask.GetMask(LayerNameToAssign);
-            UniversWater01.SetActive(true);
+            UniversWater02.SetActive(true);
         }
         else
         {
@@ -593,6 +597,8 @@ public class Composition_Manager : MonoBehaviour
         A2_0[1].SetActive(false);   B2_0[1].SetActive(false);
         A2_0[2].SetActive(false);   B2_0[2].SetActive(false);
         Blink = false;
+
+
     }
 
     public void CleanAllUnivers()

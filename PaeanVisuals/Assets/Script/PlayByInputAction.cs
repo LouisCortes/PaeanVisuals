@@ -45,6 +45,8 @@ sealed class PlayByInputAction : MonoBehaviour
     [SerializeField] InputAction _Water03 = null;
     [SerializeField] InputAction _Water04 = null;
 
+    [SerializeField] InputAction _Restart = null;
+
 
     void Start()
     {
@@ -112,8 +114,9 @@ sealed class PlayByInputAction : MonoBehaviour
         _Water03.Enable();
         _Water04.performed += CallWater04;
         _Water04.Enable();
-        
 
+        _Restart.performed += Level;
+        _Restart.Enable();
     }
 
     void OnDisable()
@@ -177,7 +180,10 @@ sealed class PlayByInputAction : MonoBehaviour
         _Water03.Disable();
         _Water04.performed -= CallWater04;
         _Water04.Disable();
-        
+
+        _Restart.performed -= Level;
+        _Restart.Disable();
+
     }
 
     void ScreenA(InputAction.CallbackContext ctx)
@@ -227,14 +233,25 @@ sealed class PlayByInputAction : MonoBehaviour
         }
         else if (LandscapeIntensity == 3)
         {
+            if (Compo.AssignScene)
+            {
+
+                Compo.CleanAllUnivers();
+            }
+
+            TranslationIntensity = 0;
             Compo.Clean();
+            Cam.ResetAll();
+            LandscapeIntensity = 0;
+            FragmentationIntensity = 0;
+
             Compo.SetupCrossLandscape();    // Cross Landscape
         }
     }
 
     void SlicedB(InputAction.CallbackContext ctx)
     {
-        Compo.SlicedScreenA();
+        Compo.SlicedScreenB();
     }
 
     void FullFragmentation(InputAction.CallbackContext ctx)
@@ -277,6 +294,11 @@ sealed class PlayByInputAction : MonoBehaviour
         Scene.UIGPSApparition();
     }
 
+    void Level(InputAction.CallbackContext ctx)
+    {
+        Compo.Reset();
+    }
+
     void CallRock01(InputAction.CallbackContext ctx)
     {
         Compo.R01();
@@ -297,18 +319,35 @@ sealed class PlayByInputAction : MonoBehaviour
 
     void CallWater01(InputAction.CallbackContext ctx)
     {
-          Compo.R01();
+          Compo.W01();
     }
     void CallWater02(InputAction.CallbackContext ctx)
     {
-         Compo.R02();
+         Compo.W02();
     }
     void CallWater03(InputAction.CallbackContext ctx)
     {
-         Compo.R03();
+         Compo.W03();
     }
     void CallWater04(InputAction.CallbackContext ctx)
     {
          Compo.W04();
     }
+
+  /*  public void CleanLocal(InputAction.CallbackContext ctx)
+    {
+        if (Compo.AssignScene)
+        {
+
+            Compo.CleanAllUnivers();
+        }
+
+        TranslationIntensity = 0;
+        Compo.Clean();
+        Cam.ResetAll();
+        LandscapeIntensity = 0;
+        FragmentationIntensity = 0;
+    }*/
+
+
 }
