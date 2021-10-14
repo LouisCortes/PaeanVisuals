@@ -11,34 +11,30 @@ public class PlayByInputAction : MonoBehaviour
     public Scene_Manager Scene;
     public Sequence_Manager Sequence;
 
-    public int TranslationIntensity;
-    public int LandscapeIntensity;
-
     [SerializeField] InputAction _ScreenA = null;
     [SerializeField] InputAction _ScreenB = null;
 
-    [SerializeField] InputAction _Subdivision = null;
+    [SerializeField] InputAction _Subdivision1 = null;
+    [SerializeField] InputAction _Subdivision2 = null;
+
     [SerializeField] InputAction _NouvelUnivers = null;
+
+    [SerializeField] InputAction _ChangeSpeed = null;
+    [SerializeField] InputAction _NextSequence = null;
 
     [SerializeField] InputAction _Addition = null;
 
     [SerializeField] InputAction _AssignBlink = null;
 
+    [SerializeField] InputAction _DebugFunction = null;
+    [SerializeField] InputAction _DebugClean = null;
+
+    [SerializeField] InputAction _AnimCam = null;
+
     [SerializeField] InputAction _Typo = null;
     [SerializeField] InputAction _UI = null;
-/*
-    [SerializeField] InputAction _Rock01 = null;
-    [SerializeField] InputAction _Rock02 = null;
-    [SerializeField] InputAction _Rock03 = null;
-    [SerializeField] InputAction _Rock04 = null;
 
-    [SerializeField] InputAction _Water01 = null;
-    [SerializeField] InputAction _Water02 = null;
-    [SerializeField] InputAction _Water03 = null;
-    [SerializeField] InputAction _Water04 = null;
-    */
     [SerializeField] InputAction _Restart = null;
-
 
     void Start()
     {
@@ -53,11 +49,20 @@ public class PlayByInputAction : MonoBehaviour
         _ScreenB.performed += ScreenB;
         _ScreenB.Enable();
 
-        _Subdivision.performed += Subdivision;
-        _Subdivision.Enable();
+        _Subdivision1.performed += Subdivision1;
+        _Subdivision1.Enable();
+
+        _Subdivision2.performed += Subdivision2;
+        _Subdivision2.Enable();
 
         _NouvelUnivers.performed += NouvelUnivers;
         _NouvelUnivers.Enable();
+
+        _ChangeSpeed.performed += ChangeSpeed;
+        _ChangeSpeed.Enable();
+
+        _NextSequence.performed += NextSequence;
+        _NextSequence.Enable();
 
         _Addition.performed += Addition;
         _Addition.Enable();
@@ -66,6 +71,8 @@ public class PlayByInputAction : MonoBehaviour
         _AssignBlink.performed += Blink;
         _AssignBlink.Enable();
 
+        _AnimCam.performed += AnimCam;
+        _AnimCam.Enable();
 
         _Typo.performed += Typo;
         _Typo.Enable();
@@ -73,25 +80,13 @@ public class PlayByInputAction : MonoBehaviour
         _UI.performed += UI;
         _UI.Enable();
 
-   /*     _Rock01.performed += CallRock01;
-        _Rock01.Enable();
-        _Rock02.performed += CallRock02;
-        _Rock02.Enable();
-        _Rock03.performed += CallRock03;
-        _Rock03.Enable();
-        _Rock04.performed += CallRock04;
-        _Rock04.Enable();
+        ///// DEBUG STUFF
+        _DebugClean.performed += DebugClean;
+        _DebugClean.Enable();
+        _DebugFunction.performed += DebugFunction;
+        _DebugFunction.Enable();
 
-        _Water01.performed += CallWater01;
-        _Water01.Enable();
-        _Water02.performed += CallWater02;
-        _Water02.Enable();
-        _Water03.performed += CallWater03;
-        _Water03.Enable();
-        _Water04.performed += CallWater04;
-        _Water04.Enable();*/
-
-        _Restart.performed += Level;
+        _Restart.performed += ResetLevel;
         _Restart.Enable();
     }
 
@@ -103,43 +98,42 @@ public class PlayByInputAction : MonoBehaviour
         _ScreenB.performed -= ScreenB;
         _ScreenB.Disable();
 
-        _Subdivision.performed -= Subdivision;
-        _Subdivision.Disable();
+        _Subdivision1.performed -= Subdivision1;
+        _Subdivision1.Disable();
+
+        _Subdivision2.performed -= Subdivision2;
+        _Subdivision2.Disable();
 
         _NouvelUnivers.performed -= NouvelUnivers;
         _NouvelUnivers.Disable();
 
-        _AssignBlink.performed -= Blink;
-        _AssignBlink.Disable();
+        _NextSequence.performed -= NextSequence;
+        _NextSequence.Disable();
+
+        _ChangeSpeed.performed -= ChangeSpeed;
+        _ChangeSpeed.Disable();
 
         _Addition.performed -= Addition;
         _Addition.Disable();
+
+        _AssignBlink.performed -= Blink;
+        _AssignBlink.Disable();
+
+        _AnimCam.performed -= AnimCam;
+        _AnimCam.Disable();
 
         _Typo.performed -= Typo;
         _Typo.Disable();
 
         _UI.performed -= UI;
         _UI.Disable();
-/*
-        _Rock01.performed -= CallRock01;
-        _Rock01.Disable();
-        _Rock02.performed -= CallRock02;
-        _Rock02.Disable();
-        _Rock03.performed -= CallRock03;
-        _Rock03.Disable();
-        _Rock04.performed -= CallRock04;
-        _Rock04.Disable();
 
-        _Water01.performed -= CallWater01;
-        _Water01.Disable();
-        _Water02.performed -= CallWater02;
-        _Water02.Disable();
-        _Water03.performed -= CallWater03;
-        _Water03.Disable();
-        _Water04.performed -= CallWater04;
-        _Water04.Disable();
-        */
-        _Restart.performed -= Level;
+        ////// DEBUG STUFF
+        _DebugClean.performed -= DebugClean;
+        _DebugClean.Disable();
+        _DebugFunction.performed -= DebugFunction;
+        _DebugFunction.Disable();
+        _Restart.performed -= ResetLevel;
         _Restart.Disable();
 
     }
@@ -162,13 +156,22 @@ public class PlayByInputAction : MonoBehaviour
         }        
     }
 
-    void Subdivision(InputAction.CallbackContext ctx)
+    void Subdivision1(InputAction.CallbackContext ctx)
     {
-        if (!Sequence.Subdivision){
-            Sequence.Subdivision = true;
+        if (!Sequence.Subdivision1){
+            Sequence.Subdivision1 = true;
         }else{
-            Sequence.Subdivision = false;
+            Sequence.Subdivision1 = false;
         }       
+    }
+
+    void Subdivision2(InputAction.CallbackContext ctx)
+    {
+        if (!Sequence.Subdivision2){
+            Sequence.Subdivision2 = true;
+        } else{
+            Sequence.Subdivision2 = false;
+        }
     }
 
     void NouvelUnivers(InputAction.CallbackContext ctx)
@@ -176,49 +179,51 @@ public class PlayByInputAction : MonoBehaviour
         if (!Sequence.NouvelUnivers)
         {
             Sequence.NouvelUnivers = true;
-            Compo.AssignScene = true;
         }else{
             Sequence.NouvelUnivers = false;
-            Compo.AssignScene = false;
         }
     }
 
-    /*  void Landscape(InputAction.CallbackContext ctx)
-      {
-          LandscapeIntensity++;
-          if (LandscapeIntensity == 1){
-              Compo.SetupLandscape();
-          }else if (LandscapeIntensity == 2)
-          {
-              Compo.SetupLandscape();
-          }else if (LandscapeIntensity == 3)
-          {
-              if (Compo.AssignScene)
-              {
-                  Compo.CleanAllUnivers();
-              }
-              TranslationIntensity = 0;
-              Compo.Clean();
-              Cam.ResetAll();
-              LandscapeIntensity = 0;
-              FragmentationIntensity = 0;
-              Compo.SetupCrossLandscape();    // Cross Landscape
-          }
-    }*/
+    void Addition(InputAction.CallbackContext ctx)
+    {
+        if (!Sequence.Add)
+        {
+            Sequence.Add = true;
+        }else{
+            Sequence.Add = false;
+        }
+    }
+
+    void NextSequence(InputAction.CallbackContext ctx)
+    {
+        Sequence.Next = true;
+    }
+
+    void ChangeSpeed(InputAction.CallbackContext ctx)
+    {
+        Sequence.ChangeSpeed();
+    }
+
+    void DebugFunction(InputAction.CallbackContext ctx)
+    {
+        Debug.Log("DebugFunctionok");
+        Compo.Landscape();
+    }
+
+    void DebugClean(InputAction.CallbackContext ctx)
+    {
+        Debug.Log("DebugClean");
+        Compo.Clean();
+    }
 
     void Blink(InputAction.CallbackContext ctx)
     {
         Compo.AssignBlink = true;
     }
 
-    void Addition(InputAction.CallbackContext ctx)
+    void AnimCam(InputAction.CallbackContext ctx)
     {
-        if (!Sequence.Add){
-            Sequence.Add = true;
-        }else{
-            Sequence.Add = false;
-        }
-        Sequence.SetAllCommandOff();
+        Compo.AnimCam();
     }
 
     void Typo(InputAction.CallbackContext ctx)
@@ -231,25 +236,11 @@ public class PlayByInputAction : MonoBehaviour
         Scene.UIGPSApparition();
     }
 
-    void Level(InputAction.CallbackContext ctx)
+    void ResetLevel(InputAction.CallbackContext ctx)
     {
-        Compo.Reset();
+        Application.LoadLevel(Application.loadedLevel);
     }
-    
-    /*  public void CleanLocal(InputAction.CallbackContext ctx)
-      {
-          if (Compo.AssignScene)
-          {
 
-              Compo.CleanAllUnivers();
-          }
-
-          TranslationIntensity = 0;
-          Compo.Clean();
-          Cam.ResetAll();
-          LandscapeIntensity = 0;
-          FragmentationIntensity = 0;
-      }*/
 
 
 }

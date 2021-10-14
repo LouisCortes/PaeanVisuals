@@ -49,6 +49,12 @@ public class Cam_Manager : MonoBehaviour
         AC_Cam.SetBool("Crossed", false);
         AC_Cam.SetBool("Melt", true);
     }
+    public void CamStopAnim()
+    {
+        AC_Cam.SetBool("Animate", false);
+        AC_Cam.SetBool("Crossed", false);
+        AC_Cam.SetBool("Melt", true);
+    }
 
     public void SetCamOrthoA()
     {
@@ -76,14 +82,6 @@ public class Cam_Manager : MonoBehaviour
             //B.orthographicSize = 5.0f;
         }
     }
-
-   /* public void SwitchLayerMask()
-    {
-        int layer1 = LayerMask.NameToLayer("MyLayer1");
-        int layer2 = LayerMask.NameToLayer("MyLayer2");
-
-        cam.cullingMask = (1 << layer1) | (1 << layer2);
-    }*/
 
     public void ResetAll()
     {

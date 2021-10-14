@@ -6,20 +6,24 @@ public class Sequence_Manager : MonoBehaviour
 {
     public string PHASE;
     public float Tempo;
+    public int Speed;
     public PlayByInputAction Input;
     public Composition_Manager Compo;
+    public bool Next;
     public bool Started;
     public bool A;
     public bool B;
 
     public bool Add;
 
-    public bool Subdivision;
+    public bool Subdivision1;
+    public bool Subdivision2;
 
     public bool NouvelUnivers;
 
     void Start()
     {
+        Compo.AddUnivers();
         Started = true;
         PHASE = "PHASE01";
         SetAllCommandOff();
@@ -29,36 +33,77 @@ public class Sequence_Manager : MonoBehaviour
 
     void Update()
     {
-        if (PHASE == "PHASE01")
-        {
-
+    }
+    
+    public void ChangeSpeed()
+    {
+        Speed++;
+        if (Speed> 4){
+            Speed = 1;
         }
     }
 
+    public void NextSequence()
+    {
+        Compo.CleanAllUnivers();
+        if (PHASE == "PHASE01"){
+            PHASE = "PHASE02";
+        }
+    }
+
+
     public void Sequence()
     {
+        if (Next){
+            NextSequence();
+            NouvelUnivers = true;
+        }
         if (NouvelUnivers)
         {
-            if (PHASE == "PHASE01")
-            {
+            if (PHASE == "PHASE01"){
                 Compo.AddUnivers();
+            }else if (PHASE =="PHASE02"){
+                Compo.AddUnivers2();
             }
-            Compo.AssignScene = true;
-        }else{
-            Compo.AssignScene = false;
         }
 
-        if (!Add)
-        {
+        if (!Add){
             Compo.Clean();
         }
 
-        if (Subdivision){
+        if (Subdivision1){
+        int R; R = Random.Range(0, 5);
+            if (A == true && B==false){
+                if (R == 0){
+                    Compo.SlicedScreenA();
+                }else{
+                    Compo.SlicedScreenA();
+                    Compo.SlicedScreenA();
+                }
+            }else if (B==true && A==false){
+                if (R == 0){
+                    Compo.SlicedScreenB();
+                }else{
+                    Compo.SlicedScreenB();
+                    Compo.SlicedScreenB();
+                }
+            }else if (A&&B)
+            {
+                Debug.Log("A&B");
+                Compo.SlicedScreenA();
+                Compo.SlicedScreenB();
+                Compo.SlicedScreenA();
+                Compo.SlicedScreenB();
+            }else{
+                Compo.Landscape();
+            }
+
+        }else if (Subdivision2){
             if (A){
                 Compo.SetupVerticalFragmentationA();
             }else if (B){
                 Compo.SetupVerticalFragmentationB();
-            }else{
+            }else {
                 Compo.Subdivision();
             }
         }else{
@@ -69,8 +114,9 @@ public class Sequence_Manager : MonoBehaviour
             }else{
                 int R; R = Random.Range(0, 4);
                 if (R == 0){
-                    Compo.ScreenB();                    
-                }else if (R == 1){
+                    Compo.ScreenB();
+                }
+                else if (R == 1){
                     Compo.ScreenA();
                 }else{
                     Compo.SetupFullLandscape();
@@ -83,10 +129,13 @@ public class Sequence_Manager : MonoBehaviour
 
     public void SetAllCommandOff()
     {
+        Next = false;
         A = false;
         B = false;
-        Subdivision = false;
+        Subdivision1 = false;
+        Subdivision2 = false;
         NouvelUnivers = false;
+        Add = false;
     }
 
     IEnumerator SequenceLauncher()
@@ -95,9 +144,8 @@ public class Sequence_Manager : MonoBehaviour
         {
             Debug.Log("Event APPARITION");
             Sequence();
-            yield return new WaitForSeconds(Tempo);
+            yield return new WaitForSeconds(Tempo/Speed);
         }
-
         //  StartCoroutine(PhaseXChoix());
     }
 }
