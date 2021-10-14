@@ -53,7 +53,7 @@ Shader "Unlit/point"
 			   
 			   float p1 = smoothstep(0.2,1.,pt)*ba;
 			
-                return float4(p1,p1,p1,0.);
+                return float4(p1,pt,ba,0.);
             }
             ENDCG
         }
