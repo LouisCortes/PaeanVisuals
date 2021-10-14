@@ -65,13 +65,13 @@ float map(float3 p, float2 uv) {
 	ts = rough.SampleLevel(_LinearRepeat, p.xz*0.5, 0.).x*0.35 + rough.SampleLevel(_LinearRepeat, pn.xz*0.3, 0.).x*0.65;
 	tt = height.SampleLevel(_LinearRepeat, p.xz*0.5, 0.).x*0.35 + height.SampleLevel(_LinearRepeat, pn.xz*0.3, 0.).x*0.65;
 	ta = ao.SampleLevel(_LinearRepeat, p.xz*0.5, 0.).x*ao.SampleLevel(_LinearRepeat, pn.xz*0.3, 0.).x;
-	float d2 = d1 - height.SampleLevel(_LinearRepeat, p.xz*0.5, 0.).x*0.3 - height.SampleLevel(_LinearRepeat, pn.xz*0.3, 0.).x*0.6;
+	float d2 = d1 - height.SampleLevel(_LinearRepeat, p.xz*0.5, 0.).x*0.3 - height.SampleLevel(_LinearRepeat, pn.z*0.3, 0.).x*0.6- -height.SampleLevel(_LinearRepeat, pn.yx, 0.).x*0.1;
 	d4 += lerp(0.,-1.,liquide) + fluid.SampleLevel(_LinearRepeat ,(pfc.xy*0.1+0.5), 0.).x*0.2+fluid.SampleLevel(_LinearRepeat, (pfc.xy*0.2 + 0.5), 0.).x*0.1;
 	dl = d4;
 
 	return min(d2, d4);
 }
-float3 nor(float3 p, float2 uv) { float2 e = float2(0.0001, 0.); return normalize(map(p, uv) - float3(map(p - e.xyy, uv), map(p - e.yxy, uv), map(p - e.yyx, uv))); }
+float3 nor(float3 p, float2 uv) { float2 e = float2(0.003, 0.); return normalize(map(p, uv) - float3(map(p - e.xyy, uv), map(p - e.yxy, uv), map(p - e.yyx, uv))); }
 float getShadow(float3 pos, float3 at, float k, float2 uv) {
 	float3 dir = normalize(at - pos);
 	float maxt = length(at - pos);
@@ -118,7 +118,7 @@ void CSMain (uint2 id : SV_DispatchThreadID)
 	float fres = ((pow(1. - ld, ts) + pow(ld, ts))*(1. - ts) + tc)*ta;
 	float3 lp =float3(-19.6,23.6,-6.1);
 	float l1 = dot(n, normalize(lp));
-	float sha = lerp(pow(tt, 2.5), 1., getShadow(p, lp, 64., mt));
+	float sha = lerp(pow(tt, 2.5), 1., getShadow(p, lp, 30., mt));
 	float l2 = sha * l1;
 	float al = ov(fres, l2);
 	float frl = pow(1. - ld, 5.)*0.7 + pow(ld, 500.);
