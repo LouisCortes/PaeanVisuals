@@ -133,7 +133,6 @@ public class Render_Manager : MonoBehaviour
         {
             if (Compo.AssignScene)
             {
-
                 Compo.CleanAllUnivers();
             }
 

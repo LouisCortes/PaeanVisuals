@@ -11,23 +11,9 @@ public class Composition_Manager : MonoBehaviour
     private bool Blink;
     private float ValueBlink;
     private LayerMask LY;
-    public bool Water01;
-    public bool Water02;
-    public bool Water03;
-    public bool Water04;
-    public bool Rock01;
-    public bool Rock02;
-    public bool Rock03;
-    public bool Rock04;
-    public GameObject UniversWater01;
-    public GameObject UniversWater02;
-    public GameObject UniversWater03;
-    public GameObject UniversWater04;
 
-    public GameObject UniversRock01;
-    public GameObject UniversRock02;
-    public GameObject UniversRock03;
-    public GameObject UniversRock04;
+    public GameObject[] PullUniversPhase01;
+    public GameObject[] PullUniversPhase02;
 
     public GameObject ABLandscape;
     public GameObject A;
@@ -43,24 +29,19 @@ public class Composition_Manager : MonoBehaviour
     public GameObject[] B2_0;
 
     public GameObject Fluide;
-    
+
+    public int NumberOfUnivers;
+    private int FragmentationIntensity;
     private int i;
 
     void Start()
-    {
-        Rock01 = false;
-        Rock02 = false;
-        Rock03 = false;
-        Rock04 = false;
-        Water01 = false;
-        Water02 = false;
-        Water03 = false;
-        Water04 = false;
+    {       
         CleanAllUnivers();
         Blink = false;
         AssignBlink = false;
         AssignScene = false;
         i = 0;
+        FragmentationIntensity = 0;
         Clean();
         LY = LayerMask.GetMask(LayerNameToAssign);
     }
@@ -68,25 +49,13 @@ public class Composition_Manager : MonoBehaviour
     void Update()
     {
 
-        /*  if (Rock04 || Water01)
-          {
-              Fluide.SetActive(true);
-          }
-          else
-          {
-              Fluide.SetActive(false);
-          }*/
-
-        if (Blink)
-        {
+        if (Blink){
             CM.A0[Random.Range(0, 2)].backgroundColor = new Color(0, 0, ValueBlink);
             CM.B0[Random.Range(0, 2)].backgroundColor = new Color(ValueBlink, ValueBlink, ValueBlink);
             CM.A10[Random.Range(0, 2)].backgroundColor = new Color(0, 0, ValueBlink);
             CM.B10[Random.Range(0, 2)].backgroundColor = new Color(ValueBlink, ValueBlink, ValueBlink);
             ValueBlink = Random.Range(-1f, 2f);
-        }
-        else
-        {
+        }else{
             ValueBlink = 0;
             CM.A0[Random.Range(0, 2)].backgroundColor = new Color(0, 0, ValueBlink);
             CM.B0[Random.Range(0, 2)].backgroundColor = new Color(ValueBlink, ValueBlink, ValueBlink);
@@ -95,81 +64,25 @@ public class Composition_Manager : MonoBehaviour
         }
     }
 
-    ///////////////////////////////////////// Rock
-    /*  if (Input.GetKeyDown(KeyCode.Keypad1))
-      {
-          if (Rock01) Rock01 = false;
-          else Rock01 = true;
-          if (Rock01){
-              LayerNameToAssign = "Rock01";
-              LY = LayerMask.GetMask(LayerNameToAssign);
-              UniversRock01.SetActive(true);
-          }else{
-              UniversRock01.SetActive(false);
-          }
-      }
-      if (Input.GetKeyDown(KeyCode.Keypad2))
-      {
-          if (Rock02) Rock02 = false;
-          else Rock02 = true;
-          if (Rock02){
-              LayerNameToAssign = "Rock02";
-              LY = LayerMask.GetMask(LayerNameToAssign);
-              UniversRock02.SetActive(true);
-          }else{
-              UniversRock02.SetActive(false);
-          }
-      }
+    /////////////////////////////////////////LAYER SCENE UNIVERS
+    public void AddUnivers()
+    {
+        NumberOfUnivers++;
+        if (NumberOfUnivers == 1){           
+            LayerNameToAssign = "Rock01";
+            LY = LayerMask.GetMask(LayerNameToAssign);
+            PullUniversPhase01[0].SetActive(true);
+        }else if (NumberOfUnivers == 2){
+            LayerNameToAssign = "Rock02";
+            LY = LayerMask.GetMask(LayerNameToAssign);
+            PullUniversPhase01[1].SetActive(true);
+        }else if (NumberOfUnivers == 3){
+            LayerNameToAssign = "Rock03";
+            LY = LayerMask.GetMask(LayerNameToAssign);
+            PullUniversPhase01[2].SetActive(true);
+        }
+    }
 
-       if (Input.GetKeyDown(KeyCode.Keypad3))
-       {
-          if (Rock03) Rock03 = false; else Rock03 = true;
-          if (Rock03){
-              LayerNameToAssign = "Rock03";
-              LY = LayerMask.GetMask(LayerNameToAssign);
-              UniversRock03.SetActive(true);
-          }else{
-              UniversRock03.SetActive(false);
-          }
-       }
-
-      if (Input.GetKeyDown(KeyCode.Keypad4))
-      {
-          if (Rock04) Rock04 = false; else Rock04 = true;
-          if (Rock04){
-              LayerNameToAssign = "Rock04";
-              LY = LayerMask.GetMask(LayerNameToAssign);
-              UniversRock04.SetActive(true);
-          }else
-          {
-              UniversRock04.SetActive(false);
-          }
-      }
-      ///////////////////////////////////////// WATER UNIVERS
-      if (Input.GetKeyDown(KeyCode.Keypad7))
-       {
-          if (Water01) Water01 = false; else Water01 = true;
-          if (Water01){
-              LayerNameToAssign = "Water01";
-              LY = LayerMask.GetMask(LayerNameToAssign);
-              UniversWater01.SetActive(true);
-          }else{
-              UniversWater01.SetActive(false);
-          }
-      }
-
-       if (Input.GetKeyDown(KeyCode.Keypad8))
-       {
-           if (Water02) Water02 = false; else Water02 = true;
-           if (Water02){
-                  LayerNameToAssign = "Water02";
-                  LY = LayerMask.GetMask(LayerNameToAssign);
-                  UniversWater02.SetActive(true);
-           }else{
-                  UniversWater02.SetActive(false);
-           }
-       }        
-  }*/
     public void Reset()
     {
         Application.LoadLevel(Application.loadedLevel);
@@ -208,7 +121,7 @@ public class Composition_Manager : MonoBehaviour
             AssignBlink = false;
         }
 
-        public void SlicedScreenB()
+    public void SlicedScreenB()
         {
             int R; R = Random.Range(0, 4);
             if (AssignBlink == true) {
@@ -239,7 +152,25 @@ public class Composition_Manager : MonoBehaviour
             AssignBlink = false;
         }
 
-        /////////////////////////////////////////FRAGMENTATION
+    /////////////////////////////////////////FRAGMENTATION
+    public void Subdivision()
+    {
+        FragmentationIntensity++;
+        if (FragmentationIntensity == 1)
+        {
+            SetupFragmentation();                    // Simple Fragmentation 
+        }
+        else if (FragmentationIntensity == 2)
+        {
+            SetupFragmentation();
+        }
+        else if (FragmentationIntensity == 3)
+        {
+            Clean();
+            SetupTotalFragmentation();              // TotalFragmentation
+        }
+    } // Called by sequence When Subdivision is true
+
         public void SetupTotalFragmentation()
         {
             int R; R = Random.Range(0, 3);
@@ -299,7 +230,7 @@ public class Composition_Manager : MonoBehaviour
             AssignScene = false;
         }
 
-        public void SetupVerticalFragmentationA()
+    public void SetupVerticalFragmentationA()
         {
             int R; R = Random.Range(0, 3);
             if (R == 0) {
@@ -325,9 +256,9 @@ public class Composition_Manager : MonoBehaviour
                 A2_0[2].SetActive(true);
             }
             AssignScene = false;
-        }
+    } // Called by sequence When Subdivision && A is true
 
-        public void SetupVerticalFragmentationB()
+    public void SetupVerticalFragmentationB()
         {
             int R; R = Random.Range(0, 3);
             if (R == 0) {
@@ -353,10 +284,10 @@ public class Composition_Manager : MonoBehaviour
                 B2_0[0].SetActive(true);
             }
             AssignScene = false;
-        }
+    } // Called by sequence When Subdivision && B is true
 
-        /////////////////////////////////////////Screen total A or B
-        public void ScreenA()
+    /////////////////////////////////////////Screen total A or B
+    public void ScreenA()
         {
             if (AssignScene == true) {
                 CM.A.cullingMask = LY;
@@ -364,7 +295,7 @@ public class Composition_Manager : MonoBehaviour
             A.SetActive(true);
             AssignScene = false;
         }
-        public void ScreenB()
+    public void ScreenB()
         {
             if (AssignScene == true) {
                 CM.B.cullingMask = LY;
@@ -373,8 +304,33 @@ public class Composition_Manager : MonoBehaviour
             AssignScene = false;
         }
 
-        /////////////////////////////////////////LANDSCAPE
-        public void SetupLandscape()
+    public void SetupFullLandscape()
+    {
+        int R; R = Random.Range(0, 3);
+        if (AssignScene == true)
+        {
+            CM.AB.cullingMask = LY;
+        }
+        if (R == 0)
+        {
+            ABLandscape.transform.position = new Vector3(ABLandscape.transform.position.x, 0.27f, ABLandscape.transform.position.z);
+            ABLandscape.SetActive(true);
+        }
+        else if (R == 1)
+        {
+            ABLandscape.transform.position = new Vector3(ABLandscape.transform.position.x, -0.27f, ABLandscape.transform.position.z);
+            ABLandscape.SetActive(true);
+        }
+        else if (R == 2)
+        {
+            ABLandscape.transform.position = new Vector3(ABLandscape.transform.position.x, 0, ABLandscape.transform.position.z);
+            ABLandscape.SetActive(true);
+        }
+        AssignScene = false;
+    }
+
+    /////////////////////////////////////////LANDSCAPE
+    public void SetupLandscape()
         {
             int R; R = Random.Range(0, 5);
             if (AssignBlink == true)
@@ -418,9 +374,8 @@ public class Composition_Manager : MonoBehaviour
             }
             AssignScene = false;
             AssignBlink = false;
-        }
-  
-   public void SetupCrossLandscape()
+        } 
+    public void SetupCrossLandscape()
     {
         i++;
         if (i == 1){
@@ -441,41 +396,9 @@ public class Composition_Manager : MonoBehaviour
         AssignScene = false;
     }
 
-    public void SetupFullLandscape()
-    {
-        int R; R = Random.Range(0, 3);
-        if (AssignScene == true){
-            CM.AB.cullingMask = LY;
-        }
-        if (R == 0){
-            ABLandscape.transform.position = new Vector3(ABLandscape.transform.position.x, 0.27f, ABLandscape.transform.position.z);
-            ABLandscape.SetActive(true);
-        }else if (R == 1){
-            ABLandscape.transform.position = new Vector3(ABLandscape.transform.position.x, -0.27f, ABLandscape.transform.position.z);
-            ABLandscape.SetActive(true);
-        }else if (R == 2){
-            ABLandscape.transform.position = new Vector3(ABLandscape.transform.position.x, 0, ABLandscape.transform.position.z);
-            ABLandscape.SetActive(true);
-        }
-        AssignScene = false;
-    }
 
-    public void R01()
-    {
-        if (Rock01) Rock01 = false;
-        else Rock01 = true;
-        if (Rock01)
-        {
-            LayerNameToAssign = "Rock01";
-            LY = LayerMask.GetMask(LayerNameToAssign);
-            UniversRock01.SetActive(true);
-        }
-        else
-        {
-            UniversRock01.SetActive(false);
-        }
-    }
-    public void R02()
+
+  /*  public void R02()
     {
                 if (Rock02) Rock02 = false;
                 else Rock02 = true;
@@ -538,8 +461,7 @@ public class Composition_Manager : MonoBehaviour
             LayerNameToAssign = "Water02";
             LY = LayerMask.GetMask(LayerNameToAssign);
             UniversWater02.SetActive(true);
-        }
-        else
+        }else
         {
             UniversWater02.SetActive(false);
         }
@@ -567,14 +489,13 @@ public class Composition_Manager : MonoBehaviour
             LayerNameToAssign = "Water04";
             LY = LayerMask.GetMask(LayerNameToAssign);
             UniversWater04.SetActive(true);
-        }
-        else
+        }else
         {
             UniversWater03.SetActive(false);
         }
     }
 
-
+    */
     /////////////////////////////////////////Clean
     public void Clean()
     {
@@ -597,21 +518,14 @@ public class Composition_Manager : MonoBehaviour
         A2_0[1].SetActive(false);   B2_0[1].SetActive(false);
         A2_0[2].SetActive(false);   B2_0[2].SetActive(false);
         Blink = false;
-
-
     }
 
     public void CleanAllUnivers()
     {
-
-        UniversRock01.SetActive(false);
-        UniversRock02.SetActive(false);
-        UniversRock03.SetActive(false);
-        UniversRock04.SetActive(false);
-        UniversWater01.SetActive(false);
-        UniversWater02.SetActive(false);
-        UniversWater03.SetActive(false);
-        UniversWater04.SetActive(false);
+        NumberOfUnivers = 0;
+        PullUniversPhase01[0].SetActive(false); PullUniversPhase01[1].SetActive(false); PullUniversPhase01[2].SetActive(false);
+        PullUniversPhase02[0].SetActive(false); PullUniversPhase02[1].SetActive(false); PullUniversPhase02[2].SetActive(false);
+        //PullUniversPhase03[0].SetActive(false);
     }
 }
 
