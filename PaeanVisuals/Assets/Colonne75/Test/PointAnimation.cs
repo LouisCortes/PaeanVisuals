@@ -8,6 +8,7 @@ public class PointAnimation : MonoBehaviour
     [SerializeField] ComputeShader _computeShader = null;
 
     public float _audio1 = 0;
+    public float _audio2 = 0;
     public float _liquide = 0;
     public Texture noise;
     public fluid_dynamics fluid;
@@ -38,6 +39,7 @@ public class PointAnimation : MonoBehaviour
 
         var kernel = _computeShader.FindKernel("Main");
         _computeShader.SetFloat("audio1", _audio1);
+        _computeShader.SetFloat("audio2", _audio2);
         _computeShader.SetFloat("liquide", _liquide);
         _computeShader.SetFloat("wpx", obj.transform.position.x);
         _computeShader.SetFloat("wpy", obj.transform.position.y);

@@ -21,6 +21,7 @@ public class controllCave : MonoBehaviour
     public PointAnimation obj15;
     public PointAnimation obj16;
     public PointAnimation obj17;
+    public GettingStartedReceiving osc;
     [Range(0, 1)]
     public float audio1;
     [Range(0, 1)]
@@ -33,39 +34,56 @@ public class controllCave : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        obj1._audio1 = audio1;
-        obj2._audio1 = audio1;
-        obj3._audio1 = audio1;
-        obj4._audio1 = audio1;
-        obj5._audio1 = audio1;
-        obj6._audio1 = audio1;
-        obj7._audio1 = audio1;
-        obj8._audio1 = audio1;
-        obj9._audio1 = audio1;
-        obj10._audio1 = audio1;
-        obj11._audio1 = audio1;
-        obj12._audio1 = audio1;
-        obj13._audio1 = audio1;
-        obj14._audio1 = audio1;
-        obj15._audio1 = audio1;
-        obj16._audio1 = audio1;
-        obj17._audio1 = audio1;
-        obj1._liquide = liquide;
-        obj2._liquide = liquide;
-        obj3._liquide = liquide;
-        obj4._liquide = liquide;
-        obj5._liquide = liquide;
-        obj6._liquide = liquide;
-        obj7._liquide = liquide;
-        obj8._liquide = liquide;
-        obj9._liquide = liquide;
-        obj10._liquide = liquide;
-        obj11._liquide = liquide;
-        obj12._liquide = liquide;
-        obj13._liquide = liquide;
-        obj14._liquide = liquide;
-        obj15._liquide = liquide;
-        obj16._liquide = liquide;
-        obj17._liquide = liquide;
+        obj1._audio1 =audio1  + osc.audio1;
+        obj2._audio1 =audio1  + osc.audio1;
+        obj3._audio1 =audio1  + osc.audio1;
+        obj4._audio1 =audio1  + osc.audio1;
+        obj5._audio1 =audio1  + osc.audio1;
+        obj6._audio1 =audio1  + osc.audio1;
+        obj7._audio1 =audio1  + osc.audio1;
+        obj8._audio1 =audio1  + osc.audio1;
+        obj9._audio1 =audio1  + osc.audio1;
+        obj10._audio1 =audio1  + osc.audio1;
+        obj11._audio1 =audio1  + osc.audio1;
+        obj12._audio1 =audio1  + osc.audio1;
+        obj13._audio1 =audio1  + osc.audio1;
+        obj14._audio1 =audio1  + osc.audio1;
+        obj15._audio1 =audio1  + osc.audio1;
+        obj16._audio1 =audio1  + osc.audio1;
+        obj17._audio1 =audio1  + osc.audio1;
+        obj1._liquide = liquide + osc.liquide;
+        obj2._liquide = liquide + osc.liquide;
+        obj3._liquide = liquide + osc.liquide;
+        obj4._liquide = liquide + osc.liquide;
+        obj5._liquide = liquide + osc.liquide;
+        obj6._liquide = liquide + osc.liquide;
+        obj7._liquide = liquide + osc.liquide;
+        obj8._liquide = liquide + osc.liquide;
+        obj9._liquide = liquide + osc.liquide;
+        obj10._liquide = liquide + osc.liquide;
+        obj11._liquide = liquide + osc.liquide;
+        obj12._liquide = liquide + osc.liquide;
+        obj13._liquide = liquide + osc.liquide;
+        obj14._liquide = liquide + osc.liquide;
+        obj15._liquide = liquide + osc.liquide;
+        obj16._liquide = liquide + osc.liquide;
+        obj17._liquide = liquide + osc.liquide;
+        obj1._audio2 =osc.low *osc.address01*osc.audio2 * osc.fac2;
+        obj2._audio2 =osc.low *osc.address01*osc.audio2 * osc.fac2;
+        obj3._audio2 =osc.low *osc.address01*osc.audio2 * osc.fac2;
+        obj4._audio2 =osc.low *osc.address01*osc.audio2 * osc.fac2;
+        obj5._audio2 =osc.low *osc.address01*osc.audio2 * osc.fac2;
+        obj6._audio2 =osc.low *osc.address01*osc.audio2 * osc.fac2;
+        obj7._audio2 =osc.low *osc.address01*osc.audio2 * osc.fac2;
+        obj8._audio2 =osc.low *osc.address01*osc.audio2 * osc.fac2;
+        obj9._audio2 =osc.low *osc.address01*osc.audio2 * osc.fac2;
+        obj10._audio2 =osc.low *osc.address01*osc.audio2 * osc.fac2;
+        obj11._audio2 =osc.low *osc.address01*osc.audio2 * osc.fac2;
+        obj12._audio2 =osc.low *osc.address01*osc.audio2 * osc.fac2;
+        obj13._audio2 =osc.low *osc.address01*osc.audio2 * osc.fac2;
+        obj14._audio2 =osc.low *osc.address01*osc.audio2 * osc.fac2;
+        obj15._audio2 =osc.low *osc.address01*osc.audio2 * osc.fac2;
+        obj16._audio2 =osc.low *osc.address01*osc.audio2 * osc.fac2;
+        obj17._audio2 =osc.low *osc.address01*osc.audio2 * osc.fac2;
     }
 }

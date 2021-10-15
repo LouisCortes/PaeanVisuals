@@ -6167,5 +6167,10 @@ PrefabInstance:
       propertyPath: neutre
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7136973141739281505, guid: 0d7a27c39d9c5914dbfb43f708417ac7,
+        type: 3}
+      propertyPath: rotation
+      value: -6
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0d7a27c39d9c5914dbfb43f708417ac7, type: 3}
