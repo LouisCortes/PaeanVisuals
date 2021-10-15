@@ -1,0 +1,43 @@
+#pragma kernel Main
+
+#include "HLSLSupport.cginc"
+#include "Packages/jp.keijiro.pcx/Runtime/Shaders/Common.cginc"
+
+StructuredBuffer<float4> SourceBuffer;
+RWStructuredBuffer<float4> OutputBuffer;
+
+CBUFFER_START(Params)
+    float Param1;
+    float Param2;
+    float Param3;
+	float wpx;
+	float wpy;
+	float wpz;
+	float time;
+CBUFFER_END
+
+static const float kHeight = 1.5;
+
+float no(float3 p) { float3 f = floor(p); p = smoothstep(0., 1., frac(p));
+float3 se = float3(45., 78., 945.); float4 v1 = dot(se, f) + float4(0., se.y, se.z, se.y + se.z);
+float4 v2 = lerp(frac(sin(v1)*7845.236), frac(sin(v1+se.x)*7845.236), p.x);
+float2 v3 = lerp(v2.xz, v2.yw, p.y);
+return lerp(v3.x, v3.y, p.z);
+}
+[numthreads(128, 1, 1)]
+void Main(uint id : SV_DispatchThreadID)
+{
+    float4 pt = SourceBuffer[id];
+	
+    float3 p = pt.xyz;
+	float3 pp = p + float3(wpx,wpy,wpz);
+
+	//p += float3(no(pp + time), no(pp - time), no(pp + float3(time, -time, time)));
+	//p += pp*frac(time)*no(pp);
+	//p -=  no(pp+time)*-pp;
+    half3 c = PcxDecodeColor(asuint(pt.w));
+	float3 n = (c - 0.5)*2.;
+	float bs = pow(no(p + float3(time, 0., -time)),10.);
+	p += n * bs;
+    OutputBuffer[id] = float4(p, asfloat(PcxEncodeColor(1.)));
+}
