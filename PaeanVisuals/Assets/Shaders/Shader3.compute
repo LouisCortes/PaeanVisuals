@@ -8,6 +8,11 @@ SamplerState _PointClamp;
 float time;
 float SpectrumAccumulation1;
 float spectrum2;
+float audio1;
+float audio2;
+float high;
+float rotationv;
+float zoom;
 int _rx;
 int _ry;
 
@@ -85,9 +90,9 @@ float2 raymarch(in float3 ro, in float3 rd) {
 float raytrace(in float2 uv,float se) {
 	float3 ro = float3(uv+float2(0.,1.), -20.);
 
-	float3 rd = normalize(float3(uv, 1.8));
+	float3 rd = normalize(float3(uv, 0.5 + zoom * 3.));
 	rd.zy = mul(rd.zy, rot(-0.8));
-	float ti = time*0.1+ SpectrumAccumulation1*0.2;
+	float ti = time*0.1+ rotationv;
 	ro.xz = mul(ro.xz, rot(ti));
 	rd.xz = mul(rd.xz, rot(ti));
 	float color = 0.;
