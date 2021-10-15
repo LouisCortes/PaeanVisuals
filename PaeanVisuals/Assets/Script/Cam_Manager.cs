@@ -19,16 +19,17 @@ public class Cam_Manager : MonoBehaviour
     public Camera[] B10;
     public Camera[] B1_0;
     public Camera[] B2_0;
-    public Animator AC;
+
+    public int i;
 
     void Start()
     {
-
+        i = 1;
     }
 
     void Update()
     {
-        
+
     }
 
     public void CamTranslation()
@@ -59,13 +60,58 @@ public class Cam_Manager : MonoBehaviour
         AC_Cam.SetBool("Melt", true);
     }
 
+
+    public void SwitchCamOrtho()
+    {
+        i++;
+        if (i ==1)
+        {
+            A10[0].orthographic = true; A10[1].orthographic = true;
+            A.orthographic = true;
+            A0[0].orthographic = true; A0[1].orthographic = true;
+            A1_0[0].orthographic = true; A1_0[1].orthographic = true; A1_0[2].orthographic = true; A2_0[0].orthographic = true; A1_0[1].orthographic = true; A1_0[2].orthographic = true;
+
+            B.orthographic = true;
+            B10[0].orthographic = true; B10[1].orthographic = true;
+            B0[0].orthographic = true; B0[1].orthographic = true;
+            B1_0[0].orthographic = true; B1_0[1].orthographic = true; B1_0[2].orthographic = true; B2_0[0].orthographic = true; B2_0[1].orthographic = true; B2_0[2].orthographic = true;
+            Debug.Log("FullOrtho");
+
+        }
+        else if (i == 2)
+        {
+            A10[0].orthographic = false; A10[1].orthographic = false;
+            A.orthographic = false;
+            A0[0].orthographic = false; A0[1].orthographic = false;
+            A1_0[0].orthographic = false; A1_0[1].orthographic = false; A1_0[2].orthographic = false; A2_0[0].orthographic = false; A2_0[1].orthographic = false; A2_0[2].orthographic = false;
+            Debug.Log("A Perspective");
+        }
+        else if (i == 3)
+        {
+            B.orthographic = false;
+            B10[0].orthographic = false; B10[1].orthographic = false;
+            B0[0].orthographic = false; B0[1].orthographic = false;
+            B1_0[0].orthographic = false; B1_0[1].orthographic = false; B1_0[2].orthographic = false; B2_0[0].orthographic = false; B2_0[1].orthographic = false; B2_0[2].orthographic = false;
+            Debug.Log("Full Perspective");
+            i = 0;
+        }
+    }
+
+
+
+
+/*
     public void SetCamOrthoA()
     {
         if (!A.orthographic){
+            //AB.orthographic = true;
+            A10[0].orthographic = true; A10[1].orthographic = true;
             A.orthographic = true;
             A0[0].orthographic = true;      A0[1].orthographic = true;
             A1_0[0].orthographic = true;    A1_0[1].orthographic = true;    A1_0[2].orthographic = true;    A2_0[0].orthographic = true;    A1_0[1].orthographic = true;    A1_0[2].orthographic = true;
         }else{
+            //  AB.orthographic = true;
+            A10[0].orthographic = false; A10[1].orthographic = false;
             A.orthographic = false;
             A0[0].orthographic = false;     A0[1].orthographic = false;
             A1_0[0].orthographic = false;   A1_0[1].orthographic = false;   A1_0[2].orthographic = false;   A2_0[0].orthographic = false;   A2_0[1].orthographic = false;   A2_0[2].orthographic = false;
@@ -76,15 +122,22 @@ public class Cam_Manager : MonoBehaviour
     {
         if (!B.orthographic){
             B.orthographic = true;
+
+            B10[0].orthographic = true;     B10[1].orthographic = true;
+
             B0[0].orthographic = true;      B0[1].orthographic = true;
             B1_0[0].orthographic = true;    B1_0[1].orthographic = true;    B1_0[2].orthographic = true;    B2_0[0].orthographic = true;    B2_0[1].orthographic = true;    B2_0[2].orthographic = true;
-        }else{            
+        }else{
+
             B.orthographic = false;
+            B10[0].orthographic =false; B10[1].orthographic = false;
+
             B0[0].orthographic = false;     B0[1].orthographic = false;
             B1_0[0].orthographic = false;   B1_0[1].orthographic = false;   B1_0[2].orthographic = false;   B2_0[0].orthographic = false;   B2_0[1].orthographic = false;   B2_0[2].orthographic = false;
             //B.orthographicSize = 5.0f;
         }
     }
+    */
 
     public void ResetAll()
     {
