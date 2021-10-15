@@ -31,7 +31,7 @@ float3 smin(float3 a, float3 b, float t) {
 	float3 h = clamp(0.5 + 0.5*(b - a) / t, 0., 1.);
 	return lerp(b, a, h) - t * h*(1. - h);
 }
-
+float ov(float a, float b) { return lerp(2.*a*b, 1. - 2.*(1. - a)*(1. - b), step(0.5, a)); }
 float3 ov(float3 a, float3 b) { return lerp(2.*a*b, 1. - 2.*(1. - a)*(1. - b), step(0.5, a)); }
 
 float box(float3 p, float3 r) {
@@ -43,7 +43,7 @@ float ts; float tt; float ta; float2 tn; float tc; float dl;
 float map(float3 p, float2 uv) {
 	
 	float3 pfc = p;
-	p.xz = mul(p.xz, rot(rotation));
+	p.xz = mul(p.xz, rot(lerp(2.5,-0.9,sin(_time*0.03)*0.5+0.5)));
 	float3 pn = p;
 	float d1 = 100.; float d4 = 100.;
 	float vr1 = 0.5 + uv.y; float vr2 = 0.8 + uv.y;
@@ -61,12 +61,12 @@ float map(float3 p, float2 uv) {
 		d1 = min(d1, box(p, float3(0.8, 0.6, 0.9)));
 		d4 = min(d4, box(pl, float3(0.8, 0.6, 0.9)));
 	}
-	tc = albedo.SampleLevel(_LinearRepeat, p.xz*0.5,0.).x*0.35 + albedo.SampleLevel(_LinearRepeat, pn.xz*0.3, 0.).x*0.65;
+	tc = albedo.SampleLevel(_LinearRepeat, p.xz*0.5,0.).x*0.65 + albedo.SampleLevel(_LinearRepeat, pn.xz*0.3, 0.).x*0.35;
 	ts = rough.SampleLevel(_LinearRepeat, p.xz*0.5, 0.).x*0.35 + rough.SampleLevel(_LinearRepeat, pn.xz*0.3, 0.).x*0.65;
 	tt = height.SampleLevel(_LinearRepeat, p.xz*0.5, 0.).x*0.35 + height.SampleLevel(_LinearRepeat, pn.xz*0.3, 0.).x*0.65;
 	ta = ao.SampleLevel(_LinearRepeat, p.xz*0.5, 0.).x*ao.SampleLevel(_LinearRepeat, pn.xz*0.3, 0.).x;
 	float d2 = d1 - height.SampleLevel(_LinearRepeat, p.xz*0.5, 0.).x*0.3 - height.SampleLevel(_LinearRepeat, pn.z*0.3, 0.).x*0.6- -height.SampleLevel(_LinearRepeat, pn.yx, 0.).x*0.1;
-	d4 += lerp(0.,-1.,liquide) + fluid.SampleLevel(_LinearRepeat ,(pfc.xy*0.1+0.5), 0.).x*0.2+fluid.SampleLevel(_LinearRepeat, (pfc.xy*0.2 + 0.5), 0.).x*0.1;
+	d4 += lerp(0.,-1.,liquide) + fluid.SampleLevel(_LinearRepeat ,(pfc.xy*0.2+0.5), 0.).x*0.2+fluid.SampleLevel(_LinearRepeat, (pfc.zx*0.2 + 0.5), 0.).x*0.1;
 	dl = d4;
 
 	return min(d2, d4);
@@ -76,7 +76,7 @@ float getShadow(float3 pos, float3 at, float k, float2 uv) {
 	float3 dir = normalize(at - pos);
 	float maxt = length(at - pos);
 	float f = 1.;
-	float t = .01*10.;
+	float t = .1;
 	for (float i = 0.; i <= 1.; i += 1. / 30.) {
 		float dist = map(pos + dir * t, uv);
 		if (dist < .01) return 0.;
@@ -90,18 +90,19 @@ float getShadow(float3 pos, float3 at, float k, float2 uv) {
 [numthreads(8,8,1)]
 void CSMain (uint2 id : SV_DispatchThreadID) 
 {
+	float s1 = noise.SampleLevel(_LinearRepeat, float2(0., _time), 0.).x*pow(audio1,2.);
+	float2 mt = float2(+0.9 + s1,
+		(noise.SampleLevel(_LinearRepeat, float2(0.25, _time), 0.).x - 0.5)*pow(audio1,2.));
+	mt += float2(low, mid)*audio2;
 	//float prevColor = reader.SampleLevel(_LinearRepeat, uc + 0.5 / res, 0).a;
 	float2 f = float2(id.x,id.y);
 	float2 res=float2(_rx,_ry); 
 	float2 uv = ((f / res)-0.5)*2.;
 	uv.x *= res.x / res.y;
-	float3 p = float3(0., 7.5, -7);
-	float3 r = normalize(float3(uv, lerp(0.5,2.,zoom)));
+	float3 p = float3(0., 7.5, -7-s1*20.);
+	float3 r = normalize(float3(uv, lerp(0.5,3.,zoom)));
 	r.yz = mul(r.yz,rot(-0.8));
 
-	float2 mt = float2(+0.9+noise.SampleLevel(_LinearRepeat, float2(0., _time),0.).x*audio1,
-		(noise.SampleLevel(_LinearRepeat, float2(0.25, _time), 0.).x-0.5)*audio1);
-	mt += float2(low, mid)*audio2;
 	float dd = 0.; float dm = 20.;
 	for (int j = 0; j < 100; j++) {
 
@@ -115,13 +116,14 @@ void CSMain (uint2 id : SV_DispatchThreadID)
 	float s = smoothstep(dm, 0., dd);
 	float3 n = nor(p, mt);
 	float ld = clamp(dot(n, -r), 0., 1.);
-	float fres = ((pow(1. - ld, ts) + pow(ld, ts))*(1. - ts) + tc)*ta;
-	float3 lp =float3(-19.6,23.6,-6.1);
+	
+	float fres = ov((pow(1. - ld, ts) + pow(ld, ts))*(1. - ts) ,tc*2.5)*ta;
+	float3 lp =float3(sin(_time*0.1)*-30.*0.-19.23,23.6,-6.1);
 	float l1 = dot(n, normalize(lp));
-	float sha = lerp(pow(tt, 2.5), 1., getShadow(p, lp, 30., mt));
-	float l2 = sha * l1;
-	float al = ov(fres, l2);
-	float frl = pow(1. - ld, 5.)*0.7 + pow(ld, 500.);
+	float sha = lerp(pow(abs(tt), 2.5), 1., getShadow(p, lp, 32., mt));
+	float l2 = sha * l1; 
+	float al = ov(fres,l2);
+	float frl = ov(lerp(pow(1. - ld, 5.)*0.5 + pow(ld, 500.),0.5,0.1),smoothstep(0.2,0.9,tc));
 	float r1 = lerp(frl, al, ml);
 	float3 r3 = ref.SampleLevel(_LinearRepeat, n, 0).xyz;
 	float po = lerp(lerp(1.,pow((1.-noise.SampleLevel(_LinearRepeat, float2(0.75, _time), 0.).x),2.)*10.,audio1),  pow(1. - high, 2.)*10.,audio2);

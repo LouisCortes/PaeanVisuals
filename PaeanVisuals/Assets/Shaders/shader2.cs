@@ -7,7 +7,7 @@ public class shader2 : MonoBehaviour
     RenderTexture B;
 
     public GameObject img1;
-    public spectrum audioCapture;
+    //public spectrum audioCapture;
     public Texture texture1;
     public int resx;
     public int resy;
