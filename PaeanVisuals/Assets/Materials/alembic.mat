@@ -84,11 +84,11 @@ Material:
     - _SrcBlend: 1
     - _UVSec: 0
     - _ZWrite: 1
-    - _fres: 0.368
+    - _fres: 0.4
     - _fresIntensity: 1
-    - _spec: 0.334
+    - _spec: 0.067
     - _specIntensity: 1
     m_Colors:
-    - _Color: {r: 0.509434, g: 0.509434, b: 0.509434, a: 1}
+    - _Color: {r: 0, g: 0, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
   m_BuildTextureStacks: []

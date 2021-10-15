@@ -17,6 +17,7 @@ public class PlayByInputAction : MonoBehaviour
     [SerializeField] InputAction _Subdivision1 = null;
     [SerializeField] InputAction _Subdivision2 = null;
 
+    [SerializeField] InputAction _AssignCurrentUnivers = null;
     [SerializeField] InputAction _NouvelUnivers = null;
 
     [SerializeField] InputAction _ChangeSpeed = null;
@@ -24,6 +25,8 @@ public class PlayByInputAction : MonoBehaviour
 
     [SerializeField] InputAction _Fade = null;
     [SerializeField] InputAction _Addition = null;
+
+    [SerializeField] InputAction _SphereLiquide = null;
 
     [SerializeField] InputAction _AssignBlink = null;
 
@@ -56,6 +59,9 @@ public class PlayByInputAction : MonoBehaviour
         _Subdivision2.performed += Subdivision2;
         _Subdivision2.Enable();
 
+        _AssignCurrentUnivers.performed += AssignCurrentUnivers;
+        _AssignCurrentUnivers.Enable();
+
         _NouvelUnivers.performed += NouvelUnivers;
         _NouvelUnivers.Enable();
 
@@ -70,6 +76,9 @@ public class PlayByInputAction : MonoBehaviour
 
         _Fade.performed += Fade;
         _Fade.Enable();
+
+        _SphereLiquide.performed += SphereLiquide;
+        _SphereLiquide.Enable();
 
         _AssignBlink.performed += Blink;
         _AssignBlink.Enable();
@@ -107,8 +116,14 @@ public class PlayByInputAction : MonoBehaviour
         _Subdivision2.performed -= Subdivision2;
         _Subdivision2.Disable();
 
+        _AssignCurrentUnivers.performed += AssignCurrentUnivers;
+        _AssignCurrentUnivers.Disable();
+
         _NouvelUnivers.performed -= NouvelUnivers;
         _NouvelUnivers.Disable();
+
+        _SphereLiquide.performed += SphereLiquide;
+        _SphereLiquide.Disable();
 
         _NextSequence.performed -= NextSequence;
         _NextSequence.Disable();
@@ -180,6 +195,17 @@ public class PlayByInputAction : MonoBehaviour
         }
     }
 
+    void AssignCurrentUnivers(InputAction.CallbackContext ctx)
+    {
+        if (!Sequence.AssignCurrentUnivers)
+        {
+            Sequence.AssignCurrentUnivers = true;
+        }else
+        {
+            Sequence.AssignCurrentUnivers = false;
+        }
+    }
+
     void NouvelUnivers(InputAction.CallbackContext ctx)
     {
         if (!Sequence.NouvelUnivers)
@@ -188,6 +214,20 @@ public class PlayByInputAction : MonoBehaviour
         }else{
             Sequence.NouvelUnivers = false;
         }
+    }
+
+    void SphereLiquide(InputAction.CallbackContext ctx)
+    {
+        if (!Sequence.SphereLiquide)
+        {
+            Compo.SphereLiquide.SetActive(true);
+            Sequence.SphereLiquide = true;
+        }else
+        {
+            Compo.SphereLiquide.SetActive(false);
+            Sequence.SphereLiquide = false;
+        }
+        
     }
 
     void Addition(InputAction.CallbackContext ctx)
