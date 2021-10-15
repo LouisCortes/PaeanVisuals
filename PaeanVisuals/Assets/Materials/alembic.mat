@@ -84,9 +84,9 @@ Material:
     - _SrcBlend: 1
     - _UVSec: 0
     - _ZWrite: 1
-    - _fres: 0.4
-    - _fresIntensity: 1
-    - _spec: 0.067
+    - _fres: 1
+    - _fresIntensity: 0.35
+    - _spec: 0.34
     - _specIntensity: 1
     m_Colors:
     - _Color: {r: 0, g: 0, b: 1, a: 1}
