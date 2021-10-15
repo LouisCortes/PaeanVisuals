@@ -7,11 +7,10 @@ public class PointAnimation : MonoBehaviour
     [SerializeField] PointCloudData _sourceData = null;
     [SerializeField] ComputeShader _computeShader = null;
 
-    [SerializeField] float _param1 = 0;
-    [SerializeField] float _param2 = 0;
-    [SerializeField] float _param3 = 0;
-    [SerializeField] float _param4 = 0;
-
+    public float _audio1 = 0;
+    public float _liquide = 0;
+    public Texture noise;
+    public fluid_dynamics fluid;
     ComputeBuffer _pointBuffer;
      public GameObject obj;
     void OnDisable()
@@ -38,13 +37,13 @@ public class PointAnimation : MonoBehaviour
         var time = Application.isPlaying ? Time.time : 0;
 
         var kernel = _computeShader.FindKernel("Main");
-        _computeShader.SetFloat("Param1", _param1);
-        _computeShader.SetFloat("Param2", _param2);
-        _computeShader.SetFloat("Param3", _param3);
-        _computeShader.SetFloat("Param4", _param4);
+        _computeShader.SetFloat("audio1", _audio1);
+        _computeShader.SetFloat("liquide", _liquide);
         _computeShader.SetFloat("wpx", obj.transform.position.x);
         _computeShader.SetFloat("wpy", obj.transform.position.y);
         _computeShader.SetFloat("wpz", obj.transform.position.z);
+        _computeShader.SetTexture(kernel,"noise", noise);
+        _computeShader.SetTexture(kernel, "fluid", fluid.texture1);
         _computeShader.SetFloat("time", time);
         _computeShader.SetBuffer(kernel, "SourceBuffer", sourceBuffer);
         _computeShader.SetBuffer(kernel, "OutputBuffer", _pointBuffer);

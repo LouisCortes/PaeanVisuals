@@ -14,6 +14,7 @@ public class Shader4 : MonoBehaviour
     public Texture2D albedo;
     public fluid_dynamics fluid;
     public Texture2D noise;
+   // public Texture2D lut;
     public GameObject probe;
     [Range(0, 1)]
     public float liquide;
@@ -48,15 +49,16 @@ public class Shader4 : MonoBehaviour
         compute_shader.SetTexture(handle_main, "albedo", albedo);
         compute_shader.SetTexture(handle_main, "noise", noise);
         compute_shader.SetTexture(handle_main, "fluid", fluid.texture1);
+        //compute_shader.SetTexture(handle_main, "lut", lut);
         compute_shader.SetTexture(handle_main, "ref",probe.GetComponent<ReflectionProbe>().texture );
        compute_shader.SetFloat("_time", Time.time);
         compute_shader.SetFloat("liquide", osc.liquide+liquide);
         compute_shader.SetFloat("rotation", osc.rotationv+rotation);
         compute_shader.SetFloat("audio1", osc.audio1+audio1);
         compute_shader.SetFloat("audio2", osc.audio2);
-        compute_shader.SetFloat("mid", osc.mid * osc.fac2*osc.address01);
-        compute_shader.SetFloat("low", osc.low * osc.fac2*osc.address02);
-        compute_shader.SetFloat("high", osc.high * osc.fac2*osc.address03);
+        compute_shader.SetFloat("mid", osc.mid *osc.address01);
+        compute_shader.SetFloat("low", osc.low * osc.address02);
+        compute_shader.SetFloat("high", osc.high *osc.address03);
         compute_shader.SetFloat("neutre",1-( osc.neutre+neutre));
         compute_shader.SetFloat("bleu", osc.bleu+bleu);
         compute_shader.SetFloat("zoom", osc.zoom+zoom);
