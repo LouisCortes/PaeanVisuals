@@ -14,6 +14,7 @@ public class Shader4 : MonoBehaviour
     public Texture2D albedo;
     public fluid_dynamics fluid;
     public Texture2D noise;
+   // public Texture2D lut;
     public GameObject probe;
     [Range(0, 1)]
     public float liquide;
@@ -48,6 +49,7 @@ public class Shader4 : MonoBehaviour
         compute_shader.SetTexture(handle_main, "albedo", albedo);
         compute_shader.SetTexture(handle_main, "noise", noise);
         compute_shader.SetTexture(handle_main, "fluid", fluid.texture1);
+        //compute_shader.SetTexture(handle_main, "lut", lut);
         compute_shader.SetTexture(handle_main, "ref",probe.GetComponent<ReflectionProbe>().texture );
        compute_shader.SetFloat("_time", Time.time);
         compute_shader.SetFloat("liquide", osc.liquide+liquide);

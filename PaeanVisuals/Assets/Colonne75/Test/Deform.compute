@@ -5,11 +5,12 @@
 
 StructuredBuffer<float4> SourceBuffer;
 RWStructuredBuffer<float4> OutputBuffer;
-
+Texture2D<float4> noise;
+Texture2D<float4> fluid;
+SamplerState _LinearRepeat;
 CBUFFER_START(Params)
-    float Param1;
-    float Param2;
-    float Param3;
+    float audio1;
+float liquide;
 	float wpx;
 	float wpy;
 	float wpz;
@@ -24,6 +25,15 @@ float4 v2 = lerp(frac(sin(v1)*7845.236), frac(sin(v1+se.x)*7845.236), p.x);
 float2 v3 = lerp(v2.xz, v2.yw, p.y);
 return lerp(v3.x, v3.y, p.z);
 }
+float rd(float3 p) {
+	float3 f = floor(p);
+	float3 se = float3(45., 78., 945.); float4 v1 = dot(se, f) + float4(0., se.y, se.z, se.y + se.z);
+	float tt = 7845.236 + time;
+	float4 v2 = lerp(frac(sin(v1)*tt), frac(sin(v1 + se.x)*tt), p.x);
+	float2 v3 = lerp(v2.xz, v2.yw, p.y);
+	return lerp(v3.x, v3.y, p.z);
+}
+float2x2 rot(float t) { float c = cos(t); float s = sin(t); return float2x2(c, -s, s, c); }
 [numthreads(128, 1, 1)]
 void Main(uint id : SV_DispatchThreadID)
 {
@@ -31,13 +41,24 @@ void Main(uint id : SV_DispatchThreadID)
 	
     float3 p = pt.xyz;
 	float3 pp = p + float3(wpx,wpy,wpz);
-
+	float lc = smoothstep(0.8, 1.8, length(pp.y + 1.));
+	//pp.xz = mul(pp.xz, rot(pp.y*(1. - lc)));
 	//p += float3(no(pp + time), no(pp - time), no(pp + float3(time, -time, time)));
 	//p += pp*frac(time)*no(pp);
 	//p -=  no(pp+time)*-pp;
+	
     half3 c = PcxDecodeColor(asuint(pt.w));
 	float3 n = (c - 0.5)*2.;
-	float bs = pow(no(p + float3(time, 0., -time)),10.);
-	p += n * bs;
+	float bs = pow(no(pp + float3(time, 0., -time)),5.);
+	bs += pow(no(pp*0.5 + float3(-time, 0., time)), 5.)*2.;
+	p += n * bs*liquide;// *audio1* (1. + noise.SampleLevel(_LinearRepeat, float2(0.25, time), 0.).x);
+	p += n* audio1* ( pow(noise.SampleLevel(_LinearRepeat, float2(0.25, time), 0.).x,5.))*rd(pp*0.5);
+	/*p += (float3(0.,fluid.SampleLevel(_LinearRepeat, pp.xz*0.05, 0.).x-0.5,0.)
+		*lc)*liquide;*/
+	/*float pr = atan2(pp.z, pp.x)+time+bs;
+	float l = length(pp.xz);
+
+	p.xz += float2(cos(pr), sin(pr)) *pow( l,0.5)*(1.-lc);*/
+
     OutputBuffer[id] = float4(p, asfloat(PcxEncodeColor(1.)));
 }
