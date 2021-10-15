@@ -33,12 +33,16 @@ public class PlayByInputAction : MonoBehaviour
     [SerializeField] InputAction _DebugFunction = null;
     [SerializeField] InputAction _DebugClean = null;
 
+    [SerializeField] InputAction _SwitchCam = null;
+
     [SerializeField] InputAction _AnimCam = null;
 
     [SerializeField] InputAction _Typo = null;
     [SerializeField] InputAction _UI = null;
 
     [SerializeField] InputAction _Restart = null;
+
+    public int i;
 
     void Start()
     {
@@ -82,6 +86,9 @@ public class PlayByInputAction : MonoBehaviour
 
         _AssignBlink.performed += Blink;
         _AssignBlink.Enable();
+
+        _SwitchCam.performed += SwitchCam;
+        _SwitchCam.Enable();
 
         _AnimCam.performed += AnimCam;
         _AnimCam.Enable();
@@ -139,6 +146,9 @@ public class PlayByInputAction : MonoBehaviour
 
         _AssignBlink.performed -= Blink;
         _AssignBlink.Disable();
+
+        _SwitchCam.performed += SwitchCam;
+        _SwitchCam.Disable();
 
         _AnimCam.performed -= AnimCam;
         _AnimCam.Disable();
@@ -274,6 +284,12 @@ public class PlayByInputAction : MonoBehaviour
     void Blink(InputAction.CallbackContext ctx)
     {
         Compo.AssignBlink = true;
+    }
+
+    void SwitchCam(InputAction.CallbackContext ctx)
+    {
+       
+            Cam.SwitchCamOrtho();         
     }
 
     void AnimCam(InputAction.CallbackContext ctx)

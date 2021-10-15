@@ -111,6 +111,21 @@ public class Composition_Manager : MonoBehaviour
     }
 
 
+    public void AssignLayerAllCam()
+    {
+        CM.AB.cullingMask = LY;
+        CM.A10[0].cullingMask = LY; CM.A10[1].cullingMask = LY;
+        CM.A.cullingMask = LY;
+        CM.A0[0].cullingMask = LY; CM.A0[1].cullingMask = LY;
+        CM.A1_0[0].cullingMask = LY; CM.A1_0[1].cullingMask = LY; CM.A1_0[2].cullingMask = LY; CM.A2_0[0].cullingMask = LY; CM.A1_0[1].cullingMask = LY; CM.A1_0[2].cullingMask = LY;
+
+        CM.B10[0].cullingMask = LY; CM.B10[1].cullingMask = LY;
+        CM.B.cullingMask = LY;
+        CM.B0[0].cullingMask = LY; CM.B0[1].cullingMask = LY;
+        CM.B1_0[0].cullingMask = LY; CM.B1_0[1].cullingMask = LY; CM.B1_0[2].cullingMask = LY; CM.B2_0[0].cullingMask = LY; CM.B1_0[1].cullingMask = LY; CM.B1_0[2].cullingMask = LY;
+    }
+
+
     public void AnimCam()
     {
         TranslationIntensity++;
