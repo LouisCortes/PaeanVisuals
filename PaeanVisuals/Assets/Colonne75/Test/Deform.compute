@@ -10,6 +10,7 @@ Texture2D<float4> fluid;
 SamplerState _LinearRepeat;
 CBUFFER_START(Params)
     float audio1;
+float audio2;
 float liquide;
 	float wpx;
 	float wpy;
@@ -52,7 +53,7 @@ void Main(uint id : SV_DispatchThreadID)
 	float bs = pow(no(pp + float3(time, 0., -time)),5.);
 	bs += pow(no(pp*0.5 + float3(-time, 0., time)), 5.)*2.;
 	p += n * bs*liquide;// *audio1* (1. + noise.SampleLevel(_LinearRepeat, float2(0.25, time), 0.).x);
-	p += n* audio1* ( pow(noise.SampleLevel(_LinearRepeat, float2(0.25, time), 0.).x,5.))*rd(pp*0.5);
+	p += n* max(audio1* ( pow(noise.SampleLevel(_LinearRepeat, float2(0.25, time), 0.).x,5.)),audio2)*rd(pp*0.5);
 	/*p += (float3(0.,fluid.SampleLevel(_LinearRepeat, pp.xz*0.05, 0.).x-0.5,0.)
 		*lc)*liquide;*/
 	/*float pr = atan2(pp.z, pp.x)+time+bs;

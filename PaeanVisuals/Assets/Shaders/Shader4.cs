@@ -56,9 +56,9 @@ public class Shader4 : MonoBehaviour
         compute_shader.SetFloat("rotation", osc.rotationv+rotation);
         compute_shader.SetFloat("audio1", osc.audio1+audio1);
         compute_shader.SetFloat("audio2", osc.audio2);
-        compute_shader.SetFloat("mid", osc.mid *osc.address01);
-        compute_shader.SetFloat("low", osc.low * osc.address02);
-        compute_shader.SetFloat("high", osc.high *osc.address03);
+        compute_shader.SetFloat("mid", osc.mid *osc.address01*osc.fac2);
+        compute_shader.SetFloat("low", osc.low * osc.address02 * osc.fac2);
+        compute_shader.SetFloat("high", osc.high *osc.address03 * osc.fac2);
         compute_shader.SetFloat("neutre",1-( osc.neutre+neutre));
         compute_shader.SetFloat("bleu", osc.bleu+bleu);
         compute_shader.SetFloat("zoom", osc.zoom+zoom);

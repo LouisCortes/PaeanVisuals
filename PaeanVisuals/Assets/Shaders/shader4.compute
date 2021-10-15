@@ -147,7 +147,7 @@ void CSMain (uint2 id : SV_DispatchThreadID)
 	float3 r3 = ref.SampleLevel(_LinearRepeat, n, 0).xyz; 
 	float po = max(
 		lerp(1.,pow((1.-noise.SampleLevel(_LinearRepeat, float2(0.75, _time), 0.).x),2.)*10.,audio1),
-		lerp(1.,pow(1. - high, 2.)*10., audio2));
+		lerp(1.,pow(1. - high, 1.), audio2));
 	float hh = lerp(hs(f),0.5,lerp(1.,0.5,zoom));
 	float3 h3 = float3(hh, hh, hh);
 	reader[id] = float4(ov(pow(r1*neutre+r3*bleu,float3(po,po,po)),h3), 1.)*s;
