@@ -9,21 +9,25 @@ public class Sequence_Manager : MonoBehaviour
     public int Speed;
     public PlayByInputAction Input;
     public Composition_Manager Compo;
+    public Cam_Manager Cam;
     public bool Next;
     public bool Started;
     public bool A;
     public bool B;
 
+    public bool Fade;
     public bool Add;
 
     public bool Subdivision1;
     public bool Subdivision2;
 
+    public bool AssignCurrentUnivers;
     public bool NouvelUnivers;
+    public bool SphereLiquide;
 
     void Start()
     {
-        Compo.AddUnivers();
+        Fade = true;
         Started = true;
         PHASE = "PHASE01";
         SetAllCommandOff();
@@ -48,6 +52,10 @@ public class Sequence_Manager : MonoBehaviour
         Compo.CleanAllUnivers();
         if (PHASE == "PHASE01"){
             PHASE = "PHASE02";
+            Compo.AddUnivers2();
+        }else if(PHASE == "PHASE02"){
+            PHASE = "PHASE01";
+            Compo.AddUnivers();
         }
     }
 
@@ -56,15 +64,26 @@ public class Sequence_Manager : MonoBehaviour
     {
         if (Next){
             NextSequence();
-            NouvelUnivers = true;
+            AssignCurrentUnivers = true;
         }
-        if (NouvelUnivers)
+       /* if (NouvelUnivers)
+        {
+            Compo.NumberOfUnivers++;
+        }*/
+        if (AssignCurrentUnivers)
         {
             if (PHASE == "PHASE01"){
                 Compo.AddUnivers();
-            }else if (PHASE =="PHASE02"){
+            }
+            else if (PHASE == "PHASE02"){
                 Compo.AddUnivers2();
             }
+        }
+
+        if (Fade){
+            Cam.FadeCamActive();
+        }else{
+            Cam.FadeCamDisable();
         }
 
         if (!Add){
@@ -123,6 +142,7 @@ public class Sequence_Manager : MonoBehaviour
                 }
             }
         }
+      
 
         SetAllCommandOff();
     }
@@ -135,6 +155,7 @@ public class Sequence_Manager : MonoBehaviour
         Subdivision1 = false;
         Subdivision2 = false;
         NouvelUnivers = false;
+        AssignCurrentUnivers = false;
         Add = false;
     }
 

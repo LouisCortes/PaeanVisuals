@@ -29,6 +29,7 @@ public class Composition_Manager : MonoBehaviour
     public GameObject[] B1_0;
     public GameObject[] B2_0;
 
+    public GameObject SphereLiquide;
     public GameObject Fluide;
 
     public int NumberOfUnivers;
@@ -42,7 +43,7 @@ public class Composition_Manager : MonoBehaviour
         CleanAllUnivers();
         Blink = false;
         AssignBlink = false;
-
+        AddUnivers();
         i = 0;
         FragmentationIntensity = 0;
         Clean();
@@ -51,7 +52,7 @@ public class Composition_Manager : MonoBehaviour
 
     void Update()
     {
-
+       
         if (Blink) {
             CM.A0[Random.Range(0, 2)].backgroundColor = new Color(0, 0, ValueBlink);
             CM.B0[Random.Range(0, 2)].backgroundColor = new Color(ValueBlink, ValueBlink, ValueBlink);
@@ -70,36 +71,39 @@ public class Composition_Manager : MonoBehaviour
     /////////////////////////////////////////LAYER SCENE UNIVERS
     public void AddUnivers()
     {
-        NumberOfUnivers++;
-        if (NumberOfUnivers == 1) {
-            LayerNameToAssign = "Rock01";
-            LY = LayerMask.GetMask(LayerNameToAssign);
-            PullUniversPhase01[0].SetActive(true);
-        } else if (NumberOfUnivers == 2) {
-            LayerNameToAssign = "Rock02";
-            LY = LayerMask.GetMask(LayerNameToAssign);
-            PullUniversPhase01[1].SetActive(true);
-        } else if (NumberOfUnivers == 3) {
-            LayerNameToAssign = "Rock03";
-            LY = LayerMask.GetMask(LayerNameToAssign);
-            Debug.Log("Setactive");
-            PullUniversPhase01[2].SetActive(true);
-            NumberOfUnivers = 0;
-        }
+          if (Sequence.NouvelUnivers){
+              NumberOfUnivers++;
+          }
+          if (NumberOfUnivers == 1) {
+              LayerNameToAssign = "Rock01";
+              LY = LayerMask.GetMask(LayerNameToAssign);
+              PullUniversPhase01[0].SetActive(true);
+          } else if (NumberOfUnivers == 2) {
+              LayerNameToAssign = "Rock02";
+              LY = LayerMask.GetMask(LayerNameToAssign);
+              PullUniversPhase01[1].SetActive(true);
+          } else if (NumberOfUnivers == 3) {
+              LayerNameToAssign = "Rock03";
+              LY = LayerMask.GetMask(LayerNameToAssign);
+              PullUniversPhase01[2].SetActive(true);
+              NumberOfUnivers = 0;
+          }
     }
     public void AddUnivers2()
-    { 
-        NumberOfUnivers++;
+    {
+        if (Sequence.NouvelUnivers){
+            NumberOfUnivers++;
+        }
         if (NumberOfUnivers == 1){
-            LayerNameToAssign = "Rock03";
+            LayerNameToAssign = "Rock04";
             LY = LayerMask.GetMask(LayerNameToAssign);
             PullUniversPhase02[0].SetActive(true);
         }else if (NumberOfUnivers == 2){
-            LayerNameToAssign = "Water01";
+            LayerNameToAssign = "Cave";
             LY = LayerMask.GetMask(LayerNameToAssign);
             PullUniversPhase02[1].SetActive(true);
         }else if (NumberOfUnivers == 3){
-            LayerNameToAssign = "Water02";
+            LayerNameToAssign = "Water01";
             LY = LayerMask.GetMask(LayerNameToAssign);
             PullUniversPhase02[2].SetActive(true);
             NumberOfUnivers = 0;
@@ -130,24 +134,24 @@ public class Composition_Manager : MonoBehaviour
             if (AssignBlink == true) {
                 Blink = true;
             }if (R == 0) {
-                if (Sequence.NouvelUnivers == true) {
+                if (Sequence.AssignCurrentUnivers == true) {
                     CM.A10[0].cullingMask = LY;
                 }
                 A10[0].SetActive(true);
             } else if (R == 1) {
-                if (Sequence.NouvelUnivers == true) {
+                if (Sequence.AssignCurrentUnivers == true) {
                     CM.A10[1].cullingMask = LY;
                 }
                 A10[1].SetActive(true);
             }
             else if (R == 2) {
-                if (Sequence.NouvelUnivers == true) {
+                if (Sequence.AssignCurrentUnivers == true) {
                     CM.A10[1].cullingMask = LY;
                 }
                 A10[2].SetActive(true);
             }
             else if (R == 3) {
-                if (Sequence.NouvelUnivers == true) {
+                if (Sequence.AssignCurrentUnivers == true) {
                     CM.A10[0].cullingMask = LY;
                 }
                 A10[3].SetActive(true);
@@ -162,22 +166,22 @@ public class Composition_Manager : MonoBehaviour
                 Blink = true;
             }
             if (R == 0) {
-                if (Sequence.NouvelUnivers == true) {
+                if (Sequence.AssignCurrentUnivers == true) {
                     CM.B10[0].cullingMask = LY;
                 }
                 B10[0].SetActive(true);
             } else if (R == 1) {
-                if (Sequence.NouvelUnivers == true) {
+                if (Sequence.AssignCurrentUnivers == true) {
                     CM.B10[1].cullingMask = LY;
                 }
                 B10[1].SetActive(true);
             } else if (R == 2) {
-                if (Sequence.NouvelUnivers == true) {
+                if (Sequence.AssignCurrentUnivers == true) {
                     CM.B10[0].cullingMask = LY;
                 }
                 B10[2].SetActive(true);
             } else if (R == 3) {
-                if (Sequence.NouvelUnivers == true) {
+                if (Sequence.AssignCurrentUnivers == true) {
                     CM.B10[1].cullingMask = LY;
                 }
                 B10[3].SetActive(true);
@@ -210,21 +214,21 @@ public class Composition_Manager : MonoBehaviour
         {
             int R; R = Random.Range(0, 3);
             if (R == 0) {
-                if (Sequence.NouvelUnivers == true) {
+                if (Sequence.AssignCurrentUnivers == true) {
                     CM.A1_0[2].cullingMask = LY; CM.B1_0[1].cullingMask = LY;
                     CM.A2_0[1].cullingMask = LY; CM.B2_0[0].cullingMask = LY; CM.B2_0[2].cullingMask = LY;
                 }
                 A1_0[0].SetActive(true); A1_0[2].SetActive(true); B1_0[1].SetActive(true);
                 A2_0[1].SetActive(true); B2_0[0].SetActive(true); B2_0[2].SetActive(true);
             } else if (R == 1) {
-                if (Sequence.NouvelUnivers == true) {
+                if (Sequence.AssignCurrentUnivers == true) {
                     CM.A2_0[0].cullingMask = LY; CM.A2_0[2].cullingMask = LY; CM.B2_0[1].cullingMask = LY;
                     CM.A1_0[1].cullingMask = LY; CM.B1_0[0].cullingMask = LY; CM.B1_0[2].cullingMask = LY;
                 }
                 A2_0[0].SetActive(true); A2_0[2].SetActive(true); B2_0[1].SetActive(true);
                 A1_0[1].SetActive(true); B1_0[0].SetActive(true); B1_0[2].SetActive(true);
             } else {
-                if (Sequence.NouvelUnivers == true) {
+                if (Sequence.AssignCurrentUnivers == true) {
                     CM.A1_0[1].cullingMask = LY; CM.B1_0[1].cullingMask = LY;
                     CM.A2_0[2].cullingMask = LY; CM.B2_0[0].cullingMask = LY;
                 }
@@ -237,26 +241,26 @@ public class Composition_Manager : MonoBehaviour
         {
             int R; R = Random.Range(0, 4);
             if (R == 0) {
-                if (Sequence.NouvelUnivers == true) {
+                if (Sequence.AssignCurrentUnivers == true) {
                     CM.A1_0[R].cullingMask = LY; CM.B1_0[R].cullingMask = LY;
                     CM.A2_0[R].cullingMask = LY; CM.B2_0[R].cullingMask = LY;
                 }
                 A1_0[R].SetActive(true); B1_0[R].SetActive(true);
                 A2_0[R].SetActive(true); B2_0[R].SetActive(true);
             } else if (R == 1) {
-                if (Sequence.NouvelUnivers == true) {
+                if (Sequence.AssignCurrentUnivers == true) {
                     CM.A1_0[R].cullingMask = LY; CM.B1_0[R].cullingMask = LY;
                     CM.A2_0[R].cullingMask = LY; CM.B2_0[R].cullingMask = LY;
                 }
                 A1_0[R].SetActive(true); B1_0[R].SetActive(true);
                 A2_0[R].SetActive(true); B2_0[R].SetActive(true);
             } else if (R == 2) {
-                if (Sequence.NouvelUnivers == true) {
+                if (Sequence.AssignCurrentUnivers == true) {
                     CM.A2_0[2].cullingMask = LY;
                 }
                 A2_0[2].SetActive(true);
             } else {
-                if (Sequence.NouvelUnivers == true) {
+                if (Sequence.AssignCurrentUnivers == true) {
                     CM.A2_0[0].cullingMask = LY; CM.A2_0[2].cullingMask = LY; CM.B1_0[2].cullingMask = LY;
                 }
                 A2_0[0].SetActive(true); A2_0[2].SetActive(true); B1_0[2].SetActive(true);
@@ -268,21 +272,21 @@ public class Composition_Manager : MonoBehaviour
         {
             int R; R = Random.Range(0, 3);
             if (R == 0) {
-                if (Sequence.NouvelUnivers == true) {
+                if (Sequence.AssignCurrentUnivers == true) {
                     CM.A1_0[1].cullingMask = LY;
                     CM.A2_0[1].cullingMask = LY;
                 }
                 A1_0[1].SetActive(true);
                 A2_0[1].SetActive(true);
             } else if (R == 1) {
-                if (Sequence.NouvelUnivers == true) {
+                if (Sequence.AssignCurrentUnivers == true) {
                     CM.A1_0[0].cullingMask = LY; CM.A1_0[2].cullingMask = LY;
                     CM.A2_0[0].cullingMask = LY; CM.A2_0[2].cullingMask = LY;
                 }
                 A1_0[0].SetActive(true); A1_0[2].SetActive(true);
                 A2_0[0].SetActive(true); A2_0[2].SetActive(true);
             } else {
-                if (Sequence.NouvelUnivers == true) {
+                if (Sequence.AssignCurrentUnivers == true) {
                     CM.A1_0[2].cullingMask = LY;
                     CM.A2_0[2].cullingMask = LY;
                 }
@@ -295,21 +299,21 @@ public class Composition_Manager : MonoBehaviour
         {
             int R; R = Random.Range(0, 3);
             if (R == 0) {
-                if (Sequence.NouvelUnivers == true) {
+                if (Sequence.AssignCurrentUnivers == true) {
                     CM.B1_0[1].cullingMask = LY;
                     CM.B2_0[1].cullingMask = LY;
                 }
                 B1_0[1].SetActive(true);
                 B2_0[1].SetActive(true);
             } else if (R == 1) {
-                if (Sequence.NouvelUnivers == true) {
+                if (Sequence.AssignCurrentUnivers == true) {
                     CM.B1_0[0].cullingMask = LY; CM.B1_0[2].cullingMask = LY;
                     CM.B2_0[0].cullingMask = LY; CM.B2_0[2].cullingMask = LY;
                 }
                 B1_0[0].SetActive(true); B1_0[2].SetActive(true);
                 B2_0[0].SetActive(true); B2_0[2].SetActive(true);
             } else {
-                if (Sequence.NouvelUnivers == true) {
+                if (Sequence.AssignCurrentUnivers == true) {
                     CM.B1_0[0].cullingMask = LY;
                     CM.B2_0[0].cullingMask = LY;
                 }
@@ -322,7 +326,7 @@ public class Composition_Manager : MonoBehaviour
     /////////////////////////////////////////Screen total A or B
     public void ScreenA()
         {
-            if (Sequence.NouvelUnivers == true) {
+            if (Sequence.AssignCurrentUnivers == true) {
                 CM.A.cullingMask = LY;
             }
             A.SetActive(true);
@@ -330,7 +334,7 @@ public class Composition_Manager : MonoBehaviour
         }
     public void ScreenB()
         {
-            if (Sequence.NouvelUnivers == true) {
+            if (Sequence.AssignCurrentUnivers == true) {
                 CM.B.cullingMask = LY;
             }
             B.SetActive(true);
@@ -340,7 +344,7 @@ public class Composition_Manager : MonoBehaviour
     public void SetupFullLandscape()
     {
         int R; R = Random.Range(0, 3);
-        if (Sequence.NouvelUnivers == true)
+        if (Sequence.AssignCurrentUnivers == true)
         {
             CM.AB.cullingMask = LY;
         }
@@ -390,34 +394,34 @@ public class Composition_Manager : MonoBehaviour
                 Blink = true;
             }
             if (R == 0) {
-                if (Sequence.NouvelUnivers == true) {
+                if (Sequence.AssignCurrentUnivers == true) {
                     CM.A0[0].cullingMask = LY;
                 }
                 A0[0].SetActive(true);
             } else if (R == 1) {
-                if (Sequence.NouvelUnivers == true) {
+                if (Sequence.AssignCurrentUnivers == true) {
                     CM.A0[1].cullingMask = LY;
                 }
                 A0[1].SetActive(true);
             } else if (R == 2) {
-                if (Sequence.NouvelUnivers == true) {
+                if (Sequence.AssignCurrentUnivers == true) {
                     CM.B0[0].cullingMask = LY;
                 }
                 B0[0].SetActive(true);
             } else if (R == 3) {
-                if (Sequence.NouvelUnivers == true) {
+                if (Sequence.AssignCurrentUnivers == true) {
                     CM.B0[1].cullingMask = LY;
                 }
                 B0[1].SetActive(true);
             } else if (R == 4) {
-                if (Sequence.NouvelUnivers == true) {
+                if (Sequence.AssignCurrentUnivers == true) {
                     CM.A0[0].cullingMask = LY;
                     CM.B0[0].cullingMask = LY;
                 }
                 A0[0].SetActive(true);
                 B0[0].SetActive(true);
             } else {
-                if (Sequence.NouvelUnivers == true) {
+                if (Sequence.AssignCurrentUnivers == true) {
                     CM.A0[1].cullingMask = LY;
                     CM.B0[1].cullingMask = LY;
                 }
@@ -431,14 +435,14 @@ public class Composition_Manager : MonoBehaviour
         {
         i++;
         if (i == 1){
-            if (Sequence.NouvelUnivers == true){
+            if (Sequence.AssignCurrentUnivers == true){
                 CM.A0[0].cullingMask = LY;
                 CM.B0[1].cullingMask = LY;
             }
             A0[0].SetActive(true);
             B0[1].SetActive(true);
         }else if(i == 2){
-            if (Sequence.NouvelUnivers == true){
+            if (Sequence.AssignCurrentUnivers == true){
                 CM.A0[1].cullingMask = LY;
                 CM.B0[0].cullingMask = LY;
             }
@@ -474,7 +478,7 @@ public class Composition_Manager : MonoBehaviour
     }
     public void CleanAllUnivers()
     {
-        NumberOfUnivers = 0;
+        NumberOfUnivers = 1;
         PullUniversPhase01[0].SetActive(false); PullUniversPhase01[1].SetActive(false); PullUniversPhase01[2].SetActive(false);
         PullUniversPhase02[0].SetActive(false); PullUniversPhase02[1].SetActive(false); PullUniversPhase02[2].SetActive(false);
         //PullUniversPhase03[0].SetActive(false);
