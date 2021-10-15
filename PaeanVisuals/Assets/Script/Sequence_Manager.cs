@@ -9,11 +9,13 @@ public class Sequence_Manager : MonoBehaviour
     public int Speed;
     public PlayByInputAction Input;
     public Composition_Manager Compo;
+    public Cam_Manager Cam;
     public bool Next;
     public bool Started;
     public bool A;
     public bool B;
 
+    public bool Fade;
     public bool Add;
 
     public bool Subdivision1;
@@ -23,6 +25,7 @@ public class Sequence_Manager : MonoBehaviour
 
     void Start()
     {
+        Fade = true;
         Compo.AddUnivers();
         Started = true;
         PHASE = "PHASE01";
@@ -65,6 +68,12 @@ public class Sequence_Manager : MonoBehaviour
             }else if (PHASE =="PHASE02"){
                 Compo.AddUnivers2();
             }
+        }
+
+        if (Fade){
+            Cam.FadeCamActive();
+        }else{
+            Cam.FadeCamDisable();
         }
 
         if (!Add){

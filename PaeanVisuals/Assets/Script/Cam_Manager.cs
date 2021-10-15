@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Cam_Manager : MonoBehaviour
 {
+
     public float RandomSpeed;
     public bool Cam_Translation;
     public Animator AC_Cam;
@@ -18,9 +19,11 @@ public class Cam_Manager : MonoBehaviour
     public Camera[] B10;
     public Camera[] B1_0;
     public Camera[] B2_0;
+    public Animator AC;
 
     void Start()
     {
+
     }
 
     void Update()
@@ -89,4 +92,35 @@ public class Cam_Manager : MonoBehaviour
         AC_Cam.SetBool("Melt", false);
         AC_Cam.SetBool("Crossed", false);
     }
+
+    public void FadeCamActive()
+    {       
+            AB.GetComponent<Animator>().enabled = true;
+
+            A10[0].GetComponent<Animator>().enabled = true; A10[1].GetComponent<Animator>().enabled = true;
+            A.GetComponent<Animator>().enabled = true;
+            A0[0].GetComponent<Animator>().enabled = true; A0[1].GetComponent<Animator>().enabled = true;
+            A1_0[0].GetComponent<Animator>().enabled = true; A1_0[1].GetComponent<Animator>().enabled = true; A1_0[2].GetComponent<Animator>().enabled = true; A2_0[0].GetComponent<Animator>().enabled = true; A2_0[1].GetComponent<Animator>().enabled = true; A2_0[2].GetComponent<Animator>().enabled = true;
+
+            B10[0].GetComponent<Animator>().enabled = true; B10[1].GetComponent<Animator>().enabled = true;
+            B.GetComponent<Animator>().enabled = true;
+            B0[0].GetComponent<Animator>().enabled = true; B0[1].GetComponent<Animator>().enabled = true;
+            B1_0[0].GetComponent<Animator>().enabled = true; B1_0[1].GetComponent<Animator>().enabled = true; B1_0[2].GetComponent<Animator>().enabled = true; B2_0[0].GetComponent<Animator>().enabled = true; B2_0[1].GetComponent<Animator>().enabled = true; B2_0[2].GetComponent<Animator>().enabled = true;            
+    }
+    public void FadeCamDisable()
+    {
+            AB.GetComponent<Animator>().enabled = false;
+
+            A10[0].GetComponent<Animator>().enabled = false; A10[1].GetComponent<Animator>().enabled = false;
+            A.GetComponent<Animator>().enabled = false;
+            A0[0].GetComponent<Animator>().enabled = false; A0[1].GetComponent<Animator>().enabled = false;
+            A1_0[0].GetComponent<Animator>().enabled = false; A1_0[1].GetComponent<Animator>().enabled = false; A1_0[2].GetComponent<Animator>().enabled = false; A2_0[0].GetComponent<Animator>().enabled = false; A2_0[1].GetComponent<Animator>().enabled = false; A2_0[2].GetComponent<Animator>().enabled = false;
+
+            B10[0].GetComponent<Animator>().enabled = false; B10[1].GetComponent<Animator>().enabled = false;
+            B.GetComponent<Animator>().enabled = false;
+            B0[0].GetComponent<Animator>().enabled = false; B0[1].GetComponent<Animator>().enabled = false;
+            B1_0[0].GetComponent<Animator>().enabled = false; B1_0[1].GetComponent<Animator>().enabled = false; B1_0[2].GetComponent<Animator>().enabled = false; B2_0[0].GetComponent<Animator>().enabled = false; B2_0[1].GetComponent<Animator>().enabled = false; B2_0[2].GetComponent<Animator>().enabled = false;
+    }
+    
+
 }

@@ -22,6 +22,7 @@ public class PlayByInputAction : MonoBehaviour
     [SerializeField] InputAction _ChangeSpeed = null;
     [SerializeField] InputAction _NextSequence = null;
 
+    [SerializeField] InputAction _Fade = null;
     [SerializeField] InputAction _Addition = null;
 
     [SerializeField] InputAction _AssignBlink = null;
@@ -67,6 +68,8 @@ public class PlayByInputAction : MonoBehaviour
         _Addition.performed += Addition;
         _Addition.Enable();
 
+        _Fade.performed += Fade;
+        _Fade.Enable();
 
         _AssignBlink.performed += Blink;
         _AssignBlink.Enable();
@@ -115,6 +118,9 @@ public class PlayByInputAction : MonoBehaviour
 
         _Addition.performed -= Addition;
         _Addition.Disable();
+
+        _Fade.performed += Fade;
+        _Fade.Disable();
 
         _AssignBlink.performed -= Blink;
         _AssignBlink.Disable();
@@ -191,6 +197,15 @@ public class PlayByInputAction : MonoBehaviour
             Sequence.Add = true;
         }else{
             Sequence.Add = false;
+        }
+    }
+
+    void Fade(InputAction.CallbackContext ctx)
+    {
+        if (!Sequence.Fade){
+            Sequence.Fade = true;
+        }else{
+            Sequence.Fade = false;
         }
     }
 
