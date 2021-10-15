@@ -114,7 +114,7 @@ void CSMain (uint2 id : SV_DispatchThreadID)
 	uv.x *= res.x / res.y;
 	float3 p = float3(0., 7.5, -7-s1b*10.);
 	float3 r = normalize(float3(uv, lerp(0.5,3.,zoom)));
-	r.yz = mul(r.yz,rot(-0.8));
+	r.yz = mul(r.yz,rot(-0.8+rotation*0.1));
 
 	float dd = 0.; float dm = 15.;
 	float2 vol = isphe(p, r, float3(0., 0., 0.), 10.+s1b*5.);
@@ -145,7 +145,9 @@ void CSMain (uint2 id : SV_DispatchThreadID)
 	float frl = ov(lerp(pow(1. - ld, 5.)*0.5 + pow(ld, 500.),0.5,0.1),smoothstep(0.2,0.9,tc));
 	float r1 = lerp(frl, al, ml);
 	float3 r3 = ref.SampleLevel(_LinearRepeat, n, 0).xyz; 
-	float po = lerp(lerp(1.,pow((1.-noise.SampleLevel(_LinearRepeat, float2(0.75, _time), 0.).x),2.)*10.,audio1),  pow(1. - high, 2.)*10.,audio2);
+	float po = max(
+		lerp(1.,pow((1.-noise.SampleLevel(_LinearRepeat, float2(0.75, _time), 0.).x),2.)*10.,audio1),
+		lerp(1.,pow(1. - high, 2.)*10., audio2));
 	float hh = lerp(hs(f),0.5,lerp(1.,0.5,zoom));
 	float3 h3 = float3(hh, hh, hh);
 	reader[id] = float4(ov(pow(r1*neutre+r3*bleu,float3(po,po,po)),h3), 1.)*s;
