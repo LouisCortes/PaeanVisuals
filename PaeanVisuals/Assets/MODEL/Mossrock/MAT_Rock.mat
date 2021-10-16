@@ -21,7 +21,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: MAT_Rock
-  m_Shader: {fileID: 45, guid: 0000000000000000f000000000000000, type: 0}
+  m_Shader: {fileID: 4800000, guid: 2c166866b4c265a40ac443bccf7067c2, type: 3}
   m_ShaderKeywords: _DETAIL_MULX2 _GLOSSYREFLECTIONS_OFF _NORMALMAP _OCCLUSIONMAP
     _SPECULAR_SETUP
   m_LightmapFlags: 4
@@ -65,6 +65,14 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _Normal:
+        m_Texture: {fileID: 2800000, guid: c02c8dc7b0972c7479dfe448a772ae54, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Normal2:
+        m_Texture: {fileID: 2800000, guid: 7402a681403e14b45a70979b924fe503, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _OcclusionMap:
         m_Texture: {fileID: 2800000, guid: c57080a0b669def40a0b4cc2cf0c687e, type: 3}
         m_Scale: {x: 1, y: 1}
@@ -73,8 +81,28 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _Ramp:
+        m_Texture: {fileID: 2800000, guid: 6c1bdc3340cbe584e996b350abd28c93, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _SpecGlossMap:
         m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Tex:
+        m_Texture: {fileID: 2800000, guid: 364c424e6bc55b64d8ce267f2b4f31e8, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _cube:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _fluid:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _node_8129:
+        m_Texture: {fileID: 2800000, guid: 6c1bdc3340cbe584e996b350abd28c93, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - unity_Lightmaps:
@@ -101,26 +129,48 @@ Material:
     - _DetailNormalMapScale: 0.5
     - _DstBlend: 0
     - _EnvironmentReflections: 1
+    - _Gloss: 0.8
     - _GlossMapScale: 0
-    - _Glossiness: 0.05
+    - _Glossiness: 1
     - _GlossyReflections: 0
     - _Metallic: 0
     - _Mode: 0
-    - _OcclusionStrength: 1
+    - _OcclusionStrength: 0
     - _Parallax: 0.005
     - _QueueOffset: 0
+    - _RandomMotion: 0.487
     - _ReceiveShadows: 1
     - _Smoothness: 0.09
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
+    - _SpeedRandomMotion: 0.48
     - _SrcBlend: 1
     - _Surface: 0
     - _UVSec: 0
     - _WorkflowMode: 0
     - _ZWrite: 1
+    - _audio1: 0
+    - _intensity_ondulation: 1.21
+    - _iridescent: 1
+    - _liquide: 0
+    - _mvtTwist: 0
+    - _normalpui: 0.31
+    - _rotationYAxis: 0
+    - _rotationZAxis: 0
+    - _tailleTwist: 0
+    - _taille_ondulation: 4.05
+    - _taillept: 1.11
+    - _tnormal: 1.21
+    - _v1: 0
+    - _v2: 0
+    - _v3: 0
+    - _v4: 0.304
+    - _v5: 0.1
+    - _v6: 3
+    - _zoneIridescent: 0.083
     m_Colors:
     - _BaseColor: {r: 0.18867922, g: 0.18867922, b: 0.18867922, a: 1}
-    - _Color: {r: 0, g: 0, b: 0, a: 1}
+    - _Color: {r: 0.086507656, g: 0.09960839, b: 0.2830189, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _SpecColor: {r: 0.8584906, g: 0.8584906, b: 0.8584906, a: 1}
   m_BuildTextureStacks: []
