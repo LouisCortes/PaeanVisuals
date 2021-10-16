@@ -20,13 +20,13 @@ RenderSettings:
   m_FogDensity: 0.01
   m_LinearFogStart: 0
   m_LinearFogEnd: 300
-  m_AmbientSkyColor: {r: 0.212, g: 0.227, b: 0.259, a: 1}
+  m_AmbientSkyColor: {r: 0, g: 0, b: 0, a: 1}
   m_AmbientEquatorColor: {r: 0.114, g: 0.125, b: 0.133, a: 1}
   m_AmbientGroundColor: {r: 0.047, g: 0.043, b: 0.035, a: 1}
   m_AmbientIntensity: 0
-  m_AmbientMode: 0
+  m_AmbientMode: 3
   m_SubtractiveShadowColor: {r: 0, g: 0, b: 0, a: 1}
-  m_SkyboxMaterial: {fileID: 10304, guid: 0000000000000000f000000000000000, type: 0}
+  m_SkyboxMaterial: {fileID: 2100000, guid: f89f458394b50e349954e793fa39ee09, type: 2}
   m_HaloStrength: 0.5
   m_FlareStrength: 1
   m_FlareFadeSpeed: 3
@@ -97,7 +97,8 @@ LightmapSettings:
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
-  m_LightingDataAsset: {fileID: 0}
+  m_LightingDataAsset: {fileID: 112000000, guid: 6552cfefdc0a49746a0f0d7d6f19202a,
+    type: 2}
   m_LightingSettings: {fileID: 0}
 --- !u!196 &4
 NavMeshSettings:
@@ -1193,7 +1194,7 @@ PrefabInstance:
     - target: {fileID: 1129175183515277866, guid: 45172ec70170c8246a79d59f887d6c43,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1129175183515277868, guid: 45172ec70170c8246a79d59f887d6c43,
         type: 3}
@@ -1279,6 +1280,20 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 610147721}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &610147724
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 610147723}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f0f74b4f33feea14fa06fffee9492e40, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  osc: {fileID: 313087159}
+  rock: {fileID: 2100000, guid: eb2b665f80493d1448a7c8fb30a04584, type: 2}
 --- !u!1 &615929176
 GameObject:
   m_ObjectHideFlags: 0
@@ -3012,6 +3027,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Layer
       value: 14
+      objectReference: {fileID: 0}
+    - target: {fileID: 1025428954560024864, guid: 8a9b3c1919edc2e4db23d820450efb97,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1025428954560024865, guid: 8a9b3c1919edc2e4db23d820450efb97,
         type: 3}
