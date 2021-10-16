@@ -7,6 +7,8 @@ public class Cam_Manager : MonoBehaviour
 
     public float RandomSpeed;
     public bool Cam_Translation;
+    public GameObject PPVolume01;
+    public GameObject PPVolume02;
     public Animator AC_Cam;
     public Camera AB;
     public Camera A;
@@ -21,10 +23,14 @@ public class Cam_Manager : MonoBehaviour
     public Camera[] B2_0;
 
     public int i;
+    public int i2;
 
     void Start()
     {
         i = 1;
+        i2 = 0;
+        PPVolume01.SetActive(false);
+        PPVolume02.SetActive(false);
     }
 
     void Update()
@@ -145,6 +151,32 @@ public class Cam_Manager : MonoBehaviour
         AC_Cam.SetBool("Melt", false);
         AC_Cam.SetBool("Crossed", false);
     }
+
+    public void ActivePP01()
+    {
+        i2++;
+        if (i2 == 1)
+        {
+            PPVolume01.SetActive(true);
+        }else if (i2 == 2)
+        {
+            PPVolume02.SetActive(true);
+        }
+        else if (i2 == 3)
+        {
+            PPVolume01.SetActive(false);
+            PPVolume02.SetActive(false);
+           // Debug.Log("Full Perspective");
+            i2 = 0;
+        }
+    }
+
+  /*  public void DisablePP01()
+    {
+        PPVolume01.SetActive(false);
+    }*/
+
+
 
     public void FadeCamActive()
     {       

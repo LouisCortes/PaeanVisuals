@@ -34,6 +34,7 @@ public class PlayByInputAction : MonoBehaviour
     [SerializeField] InputAction _DebugClean = null;
 
     [SerializeField] InputAction _SwitchCam = null;
+    [SerializeField] InputAction _SwitchPP = null;
 
     [SerializeField] InputAction _AnimCam = null;
 
@@ -86,6 +87,9 @@ public class PlayByInputAction : MonoBehaviour
 
         _AssignBlink.performed += Blink;
         _AssignBlink.Enable();
+
+        _SwitchPP.performed += SwitchPP;
+        _SwitchPP.Enable();
 
         _SwitchCam.performed += SwitchCam;
         _SwitchCam.Enable();
@@ -146,6 +150,9 @@ public class PlayByInputAction : MonoBehaviour
 
         _AssignBlink.performed -= Blink;
         _AssignBlink.Disable();
+
+        _SwitchPP.performed += SwitchPP;
+        _SwitchPP.Disable();
 
         _SwitchCam.performed += SwitchCam;
         _SwitchCam.Disable();
@@ -286,10 +293,20 @@ public class PlayByInputAction : MonoBehaviour
         Compo.AssignBlink = true;
     }
 
-    void SwitchCam(InputAction.CallbackContext ctx)
+    void SwitchPP(InputAction.CallbackContext ctx)
     {
-       
-            Cam.SwitchCamOrtho();         
+        if (!Sequence.PP)
+        {
+            Sequence.PP = true;
+        }else{
+            Sequence.PP = false;
+        }
+
+    }
+
+    void SwitchCam(InputAction.CallbackContext ctx)
+    {      
+        Cam.SwitchCamOrtho();         
     }
 
     void AnimCam(InputAction.CallbackContext ctx)
@@ -299,7 +316,7 @@ public class PlayByInputAction : MonoBehaviour
 
     void Typo(InputAction.CallbackContext ctx)
     {
-        if (!Sequence.Fade){
+        if (!Sequence.Paean){
             Sequence.Paean = true;
         }else{
             Sequence.Paean = false;
@@ -308,7 +325,7 @@ public class PlayByInputAction : MonoBehaviour
 
     void UI(InputAction.CallbackContext ctx)
     {
-        if (!Sequence.Fade){
+        if (!Sequence.UI){
             Sequence.UI = true;
         } else {
             Sequence.UI = false;
