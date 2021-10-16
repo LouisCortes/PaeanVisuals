@@ -21,6 +21,7 @@ public class Sequence_Manager : MonoBehaviour
 
     public bool UI;
     public bool Paean;
+    public bool PP;
 
     public bool Subdivision1;
     public bool Subdivision2;
@@ -36,6 +37,7 @@ public class Sequence_Manager : MonoBehaviour
         PHASE = "PHASE01";
         SetAllCommandOff();
         StartCoroutine(SequenceLauncher());
+
     }
 
 
@@ -71,6 +73,11 @@ public class Sequence_Manager : MonoBehaviour
         if (Next){
             NextSequence();
             AssignCurrentUnivers = true;
+        }
+
+        if (PP)
+        {
+            Cam.ActivePP01();
         }
 
         if (AssignCurrentUnivers)
@@ -168,6 +175,9 @@ public class Sequence_Manager : MonoBehaviour
         NouvelUnivers = false;
         AssignCurrentUnivers = false;
         Add = false;
+        PP = false;
+        Paean = false;
+        UI = false;
     }
 
     IEnumerator SequenceLauncher()
