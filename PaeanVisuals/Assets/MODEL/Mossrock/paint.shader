@@ -151,13 +151,13 @@
 			v.vertex = mul(v.vertex, rx(vr));*/
 			/*v.normal = v.normal - rn * _v6*_v2*10.;
 			v.normal = mul(v.normal, rx(vr));*/
-			float t2 = pow(tex2Dlod(_Ramp, float4(float2(0.25, _Time.y), 0., 0)).r, 2.)*_audio1;
+			float t2 = pow(tex2Dlod(_Ramp, float4(float2(0.25, _Time.y), 0., 0)).r, 2.)*_audio1*10.;
 			v.vertex = mul(v.vertex, rz((to3)*t2 ));
 			v.vertex = mul(v.vertex, ry((to4)*t2));
 			v.normal = mul(v.normal, rz((to3 )*t2));
 			v.normal = mul(v.normal, ry((to4 )*t2));
 				float time = _Time.y;
-				float ta = pow(tex2Dlod(_Ramp, float4(float2(0.5, _Time.y), 0., 0)).r,2.)*_v4*5.*_audio1;
+				float ta = pow(tex2Dlod(_Ramp, float4(float2(0.5, _Time.y), 0., 0)).r,2.)*_v4*5.*_audio1*10.;
 			v.vertex.x += v.normal.x*(tex2Dlod(_Ramp, float4((p.zy+float2(-time,time)*2.)*0.25, 0., 0)).r-0.5)*ta;
 			v.vertex.y += v.normal.y*(tex2Dlod(_Ramp, float4((p.zx + float2(time, time)*2.)*0.25, 0., 0)).r - 0.5)*ta;
 			v.vertex.z += v.normal.z*(tex2Dlod(_Ramp, float4((p.xy + float2(-time, -time)*2.)*0.25, 0., 0)).r - 0.5)*ta;

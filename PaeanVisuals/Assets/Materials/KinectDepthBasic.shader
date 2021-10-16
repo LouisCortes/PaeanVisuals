@@ -7,6 +7,7 @@
 		_Displacement("Displacement", Range(0, 0.1)) = 0.03
 		_Color("Particle Color", Color) = (1,1,1,1)
 		_audio1("_audio1", Range(0, 1.)) = 0
+			_audio2("_audio2", Range(0, 1.)) = 0
 		_liquide("_liquide", Range(0, 1.)) = 0
 	}
 	SubShader
@@ -42,6 +43,7 @@
 			sampler2D _noise;
 			float4 _MainTex_ST;
 			float _audio1;
+			float _audio2;
 			float _liquide;
 			float no(float3 p) {
 				float3 f = floor(p); p = smoothstep(0., 1., frac(p));
@@ -61,7 +63,7 @@
 				float2 p1 = (float2(v.vertex.y, v.vertex.z)+float2(_Time.y,-_Time.y)*0.75)*0.5;
 				float2 p2 = (float2(v.vertex.x, v.vertex.z) + float2(-_Time.y, _Time.y)*0.75)*0.5;
 				float2 p3 = (float2(v.vertex.y, v.vertex.x) + float2(-_Time.y, _Time.y)*0.75)*0.5;
-				float li =step(0.001,col.x)*20.*pow(tex2Dlod(_noise, float4(0.,_Time.y, 0., 0.)).x,2.)*_audio1*length(v.vertex);
+				float li =step(0.001,col.x)*20.*max(pow(tex2Dlod(_noise, float4(0.,_Time.y, 0., 0.)).x,2.)*_audio1,_audio2)*length(v.vertex);
 				v.vertex.x = v.vertex.x * d / 3.656+(tex2Dlod(_noise,float4(p1,0,0)).x-.5)*li;
 				v.vertex.y = v.vertex.y * d / 3.656 + (tex2Dlod(_noise, float4(p2, 0, 0)).x - .5)*li;
 				v.vertex.z = d + (tex2Dlod(_noise, float4(p3, 0, 0)).x - .5)*li;
