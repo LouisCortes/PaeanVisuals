@@ -1948,7 +1948,7 @@ GameObject:
   - component: {fileID: 982399543}
   - component: {fileID: 982399542}
   m_Layer: 9
-  m_Name: 02_ShaderRock03
+  m_Name: 02_Scan_Rock04
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
