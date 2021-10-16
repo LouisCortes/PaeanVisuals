@@ -1189,6 +1189,11 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 15
       objectReference: {fileID: 0}
+    - target: {fileID: 1129175183515277866, guid: 45172ec70170c8246a79d59f887d6c43,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1129175183515277868, guid: 45172ec70170c8246a79d59f887d6c43,
         type: 3}
       propertyPath: m_RootOrder
@@ -1884,7 +1889,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &982399541
 Transform:
   m_ObjectHideFlags: 0
@@ -3588,6 +3593,24 @@ Transform:
   m_Father: {fileID: 2350657243984847311}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1980505667 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8164078558771037576, guid: cb0fef6a89642cd4686a67f1de4e42eb,
+    type: 3}
+  m_PrefabInstance: {fileID: 2350657245307736358}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1980505671
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1980505667}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5bd330d595a86b547b7021da6145342b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &2035530016
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3674,6 +3697,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Layer
       value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 7136973141739281504, guid: 0d7a27c39d9c5914dbfb43f708417ac7,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7136973141739281505, guid: 0d7a27c39d9c5914dbfb43f708417ac7,
         type: 3}
@@ -10449,6 +10477,11 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 8
       objectReference: {fileID: 0}
+    - target: {fileID: 5337623353796271637, guid: 3ebc8acd8d30e874b811ef71cdceb746,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5337623353796271639, guid: 3ebc8acd8d30e874b811ef71cdceb746,
         type: 3}
       propertyPath: osc
@@ -10497,6 +10530,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: 02_Water01
+      objectReference: {fileID: 0}
+    - target: {fileID: 7521416822986525227, guid: 75e711119184f9d448e8ff0b47275723,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8090725072840667542, guid: 75e711119184f9d448e8ff0b47275723,
         type: 3}
