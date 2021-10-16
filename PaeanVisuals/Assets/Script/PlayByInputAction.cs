@@ -299,12 +299,20 @@ public class PlayByInputAction : MonoBehaviour
 
     void Typo(InputAction.CallbackContext ctx)
     {
-        Scene.TextPaeanApparition();
+        if (!Sequence.Fade){
+            Sequence.Paean = true;
+        }else{
+            Sequence.Paean = false;
+        }
     }
 
     void UI(InputAction.CallbackContext ctx)
     {
-        Scene.UIGPSApparition();
+        if (!Sequence.Fade){
+            Sequence.UI = true;
+        } else {
+            Sequence.UI = false;
+        }
     }
 
     void ResetLevel(InputAction.CallbackContext ctx)

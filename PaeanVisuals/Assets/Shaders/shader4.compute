@@ -99,7 +99,7 @@ float getShadow(float3 pos, float3 at, float k, float2 uv) {
 	return f;
 }
 
-[numthreads(8,8,1)]
+[numthreads(8,8,1)] 
 void CSMain (uint2 id : SV_DispatchThreadID) 
 {
 	float s1 = noise.SampleLevel(_LinearRepeat, float2(0., _time), 0.).x;

@@ -10,6 +10,7 @@ public class Sequence_Manager : MonoBehaviour
     public PlayByInputAction Input;
     public Composition_Manager Compo;
     public Cam_Manager Cam;
+    public Scene_Manager Scene;
     public bool Next;
     public bool Started;
     public bool A;
@@ -17,6 +18,9 @@ public class Sequence_Manager : MonoBehaviour
 
     public bool Fade;
     public bool Add;
+
+    public bool UI;
+    public bool Paean;
 
     public bool Subdivision1;
     public bool Subdivision2;
@@ -77,6 +81,14 @@ public class Sequence_Manager : MonoBehaviour
             else if (PHASE == "PHASE02"){
                 Compo.AddUnivers2();
             }
+        }
+
+        if (Paean){
+            Scene.TextPaeanApparition();
+        }
+
+        if (UI){
+            Scene.UIGPSApparition();
         }
 
         if (Fade){
