@@ -51,7 +51,8 @@ void Main(uint id : SV_DispatchThreadID)
 	float3 b2 = float3(no(pp*2. + time*3.) - 0.5, no(pp*2. - time * 3.) - 0.5, no(pp*2. + float3(time, -time, time)*3.) - 0.5);
 	float3 b3 = b1*20. + b2 * lerp(3.5, 0.8, pow(liquide, 0.25));
 	p += b3*liquide;
-	float bs = pow(float3(noise.SampleLevel(_LinearRepeat, pp.zy*0.2, 0.).x, noise.SampleLevel(_LinearRepeat, pp.xz*0.2, 0.).x, noise.SampleLevel(_LinearRepeat, pp.xy*0.2, 0.).x), float3(2., 2., 2.))*20.;
+	float bs = pow(float3(noise.SampleLevel(_LinearRepeat, pp.zy*0.2+time, 0.).x, noise.SampleLevel(_LinearRepeat, pp.xz*0.2+time, 0.).x,
+		noise.SampleLevel(_LinearRepeat, pp.xy*0.2+float2(time,-time), 0.).x), float3(2., 2., 2.))*20.;
 	p += n * max(audio1* (pow(noise.SampleLevel(_LinearRepeat, float2(time*0.02, time*2.), 0.).x, 5.)), audio2)*lerp(bs,b3,liquide);
 
 	float c1 =smoothstep(0.3,0.7,abs(b1.x) + abs(b1.y) + abs(b1.z));

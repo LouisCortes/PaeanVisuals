@@ -77,7 +77,8 @@ Material:
     - _SrcBlend: 1
     - _UVSec: 0
     - _ZWrite: 1
-    - _audio1: 0.20695783
+    - _audio1: 0
+    - _audio2: 0
     - _liquide: 0
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
