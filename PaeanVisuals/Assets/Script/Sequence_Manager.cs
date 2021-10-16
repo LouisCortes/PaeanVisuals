@@ -84,18 +84,21 @@ public class Sequence_Manager : MonoBehaviour
         {
             if (PHASE == "PHASE01"){
                 Compo.AddUnivers();
-            }
-            else if (PHASE == "PHASE02"){
+            }else if (PHASE == "PHASE02"){
                 Compo.AddUnivers2();
             }
         }
 
         if (Paean){
             Scene.TextPaeanApparition();
+        }else{
+            Scene.TextPaeanDisable();
         }
 
         if (UI){
             Scene.UIGPSApparition();
+        }else{
+            Scene.UIGPSDisable();
         }
 
         if (Fade){

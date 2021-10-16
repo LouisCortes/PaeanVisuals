@@ -441,22 +441,24 @@ public class Composition_Manager : MonoBehaviour
                 }
                 B0[1].SetActive(true);
             } else if (R == 4) {
-                if (Sequence.AssignCurrentUnivers == true) {
-                    CM.A0[0].cullingMask = LY;
-                    CM.B0[0].cullingMask = LY;
-                }
-                A0[0].SetActive(true);
-                B0[0].SetActive(true);
-            } else {
-                if (Sequence.AssignCurrentUnivers == true) {
-                    CM.A0[1].cullingMask = LY;
-                    CM.B0[1].cullingMask = LY;
+                if (Sequence.AssignCurrentUnivers == true)
+                {
+                CM.A0[1].cullingMask = LY;
+                CM.B0[1].cullingMask = LY;
                 }
                 A0[1].SetActive(true);
                 B0[1].SetActive(true);
-            }
-            //Sequence.NouvelUnivers = false;
-            AssignBlink = false;
+        } else {
+                if (Sequence.AssignCurrentUnivers == true)
+                {
+                CM.A0[0].cullingMask = LY;
+                CM.B0[0].cullingMask = LY;
+                }
+                A0[0].SetActive(true);
+                B0[0].SetActive(true);
+                }
+                //Sequence.NouvelUnivers = false;
+                AssignBlink = false;
         } 
         public void SetupCrossLandscape()
         {
