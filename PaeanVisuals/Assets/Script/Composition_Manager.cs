@@ -415,7 +415,7 @@ public class Composition_Manager : MonoBehaviour
 
         public void SetupLandscape()
         {
-            int R; R = Random.Range(0, 5);
+            int R; R = Random.Range(0, 7);
             if (AssignBlink == true)
             {
                 Blink = true;
