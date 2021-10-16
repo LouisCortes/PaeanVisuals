@@ -773,7 +773,7 @@ Camera:
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 639
+    m_Bits: 631
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 8400000, guid: d08e37eca2e1b8d46a0006ac1ae09d0c, type: 2}
   m_TargetDisplay: 0
@@ -917,7 +917,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &345967317
 Transform:
   m_ObjectHideFlags: 0
@@ -963,6 +963,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1587315742}
+  - {fileID: 610147722}
   m_Father: {fileID: 2350657243984847311}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1062,7 +1063,7 @@ Camera:
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 639
+    m_Bits: 631
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 8400000, guid: 0a830a1fb0e6f5c4e9807fafc34419d0, type: 2}
   m_TargetDisplay: 0
@@ -1177,7 +1178,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 1781706179}
+    m_TransformParent: {fileID: 354985281}
     m_Modifications:
     - target: {fileID: 1129175183515277866, guid: 45172ec70170c8246a79d59f887d6c43,
         type: 3}
@@ -1192,12 +1193,12 @@ PrefabInstance:
     - target: {fileID: 1129175183515277866, guid: 45172ec70170c8246a79d59f887d6c43,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1129175183515277868, guid: 45172ec70170c8246a79d59f887d6c43,
         type: 3}
       propertyPath: m_RootOrder
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1129175183515277868, guid: 45172ec70170c8246a79d59f887d6c43,
         type: 3}
@@ -1232,22 +1233,22 @@ PrefabInstance:
     - target: {fileID: 1129175183515277868, guid: 45172ec70170c8246a79d59f887d6c43,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: -1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1129175183515277868, guid: 45172ec70170c8246a79d59f887d6c43,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1129175183515277868, guid: 45172ec70170c8246a79d59f887d6c43,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1129175183515277868, guid: 45172ec70170c8246a79d59f887d6c43,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1129175183515277868, guid: 45172ec70170c8246a79d59f887d6c43,
         type: 3}
@@ -1262,7 +1263,7 @@ PrefabInstance:
     - target: {fileID: 1129175183515277868, guid: 45172ec70170c8246a79d59f887d6c43,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
+      value: 180
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 45172ec70170c8246a79d59f887d6c43, type: 3}
@@ -1713,7 +1714,7 @@ Camera:
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 639
+    m_Bits: 631
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 8400000, guid: 49ddefabcb9519146ad3a2a582ef400c, type: 2}
   m_TargetDisplay: 0
@@ -1902,7 +1903,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &961949751
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2471,7 +2472,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1254614726
 Transform:
   m_ObjectHideFlags: 0
@@ -3368,7 +3369,7 @@ Camera:
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 639
+    m_Bits: 631
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 8400000, guid: 7566ab61c4c7a9c4bb2c2e01699226dc, type: 2}
   m_TargetDisplay: 0
@@ -3592,8 +3593,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 610147722}
+  m_Children: []
   m_Father: {fileID: 2350657243984847311}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -4385,7 +4385,7 @@ Camera:
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 639
+    m_Bits: 631
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 8400000, guid: ea2a2ba492b2c5543ab2b59861659e94, type: 2}
   m_TargetDisplay: 0
@@ -5678,7 +5678,7 @@ Camera:
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 639
+    m_Bits: 631
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 8400000, guid: 207df833fd986e8448801ee2faa8d3e4, type: 2}
   m_TargetDisplay: 0
@@ -5894,7 +5894,7 @@ Camera:
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 639
+    m_Bits: 631
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 8400000, guid: 5e1b2b02ad2fd1b4fb35a09a09e58bc7, type: 2}
   m_TargetDisplay: 0
@@ -6050,7 +6050,7 @@ Camera:
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 639
+    m_Bits: 631
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 8400000, guid: 5e24cbd5c6383b346b9b4e4cb2623b0f, type: 2}
   m_TargetDisplay: 0
@@ -6132,7 +6132,7 @@ Camera:
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 639
+    m_Bits: 631
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 8400000, guid: 368c5d228769f3f45b6e0936bd2ec00a, type: 2}
   m_TargetDisplay: 0
@@ -6954,7 +6954,7 @@ Camera:
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 639
+    m_Bits: 631
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 8400000, guid: 4919a8a9a8052c042ac6c79b7d6742fb, type: 2}
   m_TargetDisplay: 0
@@ -7149,7 +7149,7 @@ Camera:
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 639
+    m_Bits: 631
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 8400000, guid: f8b4fd2549f0b6441a1c5098481a2424, type: 2}
   m_TargetDisplay: 0
@@ -8352,7 +8352,7 @@ Camera:
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 639
+    m_Bits: 631
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 8400000, guid: 68ea503e863bf7240bc8d224e85f45a5, type: 2}
   m_TargetDisplay: 0
@@ -8683,7 +8683,7 @@ Camera:
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 639
+    m_Bits: 631
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 8400000, guid: 46ea278a0f2a8734cbf8fdcbe9d31b88, type: 2}
   m_TargetDisplay: 0
@@ -8825,7 +8825,7 @@ Camera:
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 639
+    m_Bits: 631
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 8400000, guid: c445ea92bb0c84548a9f4af11861db66, type: 2}
   m_TargetDisplay: 0
@@ -9092,7 +9092,7 @@ Camera:
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 639
+    m_Bits: 631
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 8400000, guid: 2553ac58fc94af14abc58c41e8590b73, type: 2}
   m_TargetDisplay: 0
@@ -9214,7 +9214,7 @@ Camera:
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 639
+    m_Bits: 631
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 8400000, guid: 6915411f5a95b61468c61f315b8acfb0, type: 2}
   m_TargetDisplay: 0
@@ -10153,7 +10153,7 @@ Camera:
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 639
+    m_Bits: 631
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 8400000, guid: 711fb834a37b20a4c9e5c50bc02496dd, type: 2}
   m_TargetDisplay: 0
@@ -10263,7 +10263,7 @@ Camera:
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 639
+    m_Bits: 631
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 8400000, guid: 94bbd8d70b2831548830d2c7f7de6cfa, type: 2}
   m_TargetDisplay: 0
@@ -10515,7 +10515,7 @@ Camera:
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 639
+    m_Bits: 631
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 8400000, guid: affd86ffbd6647c4d9b2802c3376ee86, type: 2}
   m_TargetDisplay: 0
@@ -10963,7 +10963,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &2350657245395671832
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11142,7 +11142,7 @@ Camera:
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 639
+    m_Bits: 631
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 8400000, guid: c2ad863492124ca4286c79102a213c6c, type: 2}
   m_TargetDisplay: 0
@@ -11870,6 +11870,16 @@ PrefabInstance:
       propertyPath: osc
       value: 
       objectReference: {fileID: 313087159}
+    - target: {fileID: 461218782509293029, guid: 75e711119184f9d448e8ff0b47275723,
+        type: 3}
+      propertyPath: resx
+      value: 1440
+      objectReference: {fileID: 0}
+    - target: {fileID: 461218782509293029, guid: 75e711119184f9d448e8ff0b47275723,
+        type: 3}
+      propertyPath: resy
+      value: 960
+      objectReference: {fileID: 0}
     - target: {fileID: 461218782509293029, guid: 75e711119184f9d448e8ff0b47275723,
         type: 3}
       propertyPath: fluid

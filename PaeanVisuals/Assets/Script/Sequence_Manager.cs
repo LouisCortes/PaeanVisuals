@@ -149,7 +149,7 @@ public class Sequence_Manager : MonoBehaviour
             }else if (B){
                 Compo.ScreenB();
             }else{
-                int R; R = Random.Range(0, 4);
+                int R; R = Random.Range(0, 6);
                 if (R == 0){
                     Compo.ScreenB();
                 }
