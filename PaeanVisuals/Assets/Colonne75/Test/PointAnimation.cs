@@ -11,7 +11,7 @@ public class PointAnimation : MonoBehaviour
     public float _audio2 = 0;
     public float _liquide = 0;
     public Texture noise;
-    public fluid_dynamics fluid;
+   // public fluid_dynamics fluid;
     ComputeBuffer _pointBuffer;
      public GameObject obj;
     void OnDisable()
@@ -45,7 +45,7 @@ public class PointAnimation : MonoBehaviour
         _computeShader.SetFloat("wpy", obj.transform.position.y);
         _computeShader.SetFloat("wpz", obj.transform.position.z);
         _computeShader.SetTexture(kernel,"noise", noise);
-        _computeShader.SetTexture(kernel, "fluid", fluid.texture1);
+        //_computeShader.SetTexture(kernel, "fluid", fluid.texture1);
         _computeShader.SetFloat("time", time);
         _computeShader.SetBuffer(kernel, "SourceBuffer", sourceBuffer);
         _computeShader.SetBuffer(kernel, "OutputBuffer", _pointBuffer);
