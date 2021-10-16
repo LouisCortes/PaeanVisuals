@@ -15,6 +15,6 @@ public class kinectcontrol : MonoBehaviour
     void Update()
     {
         rock.SetFloat("_liquide", osc.liquide);
-        rock.SetFloat("_audio1", osc.low * osc.fac2 * osc.address01);
+        rock.SetFloat("_audio1", osc.audio1);
     }
 }
