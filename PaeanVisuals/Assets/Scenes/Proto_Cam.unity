@@ -3752,6 +3752,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5bd330d595a86b547b7021da6145342b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fluid: {fileID: 5485552169260842027}
+  osc: {fileID: 313087159}
+  rock: {fileID: 2100000, guid: f2cd022820f42114cba950c37e5ef2da, type: 2}
 --- !u!1001 &2035530016
 PrefabInstance:
   m_ObjectHideFlags: 0

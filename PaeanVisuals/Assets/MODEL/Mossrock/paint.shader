@@ -161,20 +161,38 @@
 			v.vertex.x += v.normal.x*(tex2Dlod(_Ramp, float4((p.zy+float2(-time,time)*2.)*0.25, 0., 0)).r-0.5)*ta;
 			v.vertex.y += v.normal.y*(tex2Dlod(_Ramp, float4((p.zx + float2(time, time)*2.)*0.25, 0., 0)).r - 0.5)*ta;
 			v.vertex.z += v.normal.z*(tex2Dlod(_Ramp, float4((p.xy + float2(-time, -time)*2.)*0.25, 0., 0)).r - 0.5)*ta;
+			//v.vertex.xyz +=v.normal*smoothstep(0.4,1., tex2Dlod(_fluid, float4(v.texcoord.xy,0.,0.)).x)*0.1;
 		}
 		void surf (Input IN, inout SurfaceOutputStandard o) {
 			
 			o.Normal *= IN.facing;
+			//float2 uf = 
+			float fl = tex2D(_fluid, IN.uv_MainTex).x;
+			float l2 = _liquide * 1.5;
+			float mf = smoothstep(1.3-l2, 1.5-l2, fl);
+			float2 e = float2(0.001, 0.);
+			float t1 = smoothstep(1.4 - l2, 1.7 - l2, tex2D(_fluid, IN.uv_MainTex+e.xy).x);
+			float t2 = smoothstep(1.4 - l2, 1.7 - l2, tex2D(_fluid, IN.uv_MainTex-e.xy).x);
+			float t3 = smoothstep(1.4 - l2, 1.7 - l2, tex2D(_fluid, IN.uv_MainTex+e.yx).x);
+			float t4 = smoothstep(1.4 - l2, 1.7 - l2, tex2D(_fluid, IN.uv_MainTex-e.yx).x);
+			float3 n = normalize(float3(t1 - t2, t3- t4, 0.5));
+			float2 e2 = float2(0.02, 0.);
+			float t5 = tex2D(_fluid, IN.uv_MainTex + e2.xy).x;
+			float t6 = tex2D(_fluid, IN.uv_MainTex - e2.xy).x;
+			float t7 = tex2D(_fluid, IN.uv_MainTex + e2.yx).x;
+			float t8 = tex2D(_fluid, IN.uv_MainTex - e2.yx).x;
+			float3 n2 = normalize(float3(t5 - t6, t7 - t8, 0.05));
+			n += n2;
 			float h = hs(IN.uv_MainTex);
 			float fres =dot(normalize(o.Normal), normalize(IN.viewDir))*h;
 			float3 col = tex2D(_Tex, IN.uv_MainTex*5.).xyz;
 			float fres2 = pow(1.-clamp(fres,0.,1.), _zoneIridescent*10.);
 			fixed4 c =  lerp(_Color,float4(col,1.),fres2* _iridescent)*tex2D(_Tex, IN.uv_MainTex).y;
-			o.Albedo =pow( c ,float4(0.5,0.5,0.5,1.));
-			o.Metallic = tex2D(_MainTex, IN.uv_MainTex*5.).x* _Metallic;
-			o.Smoothness = smoothstep(0.5,0.6,tex2D(_MainTex, IN.uv_MainTex).x*pow(h, 0.2))* _Glossiness;
-			o.Normal = UnpackNormal(tex2D(_Normal, IN.uv_MainTex))+ UnpackNormal(tex2D(_Normal2, IN.uv_MainTex*5.))*2.+(h-0.5)*2.;
-			
+			o.Albedo =lerp(pow( c ,float4(0.5,0.5,0.5,1.)),float4(fl,fl,fl,1.),mf);
+			o.Metallic = max(tex2D(_MainTex, IN.uv_MainTex*5.).x* _Metallic, mf);
+			o.Smoothness = max(smoothstep(0.5,0.6,tex2D(_MainTex, IN.uv_MainTex).x*pow(h, 0.2))* _Glossiness,mf);
+			o.Normal = lerp(UnpackNormal(tex2D(_Normal, IN.uv_MainTex)) + UnpackNormal(tex2D(_Normal2, IN.uv_MainTex*5.))*2. + (h - 0.5)*2.,n,mf);
+			o.Emission = pow(mf*tex2D(_Tex, n).x, lerp(4., 2.25, fl));
 			//o.Emission = fres;
 			o.Alpha = c.a;
 		}

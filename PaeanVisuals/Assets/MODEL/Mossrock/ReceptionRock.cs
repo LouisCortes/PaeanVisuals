@@ -4,15 +4,19 @@ using UnityEngine;
 
 public class ReceptionRock : MonoBehaviour
 {
-    // Start is called before the first frame update
+    public fluid_dynamics fluid;
+    public GettingStartedReceiving osc;
+    public Material rock;
     void Start()
     {
         
     }
 
-    // Update is called once per frame
+    
     void Update()
     {
-        
+    rock.SetTexture("_fluid", fluid.texture1);
+        rock.SetFloat("_liquide", osc.liquide);
+        rock.SetFloat("_audio1", osc.low * osc.fac2 * osc.address01);
     }
 }
