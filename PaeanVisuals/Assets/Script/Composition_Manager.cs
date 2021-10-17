@@ -125,16 +125,18 @@ public class Composition_Manager : MonoBehaviour
 
     public void AssignLayerAllCam()
     {
+        Debug.Log("AssignLayerAllCam");
+        LY = LayerMask.GetMask(LayerNameToAssign);
         CM.AB.cullingMask = LY;
-        CM.A10[0].cullingMask = LY; CM.A10[1].cullingMask = LY;
         CM.A.cullingMask = LY;
         CM.A0[0].cullingMask = LY; CM.A0[1].cullingMask = LY;
-        CM.A1_0[0].cullingMask = LY; CM.A1_0[1].cullingMask = LY; CM.A1_0[2].cullingMask = LY; CM.A2_0[0].cullingMask = LY; CM.A1_0[1].cullingMask = LY; CM.A1_0[2].cullingMask = LY;
+        CM.A10[0].cullingMask = LY; CM.A10[1].cullingMask = LY;
+        CM.A1_0[0].cullingMask = LY; CM.A1_0[1].cullingMask = LY; CM.A1_0[2].cullingMask = LY; CM.A2_0[0].cullingMask = LY; CM.A2_0[1].cullingMask = LY; CM.A2_0[2].cullingMask = LY;
 
         CM.B10[0].cullingMask = LY; CM.B10[1].cullingMask = LY;
         CM.B.cullingMask = LY;
         CM.B0[0].cullingMask = LY; CM.B0[1].cullingMask = LY;
-        CM.B1_0[0].cullingMask = LY; CM.B1_0[1].cullingMask = LY; CM.B1_0[2].cullingMask = LY; CM.B2_0[0].cullingMask = LY; CM.B1_0[1].cullingMask = LY; CM.B1_0[2].cullingMask = LY;
+        CM.B1_0[0].cullingMask = LY; CM.B1_0[1].cullingMask = LY; CM.B1_0[2].cullingMask = LY; CM.B2_0[0].cullingMask = LY; CM.B2_0[1].cullingMask = LY; CM.B2_0[2].cullingMask = LY;
     }
 
 
@@ -440,24 +442,21 @@ public class Composition_Manager : MonoBehaviour
                     CM.B0[1].cullingMask = LY;
                 }
                 B0[1].SetActive(true);
-            } else if (R == 4) {
-                if (Sequence.AssignCurrentUnivers == true)
-                {
+            } else if (R == 4 || R== 5) {
+                if (Sequence.AssignCurrentUnivers == true){
                 CM.A0[1].cullingMask = LY;
                 CM.B0[1].cullingMask = LY;
                 }
                 A0[1].SetActive(true);
                 B0[1].SetActive(true);
         } else {
-                if (Sequence.AssignCurrentUnivers == true)
-                {
+                if (Sequence.AssignCurrentUnivers == true){
                 CM.A0[0].cullingMask = LY;
                 CM.B0[0].cullingMask = LY;
                 }
                 A0[0].SetActive(true);
                 B0[0].SetActive(true);
                 }
-                //Sequence.NouvelUnivers = false;
                 AssignBlink = false;
         } 
         public void SetupCrossLandscape()

@@ -918,7 +918,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &345967317
 Transform:
   m_ObjectHideFlags: 0
@@ -960,7 +960,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 354985280}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -0.88, y: 0.38, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1587315742}
@@ -1189,7 +1189,7 @@ PrefabInstance:
     - target: {fileID: 1129175183515277866, guid: 45172ec70170c8246a79d59f887d6c43,
         type: 3}
       propertyPath: m_Layer
-      value: 15
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 1129175183515277866, guid: 45172ec70170c8246a79d59f887d6c43,
         type: 3}
@@ -1918,7 +1918,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &961949751
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3031,7 +3031,7 @@ PrefabInstance:
     - target: {fileID: 1025428954560024864, guid: 8a9b3c1919edc2e4db23d820450efb97,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1025428954560024865, guid: 8a9b3c1919edc2e4db23d820450efb97,
         type: 3}
@@ -3041,27 +3041,27 @@ PrefabInstance:
     - target: {fileID: 1025428954560024865, guid: 8a9b3c1919edc2e4db23d820450efb97,
         type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.53155
+      value: 0.57
       objectReference: {fileID: 0}
     - target: {fileID: 1025428954560024865, guid: 8a9b3c1919edc2e4db23d820450efb97,
         type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.53155
+      value: 0.57
       objectReference: {fileID: 0}
     - target: {fileID: 1025428954560024865, guid: 8a9b3c1919edc2e4db23d820450efb97,
         type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.53155
+      value: 0.57
       objectReference: {fileID: 0}
     - target: {fileID: 1025428954560024865, guid: 8a9b3c1919edc2e4db23d820450efb97,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 0.88
       objectReference: {fileID: 0}
     - target: {fileID: 1025428954560024865, guid: 8a9b3c1919edc2e4db23d820450efb97,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.27
+      value: -0.14
       objectReference: {fileID: 0}
     - target: {fileID: 1025428954560024865, guid: 8a9b3c1919edc2e4db23d820450efb97,
         type: 3}
@@ -6091,7 +6091,7 @@ Camera:
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
-  field of view: 60
+  field of view: 33
   orthographic: 1
   orthographic size: 1.5
   m_Depth: 0
@@ -6569,13 +6569,13 @@ Camera:
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
-  field of view: 17
+  field of view: 16
   orthographic: 1
   orthographic size: 0.7
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 639
+    m_Bits: 631
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 8400000, guid: f07c713820922614897198e51c925b78, type: 2}
   m_TargetDisplay: 0
@@ -8628,13 +8628,13 @@ Camera:
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
-  field of view: 17
+  field of view: 16
   orthographic: 1
   orthographic size: 0.7
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 639
+    m_Bits: 631
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 8400000, guid: 788c28f6a6f85f94fa6772dd26754a9b, type: 2}
   m_TargetDisplay: 0
@@ -9133,7 +9133,7 @@ Camera:
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
-  field of view: 40
+  field of view: 20
   orthographic: 1
   orthographic size: 0.85
   m_Depth: 0
@@ -9445,13 +9445,13 @@ Camera:
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
-  field of view: 17
+  field of view: 14
   orthographic: 1
   orthographic size: 0.7
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 639
+    m_Bits: 631
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 8400000, guid: 0cd93229846bf2d44a488bcf5008505a, type: 2}
   m_TargetDisplay: 0
@@ -10556,7 +10556,7 @@ Camera:
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
-  field of view: 17
+  field of view: 16
   orthographic: 1
   orthographic size: 0.55
   m_Depth: 0
@@ -11010,7 +11010,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &2350657245395671832
 MonoBehaviour:
   m_ObjectHideFlags: 0

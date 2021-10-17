@@ -56,15 +56,18 @@ public class Sequence_Manager : MonoBehaviour
     public void NextSequence()
     {
         Compo.CleanAllUnivers();
-        if (PHASE == "PHASE01"){
-            Compo.LayerNameToAssign = "Rock01";
+        if (PHASE == "PHASE01"){ //// Passage Set 02
+            Compo.LayerNameToAssign = "Rock04";
+            Compo.AssignLayerAllCam();
             PHASE = "PHASE02";
             Compo.AddUnivers2();
-        }else if(PHASE == "PHASE02"){
+        }else if(PHASE == "PHASE02"){ //// Passage Set 03
             Compo.LayerNameToAssign = "Rock04";
             Compo.AssignLayerAllCam();
             PHASE = "PHASE01";
+            //PHASE = "PHASE03";
             Compo.AddUnivers();
+            //Compo.AddUnivers3();
         }
     }
 
