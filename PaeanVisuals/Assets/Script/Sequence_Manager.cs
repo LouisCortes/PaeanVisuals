@@ -56,15 +56,18 @@ public class Sequence_Manager : MonoBehaviour
     public void NextSequence()
     {
         Compo.CleanAllUnivers();
-        if (PHASE == "PHASE01"){
-            Compo.LayerNameToAssign = "Rock01";
+        if (PHASE == "PHASE01"){ //// Passage Set 02
+            Compo.LayerNameToAssign = "Univ01";
+            Compo.AssignLayerAllCam();
             PHASE = "PHASE02";
             Compo.AddUnivers2();
-        }else if(PHASE == "PHASE02"){
-            Compo.LayerNameToAssign = "Rock04";
+        }else if(PHASE == "PHASE02"){ //// Passage Set 03
+            Compo.LayerNameToAssign = "Univ01";
             Compo.AssignLayerAllCam();
-            PHASE = "PHASE01";
-            Compo.AddUnivers();
+            PHASE = "PHASE03";
+            //PHASE = "PHASE03";
+           // Compo.AddUnivers();
+            Compo.AddUnivers3();
         }
     }
 
@@ -84,18 +87,23 @@ public class Sequence_Manager : MonoBehaviour
         {
             if (PHASE == "PHASE01"){
                 Compo.AddUnivers();
-            }
-            else if (PHASE == "PHASE02"){
+            }else if (PHASE == "PHASE02"){
                 Compo.AddUnivers2();
+            }else if (PHASE == "PHASE03"){
+                Compo.AddUnivers3();
             }
         }
 
         if (Paean){
             Scene.TextPaeanApparition();
+        }else{
+            Scene.TextPaeanDisable();
         }
 
         if (UI){
             Scene.UIGPSApparition();
+        }else{
+            Scene.UIGPSDisable();
         }
 
         if (Fade){

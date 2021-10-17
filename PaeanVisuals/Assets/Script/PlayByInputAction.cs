@@ -278,13 +278,11 @@ public class PlayByInputAction : MonoBehaviour
 
     void DebugFunction(InputAction.CallbackContext ctx)
     {
-        Debug.Log("DebugFunctionok");
         Compo.Landscape();
     }
 
     void DebugClean(InputAction.CallbackContext ctx)
     {
-        Debug.Log("DebugClean");
         Compo.Clean();
     }
 

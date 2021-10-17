@@ -11,8 +11,9 @@ public class Composition_Manager : MonoBehaviour
     public bool AssignBlink;
     private bool Blink;
     private float ValueBlink;
-    private LayerMask LY;
-
+    public LayerMask LY;
+    public LayerMask LY_TYPO;
+    // LY = LayerMask.GetMask(LayerNameToAssign, "TYPO");
     public GameObject[] PullUniversPhase01;
     public GameObject[] PullUniversPhase02;
     public GameObject[] PullUniversPhase03;
@@ -49,6 +50,7 @@ public class Composition_Manager : MonoBehaviour
         FragmentationIntensity = 0;
         Clean();
         LY = LayerMask.GetMask(LayerNameToAssign);
+        LY_TYPO = LayerMask.GetMask(LayerNameToAssign,"TYPO");
     }
 
     void Update()
@@ -76,16 +78,19 @@ public class Composition_Manager : MonoBehaviour
               NumberOfUnivers++;
           }
           if (NumberOfUnivers == 1) {
-              LayerNameToAssign = "Rock01";
+              LayerNameToAssign = "Univ01";
               LY = LayerMask.GetMask(LayerNameToAssign);
-              PullUniversPhase01[0].SetActive(true);
+              LY_TYPO = LayerMask.GetMask(LayerNameToAssign, "TYPO");
+            PullUniversPhase01[0].SetActive(true);
           } else if (NumberOfUnivers == 2) {
-              LayerNameToAssign = "Rock02";
+              LayerNameToAssign = "Univ02";
               LY = LayerMask.GetMask(LayerNameToAssign);
-              PullUniversPhase01[1].SetActive(true);
+              LY_TYPO = LayerMask.GetMask(LayerNameToAssign, "TYPO");
+            PullUniversPhase01[1].SetActive(true);
           } else if (NumberOfUnivers == 3) {
-              LayerNameToAssign = "Rock03";
+              LayerNameToAssign = "Univ03";
               LY = LayerMask.GetMask(LayerNameToAssign);
+              LY_TYPO = LayerMask.GetMask(LayerNameToAssign, "TYPO");
               PullUniversPhase01[2].SetActive(true);
               NumberOfUnivers = 0;
           }
@@ -95,29 +100,55 @@ public class Composition_Manager : MonoBehaviour
         if (Sequence.NouvelUnivers){
             NumberOfUnivers++;
         }
-        if (NumberOfUnivers == 1)
-        {
-            LayerNameToAssign = "Rock04";
+        if (NumberOfUnivers == 1){
+            LayerNameToAssign = "Univ01";
             LY = LayerMask.GetMask(LayerNameToAssign);
+            LY_TYPO = LayerMask.GetMask(LayerNameToAssign, "TYPO");
             PullUniversPhase02[0].SetActive(true);
-        }
-        else if (NumberOfUnivers == 2)
-        {
+        }else if (NumberOfUnivers == 2){
             LayerNameToAssign = "Cave";
             LY = LayerMask.GetMask(LayerNameToAssign);
+            LY_TYPO = LayerMask.GetMask(LayerNameToAssign, "TYPO");
             PullUniversPhase02[1].SetActive(true);
-        }
-        else if (NumberOfUnivers == 3)
-        {
+        }else if (NumberOfUnivers == 3){
             LayerNameToAssign = "Kinect";
             LY = LayerMask.GetMask(LayerNameToAssign);
+            LY_TYPO = LayerMask.GetMask(LayerNameToAssign, "TYPO");
             PullUniversPhase02[2].SetActive(true);
-        }
-        else if (NumberOfUnivers == 4)
-        {
-            LayerNameToAssign = "Water01";
+        } else if (NumberOfUnivers == 4){
+            LayerNameToAssign = "Univ03";
             LY = LayerMask.GetMask(LayerNameToAssign);
+            LY_TYPO = LayerMask.GetMask(LayerNameToAssign, "TYPO");
             PullUniversPhase02[3].SetActive(true);
+            NumberOfUnivers = 0;
+        }
+    }
+
+    public void AddUnivers3()
+    {
+        if (Sequence.NouvelUnivers){
+            NumberOfUnivers++;
+        }
+        if (NumberOfUnivers == 1){
+            LayerNameToAssign = "Univ01";
+            LY = LayerMask.GetMask(LayerNameToAssign);
+            LY_TYPO = LayerMask.GetMask(LayerNameToAssign, "TYPO");
+            PullUniversPhase03[0].SetActive(true);
+        }else if (NumberOfUnivers == 2){
+            LayerNameToAssign = "Univ02";
+            LY = LayerMask.GetMask(LayerNameToAssign);
+            LY_TYPO = LayerMask.GetMask(LayerNameToAssign, "TYPO");
+            PullUniversPhase03[1].SetActive(true);
+        } else if (NumberOfUnivers == 3){
+            LayerNameToAssign = "Univ03";
+            LY = LayerMask.GetMask(LayerNameToAssign);
+            LY_TYPO = LayerMask.GetMask(LayerNameToAssign, "TYPO");
+            PullUniversPhase03[2].SetActive(true);
+        } else if (NumberOfUnivers == 4){
+            LayerNameToAssign = "Univ04";
+            LY = LayerMask.GetMask(LayerNameToAssign);
+            LY_TYPO = LayerMask.GetMask(LayerNameToAssign, "TYPO");
+            PullUniversPhase03[3].SetActive(true);
             NumberOfUnivers = 0;
         }
     }
@@ -125,16 +156,18 @@ public class Composition_Manager : MonoBehaviour
 
     public void AssignLayerAllCam()
     {
+        Debug.Log("AssignLayerAllCam");
+        LY = LayerMask.GetMask(LayerNameToAssign);
         CM.AB.cullingMask = LY;
-        CM.A10[0].cullingMask = LY; CM.A10[1].cullingMask = LY;
         CM.A.cullingMask = LY;
         CM.A0[0].cullingMask = LY; CM.A0[1].cullingMask = LY;
-        CM.A1_0[0].cullingMask = LY; CM.A1_0[1].cullingMask = LY; CM.A1_0[2].cullingMask = LY; CM.A2_0[0].cullingMask = LY; CM.A1_0[1].cullingMask = LY; CM.A1_0[2].cullingMask = LY;
+        CM.A10[0].cullingMask = LY; CM.A10[1].cullingMask = LY;
+        CM.A1_0[0].cullingMask = LY; CM.A1_0[1].cullingMask = LY; CM.A1_0[2].cullingMask = LY; CM.A2_0[0].cullingMask = LY; CM.A2_0[1].cullingMask = LY; CM.A2_0[2].cullingMask = LY;
 
         CM.B10[0].cullingMask = LY; CM.B10[1].cullingMask = LY;
         CM.B.cullingMask = LY;
         CM.B0[0].cullingMask = LY; CM.B0[1].cullingMask = LY;
-        CM.B1_0[0].cullingMask = LY; CM.B1_0[1].cullingMask = LY; CM.B1_0[2].cullingMask = LY; CM.B2_0[0].cullingMask = LY; CM.B1_0[1].cullingMask = LY; CM.B1_0[2].cullingMask = LY;
+        CM.B1_0[0].cullingMask = LY; CM.B1_0[1].cullingMask = LY; CM.B1_0[2].cullingMask = LY; CM.B2_0[0].cullingMask = LY; CM.B2_0[1].cullingMask = LY; CM.B2_0[2].cullingMask = LY;
     }
 
 
@@ -422,17 +455,17 @@ public class Composition_Manager : MonoBehaviour
             }
             if (R == 0) {
                 if (Sequence.AssignCurrentUnivers == true) {
-                    CM.A0[0].cullingMask = LY;
+                CM.A0[0].cullingMask = LY_TYPO;
                 }
                 A0[0].SetActive(true);
             } else if (R == 1) {
                 if (Sequence.AssignCurrentUnivers == true) {
-                    CM.A0[1].cullingMask = LY;
+                CM.A0[1].cullingMask = LY_TYPO;
                 }
                 A0[1].SetActive(true);
             } else if (R == 2) {
                 if (Sequence.AssignCurrentUnivers == true) {
-                    CM.B0[0].cullingMask = LY;
+                    CM.B0[0].cullingMask = LY_TYPO;
                 }
                 B0[0].SetActive(true);
             } else if (R == 3) {
@@ -440,38 +473,39 @@ public class Composition_Manager : MonoBehaviour
                     CM.B0[1].cullingMask = LY;
                 }
                 B0[1].SetActive(true);
-            } else if (R == 4) {
-                if (Sequence.AssignCurrentUnivers == true) {
-                    CM.A0[0].cullingMask = LY;
-                    CM.B0[0].cullingMask = LY;
+            } else if (R == 4 || R== 5) {
+                if (Sequence.AssignCurrentUnivers == true){
+                CM.B0[1].cullingMask = LY;
+                CM.A0[1].cullingMask = LY_TYPO;
+            }
+                A0[1].SetActive(true);
+                B0[1].SetActive(true);
+
+        } else {
+                if (Sequence.AssignCurrentUnivers == true){
+               // LY = LayerMask.GetMask(LayerNameToAssign, "TYPO");
+                CM.A0[0].cullingMask = LY_TYPO;
+                CM.B0[0].cullingMask = LY_TYPO;
                 }
                 A0[0].SetActive(true);
                 B0[0].SetActive(true);
-            } else {
-                if (Sequence.AssignCurrentUnivers == true) {
-                    CM.A0[1].cullingMask = LY;
-                    CM.B0[1].cullingMask = LY;
                 }
-                A0[1].SetActive(true);
-                B0[1].SetActive(true);
-            }
-            //Sequence.NouvelUnivers = false;
-            AssignBlink = false;
+                AssignBlink = false;
         } 
         public void SetupCrossLandscape()
         {
         i++;
         if (i == 1){
             if (Sequence.AssignCurrentUnivers == true){
-                CM.A0[0].cullingMask = LY;
+                CM.A0[0].cullingMask = LY_TYPO;
                 CM.B0[1].cullingMask = LY;
             }
             A0[0].SetActive(true);
             B0[1].SetActive(true);
         }else if(i == 2){
             if (Sequence.AssignCurrentUnivers == true){
-                CM.A0[1].cullingMask = LY;
-                CM.B0[0].cullingMask = LY;
+                CM.A0[1].cullingMask = LY_TYPO;
+                CM.B0[0].cullingMask = LY_TYPO;
             }
             A0[1].SetActive(true);
             B0[0].SetActive(true);
@@ -508,7 +542,7 @@ public class Composition_Manager : MonoBehaviour
         NumberOfUnivers = 1;
         PullUniversPhase01[0].SetActive(false); PullUniversPhase01[1].SetActive(false); PullUniversPhase01[2].SetActive(false);
         PullUniversPhase02[0].SetActive(false); PullUniversPhase02[1].SetActive(false); PullUniversPhase02[2].SetActive(false); PullUniversPhase02[3].SetActive(false);
-       // PullUniversPhase03[0].SetActive(false); PullUniversPhase03[1].SetActive(false); PullUniversPhase03[2].SetActive(false); 
+        PullUniversPhase03[0].SetActive(false); PullUniversPhase03[1].SetActive(false); PullUniversPhase03[2].SetActive(false); 
     }
 
     /////////////////////////////////////////DEBUG Reset
