@@ -11,10 +11,10 @@ TagManager:
   - TYPO
   - Water
   - UI
-  - Rock01
-  - Rock02
-  - Rock03
-  - Rock04
+  - Univ01
+  - Univ02
+  - Univ03
+  - Univ04
   - Water01
   - Water02
   - Water03
@@ -23,7 +23,7 @@ TagManager:
   - Kinect
   - 
   - 
-  - 
+  - NoDirectionnal
   - 
   - 
   - 

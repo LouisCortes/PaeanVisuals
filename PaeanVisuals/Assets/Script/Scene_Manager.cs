@@ -7,6 +7,7 @@ public class Scene_Manager : MonoBehaviour
 {
     public Sequence_Manager Sequence;
     public GameObject Paean;
+    public GameObject Carte;
     public GameObject UI_GPS;
     public Text CoordN;
     public Text CoordE;
@@ -16,6 +17,7 @@ public class Scene_Manager : MonoBehaviour
     {
         UI_GPS.SetActive(false);
         Paean.SetActive(false);
+        Carte.SetActive(false);
     }
 
 
@@ -44,12 +46,20 @@ public class Scene_Manager : MonoBehaviour
 
     public void TextPaeanApparition()
     {
-        Paean.SetActive(true);
+        if (Sequence.PHASE == "PHASE01")
+        {
+            Paean.SetActive(true);
+            
+        }else if (Sequence.PHASE == "PHASE02")
+        {
+            Carte.SetActive(true);
+        }
     }
 
     public void TextPaeanDisable()
     {
         Paean.SetActive(false);
+        Carte.SetActive(false);
     }
 
   /*  public void TextPaeanApparition()
