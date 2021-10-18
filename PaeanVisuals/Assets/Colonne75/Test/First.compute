@@ -1,0 +1,51 @@
+#pragma kernel CSParticle
+
+ // Particle's data
+struct Particle
+{
+	float3 position;
+	float3 velocity;
+	float life;
+	
+};
+
+// Particle's data, shared with the shader
+RWStructuredBuffer<Particle> particleBuffer;
+
+// Variables set from the CPU
+float deltaTime;
+float p1;
+float p2;
+float p3;
+float time;
+
+
+uint rng_state;
+float no(float3 p) {
+	float3 f = floor(p); p = smoothstep(0., 1., frac(p));
+	float3 se = float3(45., 78., 945.); float4 v1 = dot(se, f) + float4(0., se.y, se.z, se.y + se.z);
+	float4 v2 = lerp(frac(sin(v1)*7845.236), frac(sin(v1 + se.x)*7845.236), p.x);
+	float2 v3 = lerp(v2.xz, v2.yw, p.y);
+	return lerp(v3.x, v3.y, p.z);
+}
+
+
+[numthreads(256, 1, 1)]
+void CSParticle(uint3 id : SV_DispatchThreadID)
+{
+	particleBuffer[id.x].life -= deltaTime;
+	float3 pp = particleBuffer[id.x].position.xyz;
+	float3 b1 = float3(no(pp+45.+time*0.1) - 0.5, no(pp+float3(-time,time,time)*0.1) - 0.5, no(pp-time*0.1) - 0.5);
+	
+	particleBuffer[id.x].position += b1*0.05*particleBuffer[id.x].velocity.xyz;
+	if (particleBuffer[id.x].life < 0)
+	{
+
+
+		particleBuffer[id.x].position = float3(p1, p2, p3)+ particleBuffer[id.x].velocity.xyz*0.01;
+		particleBuffer[id.x].position += b1 * 5.*particleBuffer[id.x].velocity.xyz;
+		particleBuffer[id.x].life = 4;
+		 
+	}
+
+}
