@@ -44,10 +44,10 @@ public class PlayByInputAction : MonoBehaviour
 
     [SerializeField] InputAction _Restart = null;
 
-    float map(float Val, float minInit, float MaxInit, float MinFinal, float MaxFinal)
+   /* float map(float Val, float minInit, float MaxInit, float MinFinal, float MaxFinal)
     {
         return MinFinal + (Val - minInit) * (MaxFinal - MinFinal) / (MaxInit - minInit);
-    }
+    }*/
 
     public GameObject Jauge;
     public Text Speed;
