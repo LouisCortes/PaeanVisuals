@@ -6,29 +6,26 @@ public class Sequence_Manager : MonoBehaviour
 {
     public string PHASE;
     public float Tempo;
-    public int Speed;
+    public int SpeedValue;
     public PlayByInputAction Input;
     public Composition_Manager Compo;
     public Cam_Manager Cam;
-    public Scene_Manager Scene;
     public bool Next;
     public bool Started;
     public bool A;
     public bool B;
-
     public bool Fade;
     public bool Add;
-
     public bool UI;
-    public bool Paean;
+    public bool Typo;
     public bool PP;
-
     public bool Subdivision1;
     public bool Subdivision2;
-
     public bool AssignCurrentUnivers;
     public bool NouvelUnivers;
-    public bool SphereLiquide;
+    public bool Speed;
+
+    public Animator AC_Timer;
 
     void Start()
     {
@@ -37,7 +34,6 @@ public class Sequence_Manager : MonoBehaviour
         PHASE = "PHASE01";
         SetAllCommandOff();
         StartCoroutine(SequenceLauncher());
-
     }
 
 
@@ -47,10 +43,12 @@ public class Sequence_Manager : MonoBehaviour
     
     public void ChangeSpeed()
     {
-        Speed++;
-        if (Speed> 4){
-            Speed = 1;
+        SpeedValue++;
+        if (SpeedValue> 4){
+            SpeedValue = 1;
         }
+
+
     }
 
     public void NextSequence()
@@ -78,10 +76,17 @@ public class Sequence_Manager : MonoBehaviour
             AssignCurrentUnivers = true;
         }
 
+        if (Speed)
+        {
+            ChangeSpeed();
+            AC_Timer.speed =  SpeedValue;
+        }
+
         if (PP)
         {
             Cam.ActivePP01();
         }
+
 
         if (AssignCurrentUnivers)
         {
@@ -94,16 +99,16 @@ public class Sequence_Manager : MonoBehaviour
             }
         }
 
-        if (Paean){
-            Scene.TextPaeanApparition();
+        if (Typo){
+            Compo.TextPaeanApparition();
         }else{
-            Scene.TextPaeanDisable();
+            Compo.TextPaeanDisable();
         }
 
         if (UI){
-            Scene.UIGPSApparition();
+            Compo.UIGPSApparition();
         }else{
-            Scene.UIGPSDisable();
+            Compo.UIGPSDisable();
         }
 
         if (Fade){
@@ -132,8 +137,7 @@ public class Sequence_Manager : MonoBehaviour
                     Compo.SlicedScreenB();
                     Compo.SlicedScreenB();
                 }
-            }else if (A&&B)
-            {
+            }else if (A&&B){
                 Debug.Log("A&B");
                 Compo.SlicedScreenA();
                 Compo.SlicedScreenB();
@@ -160,16 +164,14 @@ public class Sequence_Manager : MonoBehaviour
                 int R; R = Random.Range(0, 6);
                 if (R == 0){
                     Compo.ScreenB();
-                }
-                else if (R == 1){
+                }else if (R == 1){
                     Compo.ScreenA();
                 }else{
                     Compo.SetupFullLandscape();
                 }
             }
         }
-      
-
+        Input.CleanUI();
         SetAllCommandOff();
     }
 
@@ -184,19 +186,18 @@ public class Sequence_Manager : MonoBehaviour
         AssignCurrentUnivers = false;
         Add = false;
         PP = false;
-        Paean = false;
+        Typo = false;
         UI = false;
+        Speed = false;
     }
 
     IEnumerator SequenceLauncher()
     {
         for (; ; )
         {
-            Debug.Log("Event APPARITION");
             Sequence();
-            yield return new WaitForSeconds(Tempo/Speed);
+            yield return new WaitForSeconds(Tempo/SpeedValue);
         }
-        //  StartCoroutine(PhaseXChoix());
     }
 }
 

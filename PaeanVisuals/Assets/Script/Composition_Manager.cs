@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.UI;
 using UnityEngine;
 
 public class Composition_Manager : MonoBehaviour
@@ -13,7 +14,7 @@ public class Composition_Manager : MonoBehaviour
     private float ValueBlink;
     public LayerMask LY;
     public LayerMask LY_TYPO;
-    // LY = LayerMask.GetMask(LayerNameToAssign, "TYPO");
+
     public GameObject[] PullUniversPhase01;
     public GameObject[] PullUniversPhase02;
     public GameObject[] PullUniversPhase03;
@@ -31,7 +32,14 @@ public class Composition_Manager : MonoBehaviour
     public GameObject[] B1_0;
     public GameObject[] B2_0;
 
-    public GameObject SphereLiquide;
+    public GameObject Paean;
+    public GameObject Carte;
+    public GameObject UI_GPS;
+    public Text CoordN;
+    public Text CoordE;
+    private long N = 84814453125;
+    private long E = 347232341766357;
+
     public GameObject Fluide;
 
     public int NumberOfUnivers;
@@ -55,7 +63,13 @@ public class Composition_Manager : MonoBehaviour
 
     void Update()
     {
-       
+        if (UI_GPS){
+            N++;
+            CoordN.text = "" + N;
+            E++;
+            CoordE.text = "" + E;
+        }
+
         if (Blink) {
             CM.A0[Random.Range(0, 2)].backgroundColor = new Color(0, 0, ValueBlink);
             CM.B0[Random.Range(0, 2)].backgroundColor = new Color(ValueBlink, ValueBlink, ValueBlink);
@@ -69,6 +83,30 @@ public class Composition_Manager : MonoBehaviour
             CM.A10[Random.Range(0, 2)].backgroundColor = new Color(0, 0, ValueBlink);
             CM.B10[Random.Range(0, 2)].backgroundColor = new Color(ValueBlink, ValueBlink, ValueBlink);
         }
+    }
+
+    ///////////////////////////////////////// UI & TEXT Element
+    public void UIGPSApparition()
+    {
+        UI_GPS.SetActive(true);
+    }
+    public void UIGPSDisable()
+    {
+        UI_GPS.SetActive(false);
+    }
+    public void TextPaeanApparition()
+    {
+        if (Sequence.PHASE == "PHASE01"){
+            Paean.SetActive(true);
+        }
+        else if (Sequence.PHASE == "PHASE02"){
+            Carte.SetActive(true);
+        }
+    }
+    public void TextPaeanDisable()
+    {
+        Paean.SetActive(false);
+        Carte.SetActive(false);
     }
 
     /////////////////////////////////////////LAYER SCENE UNIVERS
@@ -542,7 +580,10 @@ public class Composition_Manager : MonoBehaviour
         NumberOfUnivers = 1;
         PullUniversPhase01[0].SetActive(false); PullUniversPhase01[1].SetActive(false); PullUniversPhase01[2].SetActive(false);
         PullUniversPhase02[0].SetActive(false); PullUniversPhase02[1].SetActive(false); PullUniversPhase02[2].SetActive(false); PullUniversPhase02[3].SetActive(false);
-        PullUniversPhase03[0].SetActive(false); PullUniversPhase03[1].SetActive(false); PullUniversPhase03[2].SetActive(false); 
+        PullUniversPhase03[0].SetActive(false); PullUniversPhase03[1].SetActive(false); PullUniversPhase03[2].SetActive(false);
+        UI_GPS.SetActive(false);
+        Paean.SetActive(false);
+        Carte.SetActive(false);
     }
 
     /////////////////////////////////////////DEBUG Reset
