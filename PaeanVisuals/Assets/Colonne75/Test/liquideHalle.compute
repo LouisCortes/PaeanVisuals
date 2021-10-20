@@ -68,5 +68,5 @@ void Main(uint id : SV_DispatchThreadID)
 
 	p.zy = mul(p.zy, rot(tt*0.1));
 	//n.zy = mul(n.zy, rot(tt*0.1));
-    OutputBuffer[id] = float4(p, asfloat(PcxEncodeColor(1.)));
+    OutputBuffer[id] = float4(p, asfloat(PcxEncodeColor(smoothstep(0.3, 0.7, c.y))));
 }
