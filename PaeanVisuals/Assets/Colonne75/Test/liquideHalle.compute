@@ -56,17 +56,17 @@ void Main(uint id : SV_DispatchThreadID)
 	p.xz = mul(p.xz, rot(t2));
 	n.xz = mul(n.xz, rot(t2));
 	p.y += (cos(pp.x*2. + tt) + sin(pp.z*2. - tt)*0.5)*0.325;
-	p.z += (sin(pp.x*2. - tt) + sin(pp.y*2. - tt)*0.5)*0.375;
-	p.yz += float2(cos((p.x*1.6 + p.z*1.6)*.3 + tt * 1.5), sin((p.x*1.6 + p.z*1.6)*0.3 + tt * 1.5))*0.25;
+	p.z += (sin(pp.x*2. - tt) +sin(pp.y*2. - tt)*0.5)*0.375;
+	p.yz += float2(cos((p.x*1.6 + p.z*1.6)*.3 + tt * 1.5),sin((p.x*1.6 + p.z*1.6)*0.3 + tt * 1.5))*0.25;
 	p.xz += float2(cos(tt*0.5), sin(tt*0.5))*2.5;
 
-
-	float3 b1 = float3(no(pp*1.6 + tt), no(pp*1.6 - tt), no(pp*1.6 + float3(tt, -tt, tt)));
-	float3 b2 = float3(no(pp*8. + tt * 3.), no(pp*8. - tt * 3.), no(pp*8. + float3(tt, -tt, tt)*3.));
-	float3 b3 = pow(b1, 4.)*0.25 + pow(b2, 4.)*0.025;
+	
+	float3 b1 = float3(no(pp*1.6 + tt) , no(pp*1.6 - tt), no(pp*1.6 + float3(tt, -tt, tt)) );
+	float3 b2 = float3(no(pp*8. + tt * 3.) , no(pp*8. - tt * 3.) , no(pp*8.+ float3(tt, -tt, tt)*3.));
+	float3 b3 =pow( b1,4.)*0.25 + pow(b2,4.)*0.025;
 	p += n * b3;
 
 	p.zy = mul(p.zy, rot(tt*0.1));
-	n.zy = mul(n.zy, rot(tt*0.1));
-    OutputBuffer[id] = float4(p, asfloat(PcxEncodeColor(n*0.5+0.5)));
+	//n.zy = mul(n.zy, rot(tt*0.1));
+    OutputBuffer[id] = float4(p, asfloat(PcxEncodeColor(1.)));
 }
