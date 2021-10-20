@@ -235,24 +235,28 @@ public class Composition_Manager : MonoBehaviour
                 if (Sequence.AssignCurrentUnivers == true) {
                     CM.A10[0].cullingMask = LY;
                 }
-                A10[0].SetActive(true);
+            CM.A10[0].enabled = true;
+            A10[0].SetActive(true);
             } else if (R == 1) {
                 if (Sequence.AssignCurrentUnivers == true) {
                     CM.A10[1].cullingMask = LY;
                 }
-                A10[1].SetActive(true);
+            CM.A10[1].enabled = true;
+            A10[1].SetActive(true);
             }
             else if (R == 2) {
                 if (Sequence.AssignCurrentUnivers == true) {
                     CM.A10[1].cullingMask = LY;
                 }
-                A10[2].SetActive(true);
+            CM.A10[1].enabled = true;
+            A10[2].SetActive(true);
             }
             else if (R == 3) {
                 if (Sequence.AssignCurrentUnivers == true) {
                     CM.A10[0].cullingMask = LY;
                 }
-                A10[3].SetActive(true);
+            CM.A10[0].enabled = true;
+            A10[3].SetActive(true);
             }
            // Sequence.NouvelUnivers = false;
             AssignBlink = false;
@@ -267,24 +271,27 @@ public class Composition_Manager : MonoBehaviour
                 if (Sequence.AssignCurrentUnivers == true) {
                     CM.B10[0].cullingMask = LY;
                 }
+                CM.B10[0].enabled = true;
                 B10[0].SetActive(true);
             } else if (R == 1) {
                 if (Sequence.AssignCurrentUnivers == true) {
                     CM.B10[1].cullingMask = LY;
                 }
+                CM.B10[1].enabled = true;
                 B10[1].SetActive(true);
             } else if (R == 2) {
                 if (Sequence.AssignCurrentUnivers == true) {
                     CM.B10[0].cullingMask = LY;
                 }
+                CM.B10[0].enabled = true;
                 B10[2].SetActive(true);
             } else if (R == 3) {
                 if (Sequence.AssignCurrentUnivers == true) {
                     CM.B10[1].cullingMask = LY;
                 }
+                CM.B10[1].enabled = true;
                 B10[3].SetActive(true);
             }
-          //  Sequence.NouvelUnivers = false;
             AssignBlink = false;
         }
 
@@ -316,13 +323,17 @@ public class Composition_Manager : MonoBehaviour
                     CM.A1_0[2].cullingMask = LY; CM.B1_0[1].cullingMask = LY;
                     CM.A2_0[1].cullingMask = LY; CM.B2_0[0].cullingMask = LY; CM.B2_0[2].cullingMask = LY;
                 }
+                CM.A1_0[2].enabled = true; CM.B1_0[1].enabled = true;
+                CM.A2_0[1].enabled = true; CM.B2_0[0].enabled = true; CM.B2_0[2].enabled = true;
                 A1_0[0].SetActive(true); A1_0[2].SetActive(true); B1_0[1].SetActive(true);
                 A2_0[1].SetActive(true); B2_0[0].SetActive(true); B2_0[2].SetActive(true);
             } else if (R == 1) {
                 if (Sequence.AssignCurrentUnivers == true) {
                     CM.A2_0[0].cullingMask = LY; CM.A2_0[2].cullingMask = LY; CM.B2_0[1].cullingMask = LY;
                     CM.A1_0[1].cullingMask = LY; CM.B1_0[0].cullingMask = LY; CM.B1_0[2].cullingMask = LY;
-                }
+                }              
+                CM.A2_0[0].enabled = true; CM.A2_0[2].enabled = true; CM.B2_0[1].enabled = true;
+                CM.A1_0[1].enabled = true; CM.B1_0[0].enabled = true; CM.B1_0[2].enabled = true;
                 A2_0[0].SetActive(true); A2_0[2].SetActive(true); B2_0[1].SetActive(true);
                 A1_0[1].SetActive(true); B1_0[0].SetActive(true); B1_0[2].SetActive(true);
             } else {
@@ -330,6 +341,8 @@ public class Composition_Manager : MonoBehaviour
                     CM.A1_0[1].cullingMask = LY; CM.B1_0[1].cullingMask = LY;
                     CM.A2_0[2].cullingMask = LY; CM.B2_0[0].cullingMask = LY;
                 }
+                CM.A1_0[1].enabled = true; CM.B1_0[1].enabled = true;
+                CM.A2_0[2].enabled = true; CM.B2_0[0].enabled = true;
                 A1_0[1].SetActive(true); B1_0[1].SetActive(true);
                 A2_0[2].SetActive(true); B2_0[0].SetActive(true);
             }
@@ -343,6 +356,8 @@ public class Composition_Manager : MonoBehaviour
                     CM.A1_0[R].cullingMask = LY; CM.B1_0[R].cullingMask = LY;
                     CM.A2_0[R].cullingMask = LY; CM.B2_0[R].cullingMask = LY;
                 }
+                CM.A1_0[R].enabled = true; CM.B1_0[R].enabled = true;
+                CM.A2_0[R].enabled = true; CM.B2_0[R].enabled = true;
                 A1_0[R].SetActive(true); B1_0[R].SetActive(true);
                 A2_0[R].SetActive(true); B2_0[R].SetActive(true);
             } else if (R == 1) {
@@ -350,20 +365,23 @@ public class Composition_Manager : MonoBehaviour
                     CM.A1_0[R].cullingMask = LY; CM.B1_0[R].cullingMask = LY;
                     CM.A2_0[R].cullingMask = LY; CM.B2_0[R].cullingMask = LY;
                 }
+                CM.A1_0[R].enabled = true; CM.B1_0[R].enabled = true;
+                CM.A2_0[R].enabled = true; CM.B2_0[R].enabled = true;
                 A1_0[R].SetActive(true); B1_0[R].SetActive(true);
                 A2_0[R].SetActive(true); B2_0[R].SetActive(true);
             } else if (R == 2) {
                 if (Sequence.AssignCurrentUnivers == true) {
                     CM.A2_0[2].cullingMask = LY;
                 }
+                CM.A2_0[2].enabled = true;
                 A2_0[2].SetActive(true);
             } else {
                 if (Sequence.AssignCurrentUnivers == true) {
                     CM.A2_0[0].cullingMask = LY; CM.A2_0[2].cullingMask = LY; CM.B1_0[2].cullingMask = LY;
                 }
+                CM.A2_0[0].enabled = true; CM.A2_0[2].enabled = true; CM.B1_0[2].enabled = true;
                 A2_0[0].SetActive(true); A2_0[2].SetActive(true); B1_0[2].SetActive(true);
             }
-          //  Sequence.NouvelUnivers = false;
         }
 
     public void SetupVerticalFragmentationA()
@@ -374,6 +392,8 @@ public class Composition_Manager : MonoBehaviour
                     CM.A1_0[1].cullingMask = LY;
                     CM.A2_0[1].cullingMask = LY;
                 }
+                CM.A1_0[1].enabled = true;
+                CM.A2_0[1].enabled = true;
                 A1_0[1].SetActive(true);
                 A2_0[1].SetActive(true);
             } else if (R == 1) {
@@ -381,6 +401,8 @@ public class Composition_Manager : MonoBehaviour
                     CM.A1_0[0].cullingMask = LY; CM.A1_0[2].cullingMask = LY;
                     CM.A2_0[0].cullingMask = LY; CM.A2_0[2].cullingMask = LY;
                 }
+                CM.A1_0[0].enabled = true; CM.A1_0[2].enabled = true;
+                CM.A2_0[0].enabled = true; CM.A2_0[2].enabled = true;
                 A1_0[0].SetActive(true); A1_0[2].SetActive(true);
                 A2_0[0].SetActive(true); A2_0[2].SetActive(true);
             } else {
@@ -388,6 +410,8 @@ public class Composition_Manager : MonoBehaviour
                     CM.A1_0[2].cullingMask = LY;
                     CM.A2_0[2].cullingMask = LY;
                 }
+                CM.A1_0[2].enabled = true;
+                CM.A2_0[2].enabled = true;
                 A1_0[2].SetActive(true);
                 A2_0[2].SetActive(true);
             }
@@ -400,7 +424,10 @@ public class Composition_Manager : MonoBehaviour
                 if (Sequence.AssignCurrentUnivers == true) {
                     CM.B1_0[1].cullingMask = LY;
                     CM.B2_0[1].cullingMask = LY;
-                }
+            }
+               
+                CM.B1_0[1].enabled = true;
+                CM.B2_0[1].enabled = true;
                 B1_0[1].SetActive(true);
                 B2_0[1].SetActive(true);
             } else if (R == 1) {
@@ -408,6 +435,9 @@ public class Composition_Manager : MonoBehaviour
                     CM.B1_0[0].cullingMask = LY; CM.B1_0[2].cullingMask = LY;
                     CM.B2_0[0].cullingMask = LY; CM.B2_0[2].cullingMask = LY;
                 }
+
+                CM.B1_0[0].enabled = true; CM.B1_0[2].enabled = true;
+                CM.B2_0[0].enabled = true;  CM.B2_0[2].enabled = true;
                 B1_0[0].SetActive(true); B1_0[2].SetActive(true);
                 B2_0[0].SetActive(true); B2_0[2].SetActive(true);
             } else {
@@ -415,6 +445,8 @@ public class Composition_Manager : MonoBehaviour
                     CM.B1_0[0].cullingMask = LY;
                     CM.B2_0[0].cullingMask = LY;
                 }
+                CM.B1_0[0].enabled = true;
+                CM.B2_0[0].enabled = true;
                 B1_0[0].SetActive(true);
                 B2_0[0].SetActive(true);
             }
@@ -494,37 +526,45 @@ public class Composition_Manager : MonoBehaviour
             if (R == 0) {
                 if (Sequence.AssignCurrentUnivers == true) {
                 CM.A0[0].cullingMask = LY_TYPO;
-                }
+            }
+                CM.A0[1].enabled = true;
                 A0[0].SetActive(true);
             } else if (R == 1) {
                 if (Sequence.AssignCurrentUnivers == true) {
                 CM.A0[1].cullingMask = LY_TYPO;
-                }
+            }
+                CM.A0[1].enabled = true;
                 A0[1].SetActive(true);
             } else if (R == 2) {
                 if (Sequence.AssignCurrentUnivers == true) {
-                    CM.B0[0].cullingMask = LY_TYPO;
-                }
+                    CM.B0[0].cullingMask = LY_TYPO;                   
+            }
+                CM.B0[0].enabled = true;
                 B0[0].SetActive(true);
             } else if (R == 3) {
                 if (Sequence.AssignCurrentUnivers == true) {
                     CM.B0[1].cullingMask = LY;
-                }
+                    CM.B0[1].enabled = true;
+            }
+                CM.B0[1].enabled = true;
                 B0[1].SetActive(true);
             } else if (R == 4 || R== 5) {
                 if (Sequence.AssignCurrentUnivers == true){
                 CM.B0[1].cullingMask = LY;
                 CM.A0[1].cullingMask = LY_TYPO;
             }
+                CM.B0[1].enabled = true;
+                CM.A0[1].enabled = true;
                 A0[1].SetActive(true);
                 B0[1].SetActive(true);
 
         } else {
                 if (Sequence.AssignCurrentUnivers == true){
-               // LY = LayerMask.GetMask(LayerNameToAssign, "TYPO");
                 CM.A0[0].cullingMask = LY_TYPO;
                 CM.B0[0].cullingMask = LY_TYPO;
-                }
+            }
+                CM.A0[0].enabled = true;
+                CM.B0[0].enabled = true;
                 A0[0].SetActive(true);
                 B0[0].SetActive(true);
                 }
@@ -538,6 +578,8 @@ public class Composition_Manager : MonoBehaviour
                 CM.A0[0].cullingMask = LY_TYPO;
                 CM.B0[1].cullingMask = LY;
             }
+            CM.A0[0].enabled = true;
+            CM.B0[1].enabled = true;
             A0[0].SetActive(true);
             B0[1].SetActive(true);
         }else if(i == 2){
@@ -545,6 +587,8 @@ public class Composition_Manager : MonoBehaviour
                 CM.A0[1].cullingMask = LY_TYPO;
                 CM.B0[0].cullingMask = LY_TYPO;
             }
+            CM.A0[1].enabled = true;
+            CM.B0[0].enabled = true;
             A0[1].SetActive(true);
             B0[0].SetActive(true);
             i = 0;
@@ -573,7 +617,21 @@ public class Composition_Manager : MonoBehaviour
         A2_0[0].SetActive(false);   B2_0[0].SetActive(false);
         A2_0[1].SetActive(false);   B2_0[1].SetActive(false);
         A2_0[2].SetActive(false);   B2_0[2].SetActive(false);
+        /// CAM
+        CM.A0[0].enabled = false; CM.B0[0].enabled = false;
+        CM.A0[1].enabled = false; CM.B0[1].enabled = false;
 
+        CM.A10[0].enabled = false; CM.B10[0].enabled = false;
+        CM.A10[1].enabled = false; CM.B10[1].enabled = false;
+
+        CM.A1_0[0].enabled = false; CM.B1_0[0].enabled = false;
+        CM.A1_0[1].enabled = false; CM.B1_0[1].enabled = false;
+        CM.A1_0[2].enabled = false; CM.B1_0[2].enabled = false;
+
+        CM.A2_0[0].enabled = false; CM.B2_0[0].enabled = false;
+        CM.A2_0[1].enabled = false; CM.B2_0[1].enabled = false;
+        CM.A2_0[2].enabled = false; CM.B2_0[2].enabled = false;
+        Debug.Log("CamClean");
         Blink = false;
     }
 
