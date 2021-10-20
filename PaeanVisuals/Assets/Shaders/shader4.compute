@@ -8,15 +8,15 @@ Texture2D<float4> rough;
 Texture2D<float4> fluid;
 Texture2D<float4> noise;
 //Texture2D<float4> lut;
-TextureCube<float4> ref;
+//TextureCube<float4> ref;
 SamplerState _LinearRepeat;
 float _time;
 float liquide;
 float audio1;
 float rotation;
 float zoom;
-float neutre;
-float bleu;
+//float neutre;
+//float bleu;
 float audio2;
 float low;
 float mid;
@@ -144,12 +144,13 @@ void CSMain (uint2 id : SV_DispatchThreadID)
 	float al = ov(fres,l2);
 	float frl = ov(lerp(pow(1. - ld, 5.)*0.5 + pow(ld, 500.),0.5,0.1),smoothstep(0.2,0.9,tc));
 	float r1 = lerp(frl, al, ml);
-	float3 r3 = ref.SampleLevel(_LinearRepeat, n, 0).xyz; 
+	//float3 r3 = ref.SampleLevel(_LinearRepeat, n, 0).xyz; 
 	float po = max(
 		lerp(1.,pow((1.-noise.SampleLevel(_LinearRepeat, float2(0.75, _time), 0.).x),2.)*10.,audio1),
 		lerp(1.,clamp(2. - high*10.,0.,1.), audio2));
 	float hh = lerp(hs(f),0.5,lerp(1.,0.5,zoom));
 	float3 h3 = float3(hh, hh, hh);
-	reader[id] = float4(ov(pow(r1*neutre+r3*bleu,float3(po,po,po)),h3), 1.)*s;
+	float tf = ov(pow(r1, po), hh);
+	reader[id] = float4(tf,tf,tf, 1.)*s;
 
 }

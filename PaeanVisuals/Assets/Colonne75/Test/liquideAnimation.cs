@@ -14,7 +14,7 @@ public class liquideAnimation : MonoBehaviour
    // public fluid_dynamics fluid;
     ComputeBuffer _pointBuffer;
      public GameObject obj;
-    public GameObject probe;
+    //public GameObject probe;
     void OnDisable()
     {
         if (_pointBuffer != null)
@@ -47,7 +47,7 @@ public class liquideAnimation : MonoBehaviour
         _computeShader.SetFloat("wpz", obj.transform.position.z);
         _computeShader.SetTexture(kernel,"noise", noise);
         //_computeShader.SetTexture(kernel, "fluid", fluid.texture1);
-        _computeShader.SetTexture(kernel, "ref", probe.GetComponent<ReflectionProbe>().texture);
+        //_computeShader.SetTexture(kernel, "ref", probe.GetComponent<ReflectionProbe>().texture);
         _computeShader.SetFloat("time", time);
         _computeShader.SetBuffer(kernel, "SourceBuffer", sourceBuffer);
         _computeShader.SetBuffer(kernel, "OutputBuffer", _pointBuffer);
