@@ -7,6 +7,7 @@ StructuredBuffer<float4> SourceBuffer;
 RWStructuredBuffer<float4> OutputBuffer;
 Texture2D<float4> noise;
 //Texture2D<float4> fluid;
+//TextureCube<float4> ref;
 SamplerState _LinearRepeat;
 CBUFFER_START(Params)
     float audio1;
@@ -45,13 +46,28 @@ void Main(uint id : SV_DispatchThreadID)
 	half3 c = PcxDecodeColor(asuint(pt.w));
 	float3 n = (c - 0.5)*2.;
 	float tt = time;
-	p.x += (sin(pp.z*0.5+tt) + sin(pp.y*0.5 + tt))*1.3;
-	p.y += (cos(pp.x*0.5 + tt) + sin(pp.z*0.5 - tt))*1.3;
-	p.z += (sin(pp.x*0.5 - tt) +sin(pp.y*0.5 - tt))*1.3;
-	//p = frac(p)+p;
+	//p.x += (sin(pp.z*0.5+tt) + sin(pp.y*0.5 + tt))*1.3;
+
+	float t1 = -1.6;
+	float t2 =-time*0.5+2.5;
+
+	p.zy = mul(p.zy, rot(t1));
+	n.zy = mul(n.zy, rot(t1));
+	p.xz = mul(p.xz, rot(t2));
+	n.xz = mul(n.xz, rot(t2));
+	p.y += (cos(pp.x*0.5 + tt) + sin(pp.z*0.5 - tt)*0.5)*1.3;
+	p.z += (sin(pp.x*0.5 - tt) +sin(pp.y*0.5 - tt)*0.5)*1.5;
+	p.yz += float2(cos((p.x*0.4 + p.z*0.4)*.3 + tt * 1.5),
+		sin((p.x*0.4 + p.z*0.4)*0.3 + tt * 1.5));
+	p.xz += float2(cos(tt*0.5), sin(tt*0.5))*10.;
+
+	
 	float3 b1 = float3(no(pp*0.4 + tt) , no(pp*0.4 - tt), no(pp*0.4 + float3(tt, -tt, tt)) );
 	float3 b2 = float3(no(pp*2. + tt * 3.) , no(pp*2. - tt * 3.) , no(pp*2. + float3(tt, -tt, tt)*3.));
 	float3 b3 =pow( b1,4.)*1. + pow(b2,4.)*0.1;
 	p += n * b3;
-    OutputBuffer[id] = float4(p, asfloat(PcxEncodeColor(c)));
+
+	p.zy = mul(p.zy, rot(tt*0.1));
+	n.zy = mul(n.zy, rot(tt*0.1));
+    OutputBuffer[id] = float4(p, asfloat(PcxEncodeColor(n*0.5+0.5)));
 }

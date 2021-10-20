@@ -63,7 +63,7 @@ Material:
     - _BumpScale: 1
     - _Cutoff: 0.5
     - _DetailNormalMapScale: 1
-    - _Displacement: 0.1
+    - _Displacement: 0.003
     - _DstBlend: 0
     - _GlossMapScale: 1
     - _Glossiness: 0.5
@@ -79,6 +79,9 @@ Material:
     - _ZWrite: 1
     - _audio1: 0
     - _audio2: 0
+    - _centerx: -0.045
+    - _centery: -0.06
+    - _centerz: 0.574
     - _liquide: 0
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
