@@ -573,8 +573,11 @@ public class Composition_Manager : MonoBehaviour
         A2_0[0].SetActive(false);   B2_0[0].SetActive(false);
         A2_0[1].SetActive(false);   B2_0[1].SetActive(false);
         A2_0[2].SetActive(false);   B2_0[2].SetActive(false);
+
         Blink = false;
     }
+
+
     public void CleanAllUnivers()
     {
         NumberOfUnivers = 1;
