@@ -55,16 +55,16 @@ void Main(uint id : SV_DispatchThreadID)
 	n.zy = mul(n.zy, rot(t1));
 	p.xz = mul(p.xz, rot(t2));
 	n.xz = mul(n.xz, rot(t2));
-	p.y += (cos(pp.x*0.5 + tt) + sin(pp.z*0.5 - tt)*0.5)*1.3;
-	p.z += (sin(pp.x*0.5 - tt) +sin(pp.y*0.5 - tt)*0.5)*1.5;
-	p.yz += float2(cos((p.x*0.4 + p.z*0.4)*.3 + tt * 1.5),
-		sin((p.x*0.4 + p.z*0.4)*0.3 + tt * 1.5));
-	p.xz += float2(cos(tt*0.5), sin(tt*0.5))*10.;
+	p.y += (cos(pp.x*0.125 + tt) + sin(pp.z*0.125 - tt)*0.5)*0.325;
+	p.z += (sin(pp.x*0.125 - tt) +sin(pp.y*0.125 - tt)*0.5)*0.375;
+	p.yz += float2(cos((p.x*0.1 + p.z*0.1)*.3 + tt * 1.5),
+		sin((p.x*0.1 + p.z*0.1)*0.3 + tt * 1.5))*0.25;
+	p.xz += float2(cos(tt*0.5), sin(tt*0.5))*2.5;
 
 	
-	float3 b1 = float3(no(pp*0.4 + tt) , no(pp*0.4 - tt), no(pp*0.4 + float3(tt, -tt, tt)) );
-	float3 b2 = float3(no(pp*2. + tt * 3.) , no(pp*2. - tt * 3.) , no(pp*2. + float3(tt, -tt, tt)*3.));
-	float3 b3 =pow( b1,4.)*1. + pow(b2,4.)*0.1;
+	float3 b1 = float3(no(pp*0.1 + tt) , no(pp*0.1 - tt), no(pp*0.1 + float3(tt, -tt, tt)) );
+	float3 b2 = float3(no(pp*0.5 + tt * 3.) , no(pp*0.5 - tt * 3.) , no(pp*0.5+ float3(tt, -tt, tt)*3.));
+	float3 b3 =pow( b1,4.)*0.25 + pow(b2,4.)*0.025;
 	p += n * b3;
 
 	p.zy = mul(p.zy, rot(tt*0.1));
