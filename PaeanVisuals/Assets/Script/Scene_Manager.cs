@@ -30,7 +30,6 @@ public class Scene_Manager : MonoBehaviour
             E++;
             CoordE.text = "" + E;
         }
-
     }
 
     public void UIGPSApparition()
@@ -40,18 +39,15 @@ public class Scene_Manager : MonoBehaviour
 
     public void UIGPSDisable()
     {
-
         UI_GPS.SetActive(false);
     }
 
     public void TextPaeanApparition()
     {
-        if (Sequence.PHASE == "PHASE01")
-        {
+        if (Sequence.PHASE == "PHASE01"){
             Paean.SetActive(true);
             
-        }else if (Sequence.PHASE == "PHASE02")
-        {
+        }else if (Sequence.PHASE == "PHASE02"){
             Carte.SetActive(true);
         }
     }
