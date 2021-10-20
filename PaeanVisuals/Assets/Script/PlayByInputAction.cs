@@ -380,10 +380,12 @@ public class PlayByInputAction : MonoBehaviour
         UI_Frag.SetActive(false);
         UI_AssignScene.SetActive(false);
         UI_NewUnivers.SetActive(false);
+        UI_ChangePhase.SetActive(false);
         UI_Typo.SetActive(false);
         UI_Cam.SetActive(false);
         UI_Fade.SetActive(false);
-        UI_ChangePhase.SetActive(false);
+        UI_GPS.SetActive(false);
+        UI_Speed.SetActive(false);
     }
 
     void ResetLevel(InputAction.CallbackContext ctx)
