@@ -574,23 +574,6 @@ public class Composition_Manager : MonoBehaviour
         A2_0[1].SetActive(false);   B2_0[1].SetActive(false);
         A2_0[2].SetActive(false);   B2_0[2].SetActive(false);
 
-        //CM.A0[0].SetActive(false); B0[0].SetActive(false);
-        A0[1].SetActive(false); B0[1].SetActive(false);
-
-        A10[0].SetActive(false); B10[0].SetActive(false);
-        A10[1].SetActive(false); B10[1].SetActive(false);
-        A10[2].SetActive(false); B10[2].SetActive(false);
-        A10[3].SetActive(false); B10[3].SetActive(false);
-
-        A1_0[0].SetActive(false); B1_0[0].SetActive(false);
-        A1_0[1].SetActive(false); B1_0[1].SetActive(false);
-        A1_0[2].SetActive(false); B1_0[2].SetActive(false);
-
-        A2_0[0].SetActive(false); B2_0[0].SetActive(false);
-        A2_0[1].SetActive(false); B2_0[1].SetActive(false);
-        A2_0[2].SetActive(false); B2_0[2].SetActive(false);
-
-
         Blink = false;
     }
 

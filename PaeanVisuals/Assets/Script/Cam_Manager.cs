@@ -41,6 +41,7 @@ public class Cam_Manager : MonoBehaviour
 
     public void CamTranslation()
     {
+
         RandomSpeed = Random.Range(1f, 3f);
         AC_Cam.speed = RandomSpeed;
         AC_Cam.SetBool("Melt", false);
