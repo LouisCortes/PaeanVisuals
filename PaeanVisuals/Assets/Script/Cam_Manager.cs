@@ -23,6 +23,13 @@ public class Cam_Manager : MonoBehaviour
     public Camera[] B1_0;
     public Camera[] B2_0;
 
+    public GameObject CamEditor;
+    public PostEffect PostEffectCamEditor;
+    public PostEffect PostEffectCamRender01;
+    public PostEffect PostEffectCamRender02;
+    public PostEffect PostEffectMainCam;
+    public bool PP;
+
     public int i;
     public int i2;
 
@@ -32,6 +39,10 @@ public class Cam_Manager : MonoBehaviour
         i2 = 0;
         PPVolume01.SetActive(false);
         PPVolume02.SetActive(false);
+        PostEffectCamEditor.enabled = false;
+        PostEffectCamRender01.enabled = false;
+        PostEffectCamRender02.enabled = false;
+        PostEffectMainCam.enabled = false;
     }
 
     void Update()
@@ -39,9 +50,24 @@ public class Cam_Manager : MonoBehaviour
 
     }
 
+    public void EnablePostEffectFin()
+    {
+        PostEffectCamEditor.enabled = true;
+        PostEffectCamRender01.enabled = true;
+        PostEffectCamRender02.enabled = true;
+        PostEffectMainCam.enabled = true;
+    }
+
+    public void disablePostEffectFin()
+    {
+        PostEffectCamEditor.enabled = false;
+        PostEffectCamRender01.enabled = false;
+        PostEffectCamRender02.enabled = false;
+        PostEffectMainCam.enabled = false;
+    }
+
     public void CamTranslation()
     {
-
         RandomSpeed = Random.Range(1f, 3f);
         AC_Cam.speed = RandomSpeed;
         AC_Cam.SetBool("Melt", false);

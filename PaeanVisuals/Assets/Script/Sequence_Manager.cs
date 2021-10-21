@@ -33,9 +33,9 @@ public class Sequence_Manager : MonoBehaviour
         Started = true;
         PHASE = "PHASE01";
         SetAllCommandOff();
+        Cam.disablePostEffectFin();
         StartCoroutine(SequenceLauncher());
     }
-
 
     void Update()
     {
@@ -47,8 +47,6 @@ public class Sequence_Manager : MonoBehaviour
         if (SpeedValue> 4){
             SpeedValue = 1;
         }
-
-
     }
 
     public void NextSequence()
@@ -63,6 +61,7 @@ public class Sequence_Manager : MonoBehaviour
             Compo.LayerNameToAssign = "Univ01";
             Compo.AssignLayerAllCam();
             PHASE = "PHASE03";
+            Cam.EnablePostEffectFin();
             //PHASE = "PHASE03";
            // Compo.AddUnivers();
             Compo.AddUnivers3();

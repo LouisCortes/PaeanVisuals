@@ -185,11 +185,10 @@ public class Composition_Manager : MonoBehaviour
             LayerNameToAssign = "Univ01";
             LY = LayerMask.GetMask(LayerNameToAssign);
             LY_TYPO = LayerMask.GetMask(LayerNameToAssign, "TYPO");
-            PullUniversPhase03[3].SetActive(true);
-           
+            PullUniversPhase03[3].SetActive(true);           
         }else if (NumberOfUnivers == 5)
         {
-            LayerNameToAssign = "";
+            LayerNameToAssign = "TransparentFX";
             LY = LayerMask.GetMask(LayerNameToAssign);
             LY_TYPO = LayerMask.GetMask(LayerNameToAssign, "TYPO");
             PullUniversPhase03[4].SetActive(true);
@@ -201,6 +200,7 @@ public class Composition_Manager : MonoBehaviour
     {
         Debug.Log("AssignLayerAllCam");
         LY = LayerMask.GetMask(LayerNameToAssign);
+        LY_TYPO = LayerMask.GetMask(LayerNameToAssign, "TYPO");
         CM.AB.cullingMask = LY;
         CM.A.cullingMask = LY;
         CM.A0[0].cullingMask = LY_TYPO; CM.A0[1].cullingMask = LY_TYPO;
