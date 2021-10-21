@@ -99,7 +99,7 @@ public class Composition_Manager : MonoBehaviour
         if (Sequence.PHASE == "PHASE01"){
             Paean.SetActive(true);
         }
-        else if (Sequence.PHASE == "PHASE02"){
+        else if (Sequence.PHASE == "PHASE02" || Sequence.PHASE == "PHASE03"){
             Carte.SetActive(true);
         }
     }
@@ -144,24 +144,23 @@ public class Composition_Manager : MonoBehaviour
             LY_TYPO = LayerMask.GetMask(LayerNameToAssign, "TYPO");
             PullUniversPhase02[0].SetActive(true);
         }else if (NumberOfUnivers == 2){
-            LayerNameToAssign = "Cave";
+            LayerNameToAssign = "Univ02";
             LY = LayerMask.GetMask(LayerNameToAssign);
             LY_TYPO = LayerMask.GetMask(LayerNameToAssign, "TYPO");
             PullUniversPhase02[1].SetActive(true);
         }else if (NumberOfUnivers == 3){
-            LayerNameToAssign = "Kinect";
+            LayerNameToAssign = "Cave";
             LY = LayerMask.GetMask(LayerNameToAssign);
             LY_TYPO = LayerMask.GetMask(LayerNameToAssign, "TYPO");
             PullUniversPhase02[2].SetActive(true);
         } else if (NumberOfUnivers == 4){
-            LayerNameToAssign = "Univ03";
+            LayerNameToAssign = "Kinect";
             LY = LayerMask.GetMask(LayerNameToAssign);
             LY_TYPO = LayerMask.GetMask(LayerNameToAssign, "TYPO");
             PullUniversPhase02[3].SetActive(true);
             NumberOfUnivers = 0;
         }
     }
-
     public void AddUnivers3()
     {
         if (Sequence.NouvelUnivers){
@@ -173,7 +172,7 @@ public class Composition_Manager : MonoBehaviour
             LY_TYPO = LayerMask.GetMask(LayerNameToAssign, "TYPO");
             PullUniversPhase03[0].SetActive(true);
         }else if (NumberOfUnivers == 2){
-            LayerNameToAssign = "Univ02";
+            LayerNameToAssign = "Liquide";
             LY = LayerMask.GetMask(LayerNameToAssign);
             LY_TYPO = LayerMask.GetMask(LayerNameToAssign, "TYPO");
             PullUniversPhase03[1].SetActive(true);
@@ -183,14 +182,20 @@ public class Composition_Manager : MonoBehaviour
             LY_TYPO = LayerMask.GetMask(LayerNameToAssign, "TYPO");
             PullUniversPhase03[2].SetActive(true);
         } else if (NumberOfUnivers == 4){
-            LayerNameToAssign = "Univ04";
+            LayerNameToAssign = "Univ01";
             LY = LayerMask.GetMask(LayerNameToAssign);
             LY_TYPO = LayerMask.GetMask(LayerNameToAssign, "TYPO");
             PullUniversPhase03[3].SetActive(true);
+           
+        }else if (NumberOfUnivers == 5)
+        {
+            LayerNameToAssign = "";
+            LY = LayerMask.GetMask(LayerNameToAssign);
+            LY_TYPO = LayerMask.GetMask(LayerNameToAssign, "TYPO");
+            PullUniversPhase03[4].SetActive(true);
             NumberOfUnivers = 0;
         }
     }
-
 
     public void AssignLayerAllCam()
     {
@@ -198,16 +203,15 @@ public class Composition_Manager : MonoBehaviour
         LY = LayerMask.GetMask(LayerNameToAssign);
         CM.AB.cullingMask = LY;
         CM.A.cullingMask = LY;
-        CM.A0[0].cullingMask = LY; CM.A0[1].cullingMask = LY;
+        CM.A0[0].cullingMask = LY_TYPO; CM.A0[1].cullingMask = LY_TYPO;
         CM.A10[0].cullingMask = LY; CM.A10[1].cullingMask = LY;
         CM.A1_0[0].cullingMask = LY; CM.A1_0[1].cullingMask = LY; CM.A1_0[2].cullingMask = LY; CM.A2_0[0].cullingMask = LY; CM.A2_0[1].cullingMask = LY; CM.A2_0[2].cullingMask = LY;
 
         CM.B10[0].cullingMask = LY; CM.B10[1].cullingMask = LY;
         CM.B.cullingMask = LY;
-        CM.B0[0].cullingMask = LY; CM.B0[1].cullingMask = LY;
+        CM.B0[0].cullingMask = LY_TYPO; CM.B0[1].cullingMask = LY;
         CM.B1_0[0].cullingMask = LY; CM.B1_0[1].cullingMask = LY; CM.B1_0[2].cullingMask = LY; CM.B2_0[0].cullingMask = LY; CM.B2_0[1].cullingMask = LY; CM.B2_0[2].cullingMask = LY;
     }
-
 
     public void AnimCam()
     {
@@ -224,7 +228,6 @@ public class Composition_Manager : MonoBehaviour
         }
     }
     
-
     /////////////////////////////////////////SLICED
     public void SlicedScreenA()
         {
@@ -527,7 +530,7 @@ public class Composition_Manager : MonoBehaviour
                 if (Sequence.AssignCurrentUnivers == true) {
                 CM.A0[0].cullingMask = LY_TYPO;
             }
-                CM.A0[1].enabled = true;
+                CM.A0[0].enabled = true;
                 A0[0].SetActive(true);
             } else if (R == 1) {
                 if (Sequence.AssignCurrentUnivers == true) {
