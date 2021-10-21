@@ -44,10 +44,8 @@ Shader "Unlit/aberation_bleu"
             {
 			  float2 uv = i.uv;
 			float t1 = tex2D(_MainTex, uv);
-			float t2 = 0.;
-			for (int i = -10; i <= 10; i++) {
-				t2 =max(t2, tex2D(_MainTex, uv + float2(i*0.01, 0.)).x)/abs(i+0.01);
-			}
+			float t2 = tex2D(_MainTex, uv+float2(0.005,0.));
+			
                 return float4(t1,t1,max(t1,t2),0.);
             }
             ENDCG

@@ -201,8 +201,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1254313939}
-  m_LocalRotation: {x: 0.0060084416, y: 0.6964032, z: 0.005873628, w: -0.71760154}
-  m_LocalPosition: {x: 7.43, y: 0.3, z: -3.1679974}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.97, y: 0.3, z: -7.47}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -220,7 +220,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c73a3fb31da4e343a423732aa487c7d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  effect: {fileID: 2100000, guid: 0dae4aff64aa74d45963280067b54062, type: 2}
+  effect: {fileID: 2100000, guid: 4fb95db761b088043828c07a6493f015, type: 2}
 --- !u!114 &1254313944
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -228,7 +228,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1254313939}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5c73a3fb31da4e343a423732aa487c7d, type: 3}
   m_Name: 
@@ -288,6 +288,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1562357895328701726, guid: eaa899ab03972a04585d476945929f5d,
+        type: 3}
+      propertyPath: _pointSize
+      value: 0.015
+      objectReference: {fileID: 0}
     - target: {fileID: 4547043931371059897, guid: eaa899ab03972a04585d476945929f5d,
         type: 3}
       propertyPath: m_RootOrder
@@ -343,6 +348,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6680350328626399828, guid: eaa899ab03972a04585d476945929f5d,
+        type: 3}
+      propertyPath: _pointSize
+      value: 0.015
+      objectReference: {fileID: 0}
+    - target: {fileID: 6680350328626399829, guid: eaa899ab03972a04585d476945929f5d,
+        type: 3}
+      propertyPath: _computeShader
+      value: 
+      objectReference: {fileID: 7200000, guid: 0a482aa870eee9d49847467acad3c2b7, type: 3}
+    - target: {fileID: 6680350329107807702, guid: eaa899ab03972a04585d476945929f5d,
+        type: 3}
+      propertyPath: _computeShader
+      value: 
+      objectReference: {fileID: 7200000, guid: 40e6aa3ced3a64849bd672b85d02ee6b, type: 3}
     - target: {fileID: 8146578520128599645, guid: eaa899ab03972a04585d476945929f5d,
         type: 3}
       propertyPath: m_Name

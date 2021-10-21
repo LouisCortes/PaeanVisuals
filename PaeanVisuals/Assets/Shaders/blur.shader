@@ -53,7 +53,7 @@ Shader "Unlit/blur"
 			}
 			c /= 64.;
 
-                return float4(c,1.);
+                return float4(c,0.);
             }
             ENDCG
         }

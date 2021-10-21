@@ -45,7 +45,12 @@ Shader "Unlit/posteffectluquide$"
 				o.viewDir = normalize(UnityWorldSpaceViewDir(o.worldPos));
                 return o;
             }
-
+			float li(float3 r) {
+				float time = _Time.y;
+				r.xz = mul(r.xz, float2x2(cos(time), sin(time), -sin(time), cos(time)));
+				float3 sp = normalize(r* float3(1., 0., 1.));
+				return step(0.45,distance(0.5, frac(sp.x*1.5+sp.z)));
+			}
             fixed4 frag (v2f i) : SV_Target
             {
 				float2 uv = i.uv;
@@ -57,14 +62,16 @@ Shader "Unlit/posteffectluquide$"
 						c += tex2D(_MainTex, uv+float2(i,j)*0.003).xyz;
 					}
 				c /= 64.;
-				float m = smoothstep(0., 0.02, max(col.x,col.y));
+				float m = smoothstep(0., 0.01, max(col.x,col.y));
 				float3 n = (c - 0.5)*2.;
-				float3 refl= reflect(n, float3(0.,0.,1.));
-				float4 val = UNITY_SAMPLE_TEXCUBE(unity_SpecCube0, n);
+				float3 refl= reflect(n, float3(uv,1.));
+				//float4 val = UNITY_SAMPLE_TEXCUBE(unity_SpecCube0, n);
 				float fres = dot(n, float3(0., 0., -1.));
                 
 				float4 ref = pow(smoothstep(0.,0.7,texCUBE(_ref, refl)),float4(1.6,1.6,1.6,1.));
-				return float4(lerp(col, val+ref, m));
+				ref += float4(li(refl)*float3(0., 0., 1.),1.)*0.3;
+				//float4 fond = lerp(col, float4(0., 0., 1., 1.), li(refl));
+				return float4(lerp(col, ref, m));
             }
             ENDCG
         }
