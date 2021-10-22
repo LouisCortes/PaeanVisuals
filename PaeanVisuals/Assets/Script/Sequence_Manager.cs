@@ -81,12 +81,10 @@ public class Sequence_Manager : MonoBehaviour
             AC_Timer.speed =  SpeedValue;
         }
 
-        if (PP)
+      /*  if (PP)
         {
             Cam.ActivePP01();
-        }
-
-
+        }*/
         if (AssignCurrentUnivers)
         {
             if (PHASE == "PHASE01"){
