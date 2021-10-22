@@ -17,6 +17,6 @@ public class ReceptionRock : MonoBehaviour
     {
     rock.SetTexture("_fluid", fluid.texture1);
         rock.SetFloat("_liquide", osc.liquide);
-        rock.SetFloat("_audio1", osc.low * osc.fac2 * osc.address01);
+        rock.SetFloat("_audio1", osc.audio2*osc.low2 * osc.fac2 * osc.address01);
     }
 }

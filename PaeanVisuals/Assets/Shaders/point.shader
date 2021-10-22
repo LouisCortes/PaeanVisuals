@@ -51,7 +51,7 @@ Shader "Unlit/point"
 			
 			float	pt = tex2D(_MainTex, i.uv).x;
 			   
-			   float p1 = smoothstep(0.2,1.,pt)*smoothstep(0.3,0.7,ba);
+			   float p1 = smoothstep(0.2,1.,pt)*smoothstep(0.4,0.6,ba);
 			
                 return float4(p1,p1,p1,0.);
             }
