@@ -58,7 +58,7 @@ public class Sequence_Manager : MonoBehaviour
             PHASE = "PHASE02";
             Compo.AddUnivers2();
         }else if(PHASE == "PHASE02"){ //// Passage Set 03
-            Compo.LayerNameToAssign = "Univ01";
+            Compo.LayerNameToAssign = "Water";
             Compo.AssignLayerAllCam();
             PHASE = "PHASE03";
             Cam.EnablePostEffectFin();

@@ -50,7 +50,7 @@ public class Composition_Manager : MonoBehaviour
 
     void Start()
     {
-        LiquideBackground.SetActive(true);
+        LiquideBackground.SetActive(false);
         CleanAllUnivers();
         Blink = false;
         AssignBlink = false;
@@ -190,7 +190,8 @@ public class Composition_Manager : MonoBehaviour
             LY_TYPO = LayerMask.GetMask(LayerNameToAssign, "TYPO");
             PullUniversPhase03[2].SetActive(true);
         } else if (NumberOfUnivers == 4){
-            LiquideBackground.SetActive(true);         
+            PullUniversPhase03[3].SetActive(true);
+            //LiquideBackground.SetActive(true);         
         }else if (NumberOfUnivers == 5)
         {
             LayerNameToAssign = "TransparentFX";
@@ -648,8 +649,8 @@ public class Composition_Manager : MonoBehaviour
     {
         NumberOfUnivers = 1;
         PullUniversPhase01[0].SetActive(false); PullUniversPhase01[1].SetActive(false); PullUniversPhase01[2].SetActive(false);
-        PullUniversPhase02[0].SetActive(false); PullUniversPhase02[1].SetActive(false); PullUniversPhase02[2].SetActive(false); PullUniversPhase02[3].SetActive(false);
-        PullUniversPhase03[0].SetActive(false); PullUniversPhase03[1].SetActive(false); PullUniversPhase03[2].SetActive(false);
+        PullUniversPhase02[0].SetActive(false); PullUniversPhase02[1].SetActive(false); PullUniversPhase02[2].SetActive(false); PullUniversPhase02[3].SetActive(false); PullUniversPhase02[4].SetActive(false);
+        PullUniversPhase03[0].SetActive(false); PullUniversPhase03[1].SetActive(false); PullUniversPhase03[2].SetActive(false); PullUniversPhase03[3].SetActive(false);
         UI_GPS.SetActive(false);
         Paean.SetActive(false);
         Carte.SetActive(false);
