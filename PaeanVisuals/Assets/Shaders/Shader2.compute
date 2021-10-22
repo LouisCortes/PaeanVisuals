@@ -15,6 +15,7 @@ float spectrum3;*/
 float audio;
 float audio1;
 float audio2;
+float audio2b;
 float audio3;
 float high;
 float rotationv;
@@ -141,7 +142,7 @@ void CSMain (uint2 id : SV_DispatchThreadID)
 	float se = (res.y*uc.x + uc.y);
 	se += time;
 	uv.x *= res.x / res.y;
-	float mv =  0.5+(noise.SampleLevel(_LinearRepeat, float2(0., time), 0.).x*audio2+audio1)*2.5;
+	float mv =  0.5+(noise.SampleLevel(_LinearRepeat, float2(0., time), 0.).x*audio2b+audio1)*2.5;
 	float color = raytrace(uv,se,mv);
 	float prevColor = reader.SampleLevel(_PointClamp, uc + 0.5 / res, 0).a;
 	float result2 = max(color, prevColor*0.016);
