@@ -365,6 +365,96 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 180}
+--- !u!1001 &877586317
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: -3955353439144410109, guid: fcf1b4b04c8da304d9bb3f6e95b64432,
+        type: 3}
+      propertyPath: _pointSize
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -364223573239433514, guid: fcf1b4b04c8da304d9bb3f6e95b64432,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: -364223573239433514, guid: fcf1b4b04c8da304d9bb3f6e95b64432,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.16415405
+      objectReference: {fileID: 0}
+    - target: {fileID: -364223573239433514, guid: fcf1b4b04c8da304d9bb3f6e95b64432,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.16415405
+      objectReference: {fileID: 0}
+    - target: {fileID: -364223573239433514, guid: fcf1b4b04c8da304d9bb3f6e95b64432,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.16415405
+      objectReference: {fileID: 0}
+    - target: {fileID: -364223573239433514, guid: fcf1b4b04c8da304d9bb3f6e95b64432,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.76
+      objectReference: {fileID: 0}
+    - target: {fileID: -364223573239433514, guid: fcf1b4b04c8da304d9bb3f6e95b64432,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.7
+      objectReference: {fileID: 0}
+    - target: {fileID: -364223573239433514, guid: fcf1b4b04c8da304d9bb3f6e95b64432,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.96
+      objectReference: {fileID: 0}
+    - target: {fileID: -364223573239433514, guid: fcf1b4b04c8da304d9bb3f6e95b64432,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: -364223573239433514, guid: fcf1b4b04c8da304d9bb3f6e95b64432,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -364223573239433514, guid: fcf1b4b04c8da304d9bb3f6e95b64432,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -364223573239433514, guid: fcf1b4b04c8da304d9bb3f6e95b64432,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: -364223573239433514, guid: fcf1b4b04c8da304d9bb3f6e95b64432,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -364223573239433514, guid: fcf1b4b04c8da304d9bb3f6e95b64432,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -364223573239433514, guid: fcf1b4b04c8da304d9bb3f6e95b64432,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: -90
+      objectReference: {fileID: 0}
+    - target: {fileID: 8980549144392899874, guid: fcf1b4b04c8da304d9bb3f6e95b64432,
+        type: 3}
+      propertyPath: m_Name
+      value: Bimaristan_Halles_Blanc 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: -4216948427090074523, guid: fcf1b4b04c8da304d9bb3f6e95b64432,
+    type: 3}
 --- !u!850595691 &1273632884
 LightingSettings:
   m_ObjectHideFlags: 0
@@ -456,6 +546,80 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &1503977169
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 6488424358636975409, guid: f4d5c9b770beb6448b22d75fc2bb52d0,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6488424358636975409, guid: f4d5c9b770beb6448b22d75fc2bb52d0,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.76
+      objectReference: {fileID: 0}
+    - target: {fileID: 6488424358636975409, guid: f4d5c9b770beb6448b22d75fc2bb52d0,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 6488424358636975409, guid: f4d5c9b770beb6448b22d75fc2bb52d0,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.96
+      objectReference: {fileID: 0}
+    - target: {fileID: 6488424358636975409, guid: f4d5c9b770beb6448b22d75fc2bb52d0,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 6488424358636975409, guid: f4d5c9b770beb6448b22d75fc2bb52d0,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6488424358636975409, guid: f4d5c9b770beb6448b22d75fc2bb52d0,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6488424358636975409, guid: f4d5c9b770beb6448b22d75fc2bb52d0,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 6488424358636975409, guid: f4d5c9b770beb6448b22d75fc2bb52d0,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6488424358636975409, guid: f4d5c9b770beb6448b22d75fc2bb52d0,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6488424358636975409, guid: f4d5c9b770beb6448b22d75fc2bb52d0,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: -90
+      objectReference: {fileID: 0}
+    - target: {fileID: 6654304677436006085, guid: f4d5c9b770beb6448b22d75fc2bb52d0,
+        type: 3}
+      propertyPath: m_Name
+      value: 02_Bimaristan_Halles_Blanc
+      objectReference: {fileID: 0}
+    - target: {fileID: 6654304677436006085, guid: f4d5c9b770beb6448b22d75fc2bb52d0,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: f4d5c9b770beb6448b22d75fc2bb52d0, type: 3}
 --- !u!1001 &1827415015
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -557,7 +721,7 @@ PrefabInstance:
     - target: {fileID: 1025428954560024864, guid: 8a9b3c1919edc2e4db23d820450efb97,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1025428954560024865, guid: 8a9b3c1919edc2e4db23d820450efb97,
         type: 3}

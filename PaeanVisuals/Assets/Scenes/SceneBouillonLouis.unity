@@ -827,7 +827,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!33 &1763530285
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -5896,21 +5896,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5211556523736710820, guid: 49aa3c296b0f9954883fd1a085013e67,
-        type: 3}
-      propertyPath: fluid
-      value: 
-      objectReference: {fileID: 902840683}
     - target: {fileID: 5211556523736710843, guid: 49aa3c296b0f9954883fd1a085013e67,
         type: 3}
       propertyPath: m_Name
       value: Luiquide2d
       objectReference: {fileID: 0}
-    - target: {fileID: 5211556523736710843, guid: 49aa3c296b0f9954883fd1a085013e67,
+    - target: {fileID: 6697964177515044868, guid: 49aa3c296b0f9954883fd1a085013e67,
         type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
+      propertyPath: osc
+      value: 
+      objectReference: {fileID: 1775920356}
+    - target: {fileID: 6697964177515044868, guid: 49aa3c296b0f9954883fd1a085013e67,
+        type: 3}
+      propertyPath: fluid
+      value: 
+      objectReference: {fileID: 902840683}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 49aa3c296b0f9954883fd1a085013e67, type: 3}
 --- !u!1001 &6293013379972391118

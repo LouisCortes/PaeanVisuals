@@ -1,0 +1,43 @@
+﻿#pragma kernel CSMain
+
+RWTexture2D<float4> reader;
+//Texture2D<float4> texture0;
+//Texture2D<float4> texture1;
+Texture2D<float4> texf;
+Texture2D<float4> noise;
+//TextureCube<float4> ref;
+SamplerState _LinearRepeat;
+float _time;
+float liquide;
+float audio1;
+float audio2;
+float audio3;
+float audio4;
+float regaudio2;
+float zoom;
+int _rx;
+int _ry;
+float rd(float t) { return frac(sin(dot(t, 45.))*7845.236); }
+
+[numthreads(8,8,1)]
+void CSMain (uint2 id : SV_DispatchThreadID) 
+{
+	//float prevColor = reader.SampleLevel(_PointClamp, uc + 0.5 / res, 0).a;
+	float2 f = float2(id.x,id.y);
+	float2 res=float2(_rx,_ry); 
+	float2 uv = ((f / res));
+	float c = 0.;
+	float2 uc = (uv - 0.5)*(0.002+0.005*audio1);
+	float2 mv = float2(rd(_time), rd(_time + 485.)) - 0.5;
+
+	for (int i = 0; i < 40; i++) {
+		float d = i / 40.;
+		uv -= uc;
+		c =( 1.-texf.SampleLevel(_LinearRepeat, uv + 0.5 / res, 0).x)+ (noise.SampleLevel(_LinearRepeat, uv*5. + mv, 0).x - 0.5)*0.5;
+		if (d > dot(c, 1.)) { break; }
+	}
+	c = max(c, pow(noise.SampleLevel(_LinearRepeat, uv*5. + mv, 0).x,5.));
+	//float r3  = texf.SampleLevel(_LinearRepeat, uv + 0.5 / res, 0).x;
+	reader[id] = float4(c*float3(0.,0.,1.),1.);
+
+}
