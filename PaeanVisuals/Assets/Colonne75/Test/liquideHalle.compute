@@ -69,7 +69,7 @@ void Main(uint id : SV_DispatchThreadID)
 	
 	p.zy = mul(p.zy, rot(tt*0.1));
 	//n.zy = mul(n.zy, rot(tt*0.1));
-	p.y += lerp(-7., 0., liquide);
-	p += -n * (1. - liquide);
+	//p.y += lerp(-7., 0., liquide);
+	p += -n * (1. - liquide)*40.+b2*(1.-liquide)*10.;
     OutputBuffer[id] = float4(p, asfloat(PcxEncodeColor(smoothstep(0.3, 0.7, c.y)*liquide)));
 }

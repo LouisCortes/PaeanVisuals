@@ -11,7 +11,9 @@ SamplerState _LinearRepeat;
 CBUFFER_START(Params)
     float audio1;
 float audio2;
+float audio3;
 float liquide;
+float sonar;
 	float wpx;
 	float wpy;
 	float wpz;
@@ -56,6 +58,8 @@ void Main(uint id : SV_DispatchThreadID)
 	p += n * max(audio1* (pow(noise.SampleLevel(_LinearRepeat, float2(time*0.02, time*2.), 0.).x, 5.)), audio2)*lerp(bs,b3,liquide);
 
 	//float c1 =smoothstep(0.3,0.7,abs(b1.x) + abs(b1.y) + abs(b1.z));
+	float ts = lerp(smoothstep(0.4,0.6,noise.SampleLevel(_LinearRepeat, pp.z*0.05 - time *( 0.1+audio3), 0.).x),
+		1., sonar); 
 
-    OutputBuffer[id] = float4(p, asfloat(PcxEncodeColor(1.)));
+    OutputBuffer[id] = float4(p, asfloat(PcxEncodeColor(ts)));
 }
