@@ -543,7 +543,7 @@ PrefabInstance:
       objectReference: {fileID: 56440980}
     - target: {fileID: 1325309917, guid: 8a9b3c1919edc2e4db23d820450efb97, type: 3}
       propertyPath: audio1
-      value: 0.214
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1325309917, guid: 8a9b3c1919edc2e4db23d820450efb97, type: 3}
       propertyPath: liquide

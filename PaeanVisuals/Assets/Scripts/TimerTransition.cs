@@ -46,7 +46,7 @@ public class TimerTransition : MonoBehaviour
         for (; ; )
         {
             DecreaseMinute();
-            yield return new WaitForSeconds(3);
+            yield return new WaitForSeconds(60);
         }
     }
 }
