@@ -62,10 +62,14 @@ void Main(uint id : SV_DispatchThreadID)
 	
 	float3 b1 = float3(no(pp*1.6 + tt) , no(pp*1.6- tt), no(pp*1.6 + float3(tt, -tt, tt)) );
 	float3 b2 = float3(no(pp*2. + tt * 3.) , no(pp*2. - tt * 3.) , no(pp*2. + float3(tt, -tt, tt)*3.));
-	float3 b3 =pow( b1,4.)*0.25 + pow(b2,4.)*0.025;
+	float ff = 0.25 + 0.2*audio2;
+	float3 b3 =pow( b1,4.)*ff + pow(b2,4.)*0.1*ff;
 	p += n * b3;
 	//float3 refl = reflect(n, float3(0., 0., 1.));
 	//p.zy = mul(p.zy, rot(tt*0.1));
 	//n.zy = mul(n.zy, rot(tt*0.1));
-    OutputBuffer[id] = float4(p, asfloat(PcxEncodeColor(smoothstep(0.3,0.7,c.y)));
+	p.y += lerp(-7., 0., liquide);
+	p += -n * (1. - liquide);
+    OutputBuffer[id] = float4(p, asfloat(PcxEncodeColor(smoothstep(0.3, 0.7, c.y)*liquide)));
 }
+

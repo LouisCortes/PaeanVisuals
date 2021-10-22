@@ -11,6 +11,9 @@ float _time;
 float liquide;
 float audio1;
 float audio2;
+float audio3;
+float audio4;
+float regaudio2;
 float zoom;
 int _rx;
 int _ry;
@@ -55,7 +58,7 @@ void CSMain (uint2 id : SV_DispatchThreadID)
 	float3 r = normalize(float3(uv, 1.));
 	r.yz = mul(r.yz,rot(0.8));
 	float dd = 0.; float dm = 100.;
-	float mv = 0.5+noise.SampleLevel(_LinearRepeat, float2(0., _time), 0.).x*audio1*2.; 
+	float mv = 0.5+max(noise.SampleLevel(_LinearRepeat, float2(0., _time), 0.).x*audio3,audio1)*2.; 
 	for (int i = 0; i < 100; i++) {
 
 		float d = map(p, mv);
@@ -74,7 +77,9 @@ void CSMain (uint2 id : SV_DispatchThreadID)
 	float dao = 0.75;
 	float ao = clamp(map(p + n * dao, mv) / dao, 0., 1.);
 	fres *= ao;
-	float r1 = smoothstep(-0.05,0.8,pow(fres,lerp(0.7, noise.SampleLevel(_LinearRepeat, float2(0.5, _time), 0.).x*2.,audio2))); 
+	float r1 = smoothstep(-0.05,0.8,pow(fres,lerp(
+		lerp(0.7, noise.SampleLevel(_LinearRepeat, float2(0.5, _time), 0.).x*2.,audio4),
+		clamp((1.-audio2),0.01,1.)*1.5, regaudio2)));
 	float3 r3 = ref.SampleLevel(_LinearRepeat, n, 0).xyz;
 	reader[id] = float4(r3+r1,1.);
 

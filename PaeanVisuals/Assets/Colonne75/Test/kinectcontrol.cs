@@ -16,7 +16,7 @@ public class kinectcontrol : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        nuage.SetFloat("_liquide", osc.liquide);
+        nuage.SetFloat("_liquide", osc.liquide2);
         nuage.SetFloat("_audio1", osc.audio1);
         //nuage.SetFloat("_audio2", osc.mid * osc.address02 * osc.audio2 * osc.fac2);
         nuage.SetFloat("_audio2", osc.address01 *audio2);
