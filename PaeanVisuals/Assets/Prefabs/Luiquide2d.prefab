@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 5211556523736710823}
   - component: {fileID: 5211556523736710822}
   - component: {fileID: 5211556523736710821}
-  - component: {fileID: 5211556523736710820}
+  - component: {fileID: 6697964177515044868}
   m_Layer: 0
   m_Name: Luiquide2d
   m_TagString: Untagged
@@ -97,7 +97,7 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
---- !u!114 &5211556523736710820
+--- !u!114 &6697964177515044868
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -106,8 +106,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 5211556523736710843}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 24207578e2279ff46bcecc4d6f0f3b23, type: 3}
+  m_Script: {fileID: 11500000, guid: ab4b8761e4295944cb9b8d2372eff878, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  compute_shader: {fileID: 7200000, guid: 0b1c1abb821ad004b9056a43265b2a2e, type: 3}
+  img1: {fileID: 5211556523736710843}
   fluid: {fileID: 0}
-  mat: {fileID: 2100000, guid: 6aa72037dd11fb64fb9ba2f6a1e56a72, type: 2}
+  noise: {fileID: 2800000, guid: b85f53c90c6c33a40a031004dd0400b4, type: 3}
+  osc: {fileID: 0}
+  liquide: 0
+  audio: 0

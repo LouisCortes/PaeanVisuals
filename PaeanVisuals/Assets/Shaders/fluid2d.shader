@@ -58,7 +58,7 @@ Shader "Unlit/luid2d"
 			n /= 66.;
 			n = clamp(n, 0., 1.);
                float col = pow(1.-c,2.);
-			   col = ov(col, n);
+			   col = ov(col, lerp(n,0.8,0.5));
                 return col*float4(0.,0.,1.,1.);
             }
             ENDCG
