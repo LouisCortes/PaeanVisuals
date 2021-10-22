@@ -19,6 +19,7 @@ MonoBehaviour:
   _audio2: 0
   _liquide: 0
   noise: {fileID: 2800000, guid: 6c1bdc3340cbe584e996b350abd28c93, type: 3}
+  osc: {fileID: 0}
   obj: {fileID: 3158693167397919778}
 --- !u!1 &6301872260903572052
 GameObject:
@@ -89,6 +90,7 @@ MonoBehaviour:
   _audio2: 0
   _liquide: 0
   noise: {fileID: 2800000, guid: 6c1bdc3340cbe584e996b350abd28c93, type: 3}
+  osc: {fileID: 0}
   obj: {fileID: 6301872260903572052}
 --- !u!1 &8849457080477478464
 GameObject:

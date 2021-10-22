@@ -63,10 +63,12 @@ void Main(uint id : SV_DispatchThreadID)
 
 	float3 b1 = float3(no(pp*1.6 + tt), no(pp*1.6 - tt), no(pp*1.6 + float3(tt, -tt, tt)));
 	float3 b2 = float3(no(pp*8. + tt * 3.), no(pp*8. - tt * 3.), no(pp*8. + float3(tt, -tt, tt)*3.));
-	float3 b3 = pow(b1, 4.)*0.25 + pow(b2, 4.)*0.025;
+	float ff = 0.25 + 0.2*audio2;
+	float3 b3 = pow(b1, 4.)*ff + pow(b2, 4.)*0.1*ff;
 	p += n * b3;
 
 	p.zy = mul(p.zy, rot(tt*0.1));
 	n.zy = mul(n.zy, rot(tt*0.1));
+
     OutputBuffer[id] = float4(p, asfloat(PcxEncodeColor(n*0.5+0.5)));
 }

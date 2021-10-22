@@ -16,35 +16,46 @@ using UnityEngine;
 		public string address1 = "/f7/f1";
 		public string address2 = "/1/1";
         public string address3 = "/1/1";
-        public string aneutre = "/1/1";
+        public string amouv = "/1/1";
         public string aaudio1 = "/1/1";
         public string arotation = "/1/1";
         public string azoom = "/1/1";
         public string ableu = "/1/1";
         public string acamer = "/1/1";
         public string aliquide = "/liquide";
-        public string aaudio2 = "/audio2";
+    public string aliquide2 = "/liquide2";
+    public string aliquide3 = "/liquide3";
+    public string aaudio2 = "/audio2";
         public string alow = "/low";
         public string amid = "/mid";
         public string ahigh = "/high";
-        public string a2fac = "/2fac";
+    public string alow2 = "/low2";
+    public string amid2 = "/mid2";
+    public string ahigh2 = "/high2";
+    public string a2fac = "/2fac";
         float _incomingFloat;
         private int Nbr_portIn;
         public float address01 ;
         public float address02;
         public float address03;
-        public float neutre;
+        public float mouv;
         public float bleu;
         public float audio1;
         public float rotationv;
         public float zoom;
         public float camer;
     public float liquide;
+    public float liquide2;
+    public float liquide3;
     public float audio2;
     public float low;
     public float mid;
     public float high;
+    public float low2;
+    public float mid2;
+    public float high2;
     public float fac2;
+
     void Start()
 		{
             Nbr_portIn = _oscIn.port;
@@ -68,7 +79,7 @@ using UnityEngine;
             _oscIn.MapFloat(arotation, Event5);
             _oscIn.MapFloat(azoom, Event6);
             _oscIn.MapFloat(ableu, Event7);
-            _oscIn.MapFloat(aneutre, Event8);
+            _oscIn.MapFloat(amouv, Event8);
             _oscIn.MapFloat(acamer, Event9);
             _oscIn.MapFloat(aliquide, Event10);
             _oscIn.MapFloat(aaudio2, Event11);
@@ -76,6 +87,11 @@ using UnityEngine;
             _oscIn.MapFloat(amid, Event13);
             _oscIn.MapFloat(ahigh, Event14);
             _oscIn.MapFloat(a2fac, Event15);
+        _oscIn.MapFloat(aliquide2, Event16);
+        _oscIn.MapFloat(aliquide3, Event17);
+        _oscIn.MapFloat(alow2, Event18);
+        _oscIn.MapFloat(amid2, Event19);
+        _oscIn.MapFloat(ahigh2, Event20);
         // 2) For messages with multiple arguments, route the message using the Map method.
         //_oscIn.Map( address2, OnCusto );
     }
@@ -133,7 +149,7 @@ using UnityEngine;
         }
         void Event8(float value)
         {
-           neutre  = value;
+           mouv  = value;
         }
         void Event9(float value)
         {
@@ -162,6 +178,26 @@ using UnityEngine;
     void Event15(float value)
     {
          fac2 = value;
+    }
+    void Event16(float value)
+    {
+        liquide2 = value;
+    }
+    void Event17(float value)
+    {
+        liquide3 = value;
+    }
+    void Event18(float value)
+    {
+        low2 = value;
+    }
+    void Event19(float value)
+    {
+        mid2 = value;
+    }
+    void Event20(float value)
+    {
+        high2 = value;
     }
     void OnTest2( OscMessage message )
 		{

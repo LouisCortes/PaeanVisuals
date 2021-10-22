@@ -21,6 +21,9 @@ float audio2;
 float low;
 float mid;
 float high;
+float low1;
+float mid1;
+float high1;
 int _rx;
 int _ry;
 float hs(float2 p) { return frac(sin(dot(floor(p), float2(45., 98.)))*7845.23+_time*10.); }
@@ -103,9 +106,9 @@ float getShadow(float3 pos, float3 at, float k, float2 uv) {
 void CSMain (uint2 id : SV_DispatchThreadID) 
 {
 	float s1 = noise.SampleLevel(_LinearRepeat, float2(0., _time), 0.).x;
-	float s1b = s1  * pow(audio1, 2.);
+	float s1b = s1  * pow(audio1, 2.)*low1;
 	float s2 = noise.SampleLevel(_LinearRepeat, float2(0.25, _time), 0.).x;
-	float2 mt = float2(+0.9 + s1b ,(s2 - 0.5)*pow(audio1,2.));
+	float2 mt = float2(+0.9 + s1b ,(s2 - 0.5)*pow(audio1,2.)*mid1);
 	mt += float2(low, mid)*audio2;
 	//float prevColor = reader.SampleLevel(_LinearRepeat, uc + 0.5 / res, 0).a;
 	float2 f = float2(id.x,id.y);
@@ -146,7 +149,7 @@ void CSMain (uint2 id : SV_DispatchThreadID)
 	float r1 = lerp(frl, al, ml);
 	//float3 r3 = ref.SampleLevel(_LinearRepeat, n, 0).xyz; 
 	float po = max(
-		lerp(1.,pow((1.-noise.SampleLevel(_LinearRepeat, float2(0.75, _time), 0.).x),2.)*10.,audio1),
+		lerp(1.,pow((1.-noise.SampleLevel(_LinearRepeat, float2(0.75, _time), 0.).x),2.)*10.,audio1*high1),
 		lerp(1.,clamp(2. - high*10.,0.,1.), audio2));
 	float hh = lerp(hs(f),0.5,lerp(1.,0.5,zoom));
 	float3 h3 = float3(hh, hh, hh);

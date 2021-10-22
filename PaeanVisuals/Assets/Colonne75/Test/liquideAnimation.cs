@@ -11,7 +11,8 @@ public class liquideAnimation : MonoBehaviour
     public float _audio2 = 0;
     public float _liquide = 0;
     public Texture noise;
-   // public fluid_dynamics fluid;
+    public GettingStartedReceiving osc;
+    // public fluid_dynamics fluid;
     ComputeBuffer _pointBuffer;
      public GameObject obj;
     //public GameObject probe;
@@ -39,9 +40,9 @@ public class liquideAnimation : MonoBehaviour
         var time = Application.isPlaying ? Time.time : 0;
 
         var kernel = _computeShader.FindKernel("Main");
-        _computeShader.SetFloat("audio1", _audio1);
-        _computeShader.SetFloat("audio2", _audio2);
-        _computeShader.SetFloat("liquide", _liquide);
+        _computeShader.SetFloat("audio1", _audio1+osc.audio1);
+        _computeShader.SetFloat("audio2", _audio2+osc.audio2+osc.address02+osc.fac2+osc.mid);
+        _computeShader.SetFloat("liquide", _liquide+osc.liquide3);
         _computeShader.SetFloat("wpx", obj.transform.position.x);
         _computeShader.SetFloat("wpy", obj.transform.position.y);
         _computeShader.SetFloat("wpz", obj.transform.position.z);
