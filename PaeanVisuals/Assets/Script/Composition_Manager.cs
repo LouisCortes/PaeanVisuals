@@ -159,7 +159,7 @@ public class Composition_Manager : MonoBehaviour
             LY = LayerMask.GetMask(LayerNameToAssign);
             LY_TYPO = LayerMask.GetMask(LayerNameToAssign, "TYPO");
             PullUniversPhase02[3].SetActive(true);
-            NumberOfUnivers = 0;
+          
         }else if (NumberOfUnivers == 5)
         {
             LayerNameToAssign = "Water";
@@ -189,17 +189,23 @@ public class Composition_Manager : MonoBehaviour
             LY = LayerMask.GetMask(LayerNameToAssign);
             LY_TYPO = LayerMask.GetMask(LayerNameToAssign, "TYPO");
             PullUniversPhase03[2].SetActive(true);
-        } else if (NumberOfUnivers == 4){
-            PullUniversPhase03[3].SetActive(true);
-            //LiquideBackground.SetActive(true);         
-        }else if (NumberOfUnivers == 5)
+        }else if (NumberOfUnivers == 4){
+            LayerNameToAssign = "TransparentFX";
+            LY = LayerMask.GetMask(LayerNameToAssign);
+            LY_TYPO = LayerMask.GetMask(LayerNameToAssign, "TYPO");
+            PullUniversPhase03[4].SetActive(true);
+            NumberOfUnivers = 0;
+            /* PullUniversPhase03[3].SetActive(true);
+            //LiquideBackground.SetActive(true);     */
+        }
+       /* else if (NumberOfUnivers == 5)
         {
             LayerNameToAssign = "TransparentFX";
             LY = LayerMask.GetMask(LayerNameToAssign);
             LY_TYPO = LayerMask.GetMask(LayerNameToAssign, "TYPO");
             PullUniversPhase03[4].SetActive(true);
             NumberOfUnivers = 0;
-        }
+        }*/
     }
 
     public void AssignLayerAllCam()
