@@ -3,6 +3,7 @@ Shader "Unlit/posteffectluquide$"
     Properties
     {
         _MainTex ("Texture", 2D) = "white" {}
+		_noise("_noise", 2D) = "white" {}
 	    _ref("ref", Cube) = "defaulttexture" {}
     }
     SubShader
@@ -34,6 +35,7 @@ Shader "Unlit/posteffectluquide$"
             };
 
             sampler2D _MainTex;
+			sampler2D _noise;
             float4 _MainTex_ST;
 			samplerCUBE _ref;
             v2f vert (appdata v)
@@ -71,7 +73,7 @@ Shader "Unlit/posteffectluquide$"
 				float4 ref = pow(smoothstep(0.,0.7,texCUBE(_ref, refl)),float4(1.6,1.6,1.6,1.));
 				ref += float4(li(refl)*float3(0., 0., 1.),1.)*0.3;
 				//float4 fond = lerp(col, float4(0., 0., 1., 1.), li(refl));
-				return float4(lerp(col, ref, m));
+				return float4(lerp(col+smoothstep(0.7,0.75,tex2D(_noise,float2(0.5,_Time.y*0.5)).x)*float4(0.,0.,1.,1.), ref, m));
             }
             ENDCG
         }
