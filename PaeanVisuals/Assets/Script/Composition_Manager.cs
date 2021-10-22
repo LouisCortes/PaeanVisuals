@@ -39,7 +39,7 @@ public class Composition_Manager : MonoBehaviour
     public Text CoordE;
     private long N = 84814453125;
     private long E = 347232341766357;
-
+    public GameObject LiquideBackground;
     public GameObject Fluide;
 
     public int NumberOfUnivers;
@@ -50,6 +50,7 @@ public class Composition_Manager : MonoBehaviour
 
     void Start()
     {
+        LiquideBackground.SetActive(false);
         CleanAllUnivers();
         Blink = false;
         AssignBlink = false;
@@ -159,6 +160,13 @@ public class Composition_Manager : MonoBehaviour
             LY_TYPO = LayerMask.GetMask(LayerNameToAssign, "TYPO");
             PullUniversPhase02[3].SetActive(true);
             NumberOfUnivers = 0;
+        }else if (NumberOfUnivers == 5)
+        {
+            LayerNameToAssign = "Water";
+            LY = LayerMask.GetMask(LayerNameToAssign);
+            LY_TYPO = LayerMask.GetMask(LayerNameToAssign, "TYPO");
+            PullUniversPhase02[3].SetActive(true);
+            NumberOfUnivers = 0;
         }
     }
     public void AddUnivers3()
@@ -167,7 +175,7 @@ public class Composition_Manager : MonoBehaviour
             NumberOfUnivers++;
         }
         if (NumberOfUnivers == 1){
-            LayerNameToAssign = "Univ01";
+            LayerNameToAssign = "Water";
             LY = LayerMask.GetMask(LayerNameToAssign);
             LY_TYPO = LayerMask.GetMask(LayerNameToAssign, "TYPO");
             PullUniversPhase03[0].SetActive(true);
@@ -182,10 +190,8 @@ public class Composition_Manager : MonoBehaviour
             LY_TYPO = LayerMask.GetMask(LayerNameToAssign, "TYPO");
             PullUniversPhase03[2].SetActive(true);
         } else if (NumberOfUnivers == 4){
-            LayerNameToAssign = "Univ01";
-            LY = LayerMask.GetMask(LayerNameToAssign);
-            LY_TYPO = LayerMask.GetMask(LayerNameToAssign, "TYPO");
-            PullUniversPhase03[3].SetActive(true);           
+            PullUniversPhase03[3].SetActive(true);
+            //LiquideBackground.SetActive(true);         
         }else if (NumberOfUnivers == 5)
         {
             LayerNameToAssign = "TransparentFX";
@@ -643,8 +649,8 @@ public class Composition_Manager : MonoBehaviour
     {
         NumberOfUnivers = 1;
         PullUniversPhase01[0].SetActive(false); PullUniversPhase01[1].SetActive(false); PullUniversPhase01[2].SetActive(false);
-        PullUniversPhase02[0].SetActive(false); PullUniversPhase02[1].SetActive(false); PullUniversPhase02[2].SetActive(false); PullUniversPhase02[3].SetActive(false);
-        PullUniversPhase03[0].SetActive(false); PullUniversPhase03[1].SetActive(false); PullUniversPhase03[2].SetActive(false);
+        PullUniversPhase02[0].SetActive(false); PullUniversPhase02[1].SetActive(false); PullUniversPhase02[2].SetActive(false); PullUniversPhase02[3].SetActive(false); PullUniversPhase02[4].SetActive(false);
+        PullUniversPhase03[0].SetActive(false); PullUniversPhase03[1].SetActive(false); PullUniversPhase03[2].SetActive(false); PullUniversPhase03[3].SetActive(false);
         UI_GPS.SetActive(false);
         Paean.SetActive(false);
         Carte.SetActive(false);

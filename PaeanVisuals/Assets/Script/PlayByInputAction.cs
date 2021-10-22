@@ -332,11 +332,11 @@ public class PlayByInputAction : MonoBehaviour
 
     void SwitchPP(InputAction.CallbackContext ctx)
     {
-        if (!Sequence.PP){
+      /*  if (!Sequence.PP){
             Sequence.PP = true;
         }else{
             Sequence.PP = false;
-        }
+        }*/
     }
 
     void SwitchCam(InputAction.CallbackContext ctx)
