@@ -43,11 +43,13 @@ public class PlayByInputAction : MonoBehaviour
     [SerializeField] InputAction _UI = null;
 
     [SerializeField] InputAction _Restart = null;
+    [SerializeField] InputAction _ChangeSceneTransition = null;
+    [SerializeField] InputAction _ChangeSceneMain = null;
 
-   /* float map(float Val, float minInit, float MaxInit, float MinFinal, float MaxFinal)
-    {
-        return MinFinal + (Val - minInit) * (MaxFinal - MinFinal) / (MaxInit - minInit);
-    }*/
+    /* float map(float Val, float minInit, float MaxInit, float MinFinal, float MaxFinal)
+     {
+         return MinFinal + (Val - minInit) * (MaxFinal - MinFinal) / (MaxInit - minInit);
+     }*/
 
     public GameObject Jauge;
     public Text Speed;
@@ -133,6 +135,12 @@ public class PlayByInputAction : MonoBehaviour
         _UI.performed += UI;
         _UI.Enable();
 
+        _ChangeSceneTransition.performed += ChangeSceneTransition;
+        _ChangeSceneTransition.Enable();
+
+        _ChangeSceneMain.performed += ChangeSceneMain;
+        _ChangeSceneMain.Enable();
+
         ///// DEBUG STUFF
         _DebugClean.performed += DebugClean;
         _DebugClean.Enable();
@@ -192,6 +200,12 @@ public class PlayByInputAction : MonoBehaviour
 
         _UI.performed -= UI;
         _UI.Disable();
+
+        _ChangeSceneTransition.performed -= ChangeSceneTransition;
+        _ChangeSceneTransition.Disable();
+
+        _ChangeSceneMain.performed -= ChangeSceneMain;
+        _ChangeSceneMain.Disable();
 
         ////// DEBUG STUFF
         _DebugClean.performed -= DebugClean;
@@ -391,6 +405,17 @@ public class PlayByInputAction : MonoBehaviour
     void ResetLevel(InputAction.CallbackContext ctx)
     {
         Application.LoadLevel(Application.loadedLevel);
+    }
+
+    void ChangeSceneTransition(InputAction.CallbackContext ctx)
+    {
+        Application.LoadLevel("Scn_Transition");
+    }
+
+    void ChangeSceneMain(InputAction.CallbackContext ctx)
+    {
+        Debug.Log("Scene Main");
+        Application.LoadLevel("Scn_Main");
     }
 
 
