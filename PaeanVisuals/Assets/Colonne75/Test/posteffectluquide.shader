@@ -4,6 +4,7 @@ Shader "Unlit/posteffectluquide$"
     {
         _MainTex ("Texture", 2D) = "white" {}
 		_noise("_noise", 2D) = "white" {}
+		_bruit("_bruit", 2D) = "white" {}
 	    _ref("ref", Cube) = "defaulttexture" {}
     }
     SubShader
@@ -36,6 +37,7 @@ Shader "Unlit/posteffectluquide$"
 
             sampler2D _MainTex;
 			sampler2D _noise;
+			sampler2D _bruit;
             float4 _MainTex_ST;
 			samplerCUBE _ref;
             v2f vert (appdata v)
@@ -48,10 +50,10 @@ Shader "Unlit/posteffectluquide$"
                 return o;
             }
 			float li(float3 r) {
-				float time = _Time.y;
+				float time = _Time.y+tex2D(_noise,float2(_Time.y, _Time.y*0.06)).x;
 				r.xz = mul(r.xz, float2x2(cos(time), sin(time), -sin(time), cos(time)));
 				float3 sp = normalize(r* float3(1., 0., 1.));
-				return step(0.45,distance(0.5, frac(sp.x*1.5+sp.z)));
+				return smoothstep(0.3,0.5,distance(0.5, frac(sp.x*1.5+sp.z)));
 			}
             fixed4 frag (v2f i) : SV_Target
             {
@@ -69,9 +71,9 @@ Shader "Unlit/posteffectluquide$"
 				float3 refl= reflect(n, float3(uv,1.));
 				//float4 val = UNITY_SAMPLE_TEXCUBE(unity_SpecCube0, n);
 				float fres = dot(n, float3(0., 0., -1.));
-                
-				float4 ref = pow(smoothstep(0.,0.7,texCUBE(_ref, refl)),float4(1.6,1.6,1.6,1.));
-				ref += float4(li(refl)*float3(0., 0., 1.),1.)*0.3;
+				float pp = 1.5 + tex2D(_noise, float2(_Time.y, _Time.y*0.05 + 0.6)).x*0.6;
+				float4 ref = pow(smoothstep(0.,0.7,texCUBE(_ref, refl)),float4(pp,pp,pp,1.));
+				ref += float4(li(refl)*float3(0., 0., 1.),1.)*0.5*tex2D(_noise, float2(_Time.y, _Time.y*0.05+0.2)).x*tex2D(_bruit, uv*5.).x*2.;
 				//float4 fond = lerp(col, float4(0., 0., 1., 1.), li(refl));
 				return float4(lerp(col, ref, m));
             }
