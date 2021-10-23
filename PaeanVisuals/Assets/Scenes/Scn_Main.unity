@@ -2534,9 +2534,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   osc: {fileID: 313087159}
-  nuage: {fileID: 0}
+  nuage: {fileID: 2100000, guid: eb2b665f80493d1448a7c8fb30a04584, type: 2}
   audio2: 0
-  center: {fileID: 0}
+  center: {fileID: 610147723}
 --- !u!1 &615929176
 GameObject:
   m_ObjectHideFlags: 0
