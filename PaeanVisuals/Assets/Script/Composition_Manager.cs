@@ -39,7 +39,7 @@ public class Composition_Manager : MonoBehaviour
     public Text CoordE;
     private long N = 84814453125;
     private long E = 347232341766357;
-    public GameObject LiquideBackground;
+ //   public GameObject LiquideBackground;
     public GameObject Fluide;
 
     public int NumberOfUnivers;
@@ -49,8 +49,7 @@ public class Composition_Manager : MonoBehaviour
     private int i;
 
     void Start()
-    {
-        LiquideBackground.SetActive(false);
+    {       
         CleanAllUnivers();
         Blink = false;
         AssignBlink = false;

@@ -79,9 +79,9 @@ Material:
     - _ZWrite: 1
     - _audio1: 0
     - _audio2: 0
-    - _centerx: -0.045
-    - _centery: -0.06
-    - _centerz: 0.574
+    - _centerx: -0.029999971
+    - _centery: 0.26856166
+    - _centerz: 3
     - _liquide: 0
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
