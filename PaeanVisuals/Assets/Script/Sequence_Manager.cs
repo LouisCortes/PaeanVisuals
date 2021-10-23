@@ -153,11 +153,11 @@ public class Sequence_Manager : MonoBehaviour
                 Compo.Subdivision();
             }
         }else{
-            if (A)
+            if (A && B==false)
             {
                 Compo.ScreenA();
             }
-            else if (B){
+            else if (B && A== false){
                 Compo.ScreenB();
             }
             else if (B && A){

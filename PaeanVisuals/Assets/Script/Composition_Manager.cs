@@ -160,13 +160,20 @@ public class Composition_Manager : MonoBehaviour
             LY_TYPO = LayerMask.GetMask(LayerNameToAssign, "TYPO");
             PullUniversPhase02[3].SetActive(true);      
         }else if (NumberOfUnivers == 5){
-            LayerNameToAssign = "Water";
+            LayerNameToAssign = "Cave";
             LY = LayerMask.GetMask(LayerNameToAssign);
             LY_TYPO = LayerMask.GetMask(LayerNameToAssign, "TYPO");
             PullUniversPhase02[4].SetActive(true);
+        }else if (NumberOfUnivers == 6)
+        {
+            LayerNameToAssign = "Water";
+            LY = LayerMask.GetMask(LayerNameToAssign);
+            LY_TYPO = LayerMask.GetMask(LayerNameToAssign, "TYPO");
+            PullUniversPhase02[5].SetActive(true);
             NumberOfUnivers = 0;
         }
     }
+
     public void AddUnivers3()
     {
         if (Sequence.NouvelUnivers){
@@ -657,7 +664,7 @@ public class Composition_Manager : MonoBehaviour
     {
         NumberOfUnivers = 1;
         PullUniversPhase01[0].SetActive(false); PullUniversPhase01[1].SetActive(false); PullUniversPhase01[2].SetActive(false);
-        PullUniversPhase02[0].SetActive(false); PullUniversPhase02[1].SetActive(false); PullUniversPhase02[2].SetActive(false); PullUniversPhase02[3].SetActive(false); PullUniversPhase02[4].SetActive(false);
+        PullUniversPhase02[0].SetActive(false); PullUniversPhase02[1].SetActive(false); PullUniversPhase02[2].SetActive(false); PullUniversPhase02[3].SetActive(false); PullUniversPhase02[4].SetActive(false); //PullUniversPhase02[5].SetActive(false);
         PullUniversPhase03[0].SetActive(false); PullUniversPhase03[1].SetActive(false); PullUniversPhase03[2].SetActive(false); PullUniversPhase03[3].SetActive(false); PullUniversPhase03[4].SetActive(false); 
         UI_GPS.SetActive(false);
         Paean.SetActive(false);
