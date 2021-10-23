@@ -455,7 +455,7 @@ PrefabInstance:
     - target: {fileID: 8980549144392899874, guid: fcf1b4b04c8da304d9bb3f6e95b64432,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: -4216948427090074523, guid: fcf1b4b04c8da304d9bb3f6e95b64432,
@@ -625,6 +625,34 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f4d5c9b770beb6448b22d75fc2bb52d0, type: 3}
+--- !u!1 &1756298692 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8980549144392899874, guid: fcf1b4b04c8da304d9bb3f6e95b64432,
+    type: 3}
+  m_PrefabInstance: {fileID: 877586317}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1756298695
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1756298692}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 837e5ceddbf60494297fd1092ef18d37, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _sourceData: {fileID: 7239065423396753691, guid: fcf1b4b04c8da304d9bb3f6e95b64432,
+    type: 3}
+  _computeShader: {fileID: 7200000, guid: 811801df7e6956e43bbcb5ca191302f9, type: 3}
+  _audio1: 0
+  _audio2: 0
+  _audio3: 0
+  _liquide: 0
+  _sonar: 0
+  noise: {fileID: 2800000, guid: 6c1bdc3340cbe584e996b350abd28c93, type: 3}
+  obj: {fileID: 1756298692}
 --- !u!1001 &1827415015
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -801,6 +829,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: liquideNuagedepts
       objectReference: {fileID: 0}
+    - target: {fileID: 8849457080477478464, guid: 4044dab20daab4548ba2f86ae1082a40,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4044dab20daab4548ba2f86ae1082a40, type: 3}
 --- !u!1001 &1025428954849650300
@@ -830,7 +863,7 @@ PrefabInstance:
     - target: {fileID: 1025428954560024864, guid: 8a9b3c1919edc2e4db23d820450efb97,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1025428954560024865, guid: 8a9b3c1919edc2e4db23d820450efb97,
         type: 3}
