@@ -16381,7 +16381,6 @@ MonoBehaviour:
   UI_GPS: {fileID: 1936482124}
   CoordN: {fileID: 1074938362}
   CoordE: {fileID: 2056276025}
-  LiquideBackground: {fileID: 0}
   Fluide: {fileID: 5602174602048445555}
   NumberOfUnivers: 0
   TranslationIntensity: 0
@@ -18388,6 +18387,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 354985281}
     m_Modifications:
+    - target: {fileID: 4550271115138262906, guid: f4d5c9b770beb6448b22d75fc2bb52d0,
+        type: 3}
+      propertyPath: osc
+      value: 
+      objectReference: {fileID: 313087159}
     - target: {fileID: 6488424358636975409, guid: f4d5c9b770beb6448b22d75fc2bb52d0,
         type: 3}
       propertyPath: m_RootOrder
@@ -18447,6 +18451,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: 02_Bimaristan_Halles_Blanc
+      objectReference: {fileID: 0}
+    - target: {fileID: 6654304677436006085, guid: f4d5c9b770beb6448b22d75fc2bb52d0,
+        type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f4d5c9b770beb6448b22d75fc2bb52d0, type: 3}
