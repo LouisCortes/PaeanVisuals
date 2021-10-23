@@ -11917,7 +11917,6 @@ MonoBehaviour:
   UI_GPS: {fileID: 1936482124}
   CoordN: {fileID: 1074938362}
   CoordE: {fileID: 2056276025}
-  LiquideBackground: {fileID: 820389093}
   Fluide: {fileID: 5602174602048445555}
   NumberOfUnivers: 0
   TranslationIntensity: 0
