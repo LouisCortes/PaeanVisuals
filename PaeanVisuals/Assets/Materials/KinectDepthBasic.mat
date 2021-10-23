@@ -77,7 +77,7 @@ Material:
     - _SrcBlend: 1
     - _UVSec: 0
     - _ZWrite: 1
-    - _audio1: 0
+    - _audio1: 0.17290251
     - _audio2: 0
     - _centerx: -0.029999971
     - _centery: 0.26856166
