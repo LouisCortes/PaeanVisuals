@@ -41,7 +41,7 @@ public class shader2 : MonoBehaviour
         compute_shader.SetTexture(handle_main, "noise", noise);
         compute_shader.SetFloat("audio1", osc.low2 *osc.fac2 * osc.address01* osc.audio2);
         compute_shader.SetFloat("audio2", osc.audio1);
-        compute_shader.SetFloat("audio2b", osc.audio1*osc.low);
+        compute_shader.SetFloat("audio2b", osc.audio1*osc.low*osc.mid);
         compute_shader.SetFloat("audio3", osc.mid2 * osc.fac2 * osc.address02 * osc.audio2);
         compute_shader.SetFloat("high",  osc.high2 * osc.fac2 * osc.address03 * osc.audio2);
         compute_shader.SetFloat("rotationv", osc.rotationv);

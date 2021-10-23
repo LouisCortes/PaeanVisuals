@@ -15,10 +15,11 @@ float audio3;
 float audio4;
 float regaudio2;
 float zoom;
+float rotation;
 int _rx;
 int _ry;
 float rd(float t) { return frac(sin(dot(t, 45.))*7845.236); }
-
+float2x2 rot(float t) { float c = cos(t); float s = sin(t); return float2x2(c, -s, s, c); }
 [numthreads(8,8,1)]
 void CSMain (uint2 id : SV_DispatchThreadID) 
 {
@@ -26,17 +27,23 @@ void CSMain (uint2 id : SV_DispatchThreadID)
 	float2 f = float2(id.x,id.y);
 	float2 res=float2(_rx,_ry); 
 	float2 uv = ((f / res));
+	uv = (uv - 0.5)*2.;
+	uv = mul(uv, rot(rotation*6.));
+	uv = uv * 0.5 + 0.5;
+	uv *= lerp(0.5, 1.5, zoom);
 	float c = 0.;
-	float2 uc = (uv - 0.5)*(0.002+0.005*audio1);
+	float2 uc = (uv - 0.5)*(0.002+0.01*(audio1+ noise.SampleLevel(_LinearRepeat, float2(_time,0.02*_time),0.).x*audio3));
 	float2 mv = float2(rd(_time), rd(_time + 485.)) - 0.5;
 
 	for (int i = 0; i < 40; i++) {
 		float d = i / 40.;
 		uv -= uc;
-		c =( 1.-texf.SampleLevel(_LinearRepeat, uv + 0.5 / res, 0).x)+ (noise.SampleLevel(_LinearRepeat, uv*5. + mv, 0).x - 0.5)*0.5;
+		c =( texf.SampleLevel(_LinearRepeat, uv + 0.5 / res, 0).x)+ (noise.SampleLevel(_LinearRepeat, uv*5. + mv, 0).x - 0.5)*0.5;
 		if (d > dot(c, 1.)) { break; }
 	}
-	c = max(c, pow(noise.SampleLevel(_LinearRepeat, uv*5. + mv, 0).x,5.));
+	float br = pow(noise.SampleLevel(_LinearRepeat, uv*5. + mv, 0).x, 5.);
+	c = 1.-c+ lerp(-br,+br,c);
+	
 	//float r3  = texf.SampleLevel(_LinearRepeat, uv + 0.5 / res, 0).x;
 	reader[id] = float4(c*float3(0.,0.,1.),1.);
 
