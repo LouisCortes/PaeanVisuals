@@ -45,10 +45,10 @@ public class Shader1 : MonoBehaviour
         compute_shader.SetFloat("audio1", osc.low2*osc.audio2 * osc.address01 * osc.fac2);
         compute_shader.SetFloat("audio2", osc.high2 * osc.audio2 * osc.address03 * osc.fac2);
         //compute_shader.SetFloat("audio2", osc.high2  * osc.address03 * osc.fac2);
-        compute_shader.SetFloat("regaudio2", osc.mouv);
+        compute_shader.SetFloat("regaudio2", osc.camer);
         compute_shader.SetFloat("audio3", osc.audio1 * osc.low);
         compute_shader.SetFloat("audio4", osc.audio1 * osc.high);
-        compute_shader.SetFloat("zoom", osc.zoom);
+        compute_shader.SetFloat("zoom", osc.mouv);
         //compute_shader.SetTexture(handle_main, "writer", B);
         //compute_shader.Dispatch(handle_main, B.width / 8, B.height / 8, 1);
         //compute_shader.SetTexture(handle_main, "reader", B);
