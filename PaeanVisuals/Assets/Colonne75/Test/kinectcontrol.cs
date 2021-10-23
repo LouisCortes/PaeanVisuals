@@ -17,9 +17,9 @@ public class kinectcontrol : MonoBehaviour
     void Update()
     {
         nuage.SetFloat("_liquide", osc.liquide2);
-        nuage.SetFloat("_audio1", osc.audio1);
+        nuage.SetFloat("_audio1", osc.audio1*osc.low);
         //nuage.SetFloat("_audio2", osc.mid * osc.address02 * osc.audio2 * osc.fac2);
-        nuage.SetFloat("_audio2", osc.address01 *audio2);
+        nuage.SetFloat("_audio2", osc.address01 *osc.audio2*osc.low2);
         nuage.SetFloat("_centerx", center.transform.position.x);
         nuage.SetFloat("_centery", center.transform.position.y);
         nuage.SetFloat("_centerz", center.transform.position.z);

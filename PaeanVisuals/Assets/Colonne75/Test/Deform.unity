@@ -244,7 +244,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &706900396
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -259,7 +259,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   osc: {fileID: 56440980}
   nuage: {fileID: 2100000, guid: eb2b665f80493d1448a7c8fb30a04584, type: 2}
-  audio2: 1
+  audio2: 0
   center: {fileID: 1394207318}
 --- !u!114 &706900397
 MonoBehaviour:
@@ -455,7 +455,7 @@ PrefabInstance:
     - target: {fileID: 8980549144392899874, guid: fcf1b4b04c8da304d9bb3f6e95b64432,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: -4216948427090074523, guid: fcf1b4b04c8da304d9bb3f6e95b64432,
