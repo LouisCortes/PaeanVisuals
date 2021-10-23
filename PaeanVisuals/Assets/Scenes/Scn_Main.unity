@@ -2534,9 +2534,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   osc: {fileID: 313087159}
-  nuage: {fileID: 0}
+  nuage: {fileID: 2100000, guid: eb2b665f80493d1448a7c8fb30a04584, type: 2}
   audio2: 0
-  center: {fileID: 0}
+  center: {fileID: 610147723}
 --- !u!1 &615929176
 GameObject:
   m_ObjectHideFlags: 0
@@ -7413,7 +7413,7 @@ Transform:
   m_GameObject: {fileID: 1539239925}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 5.95}
-  m_LocalScale: {x: 6.7522902, y: 4.39684, z: 6.2812}
+  m_LocalScale: {x: 6.7522902, y: 5.961729, z: 6.2812}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 7
