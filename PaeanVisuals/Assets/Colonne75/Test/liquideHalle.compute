@@ -45,7 +45,8 @@ void Main(uint id : SV_DispatchThreadID)
 	float3 pp = p + float3(wpx,wpy,wpz);
 	half3 c = PcxDecodeColor(asuint(pt.w));
 	float3 n = (c - 0.5)*2.;
-	float tt = time;
+	float bm = max(audio2, noise.SampleLevel(_LinearRepeat, float2(time, time*0.05), 0.).x*audio1)*2.;
+	float tt = time + bm;
 	//p.x += (sin(pp.z*0.5+tt) + sin(pp.y*0.5 + tt))*1.3;
 
 	float t1 = -1.6;
@@ -63,13 +64,14 @@ void Main(uint id : SV_DispatchThreadID)
 	
 	float3 b1 = float3(no(pp*1.6 + tt) , no(pp*1.6 - tt), no(pp*1.6 + float3(tt, -tt, tt)) );
 	float3 b2 = float3(no(pp*8. + tt * 3.) , no(pp*8. - tt * 3.) , no(pp*8.+ float3(tt, -tt, tt)*3.));
-	float ff = 0.25 + 0.2*audio2;
-	float3 b3 = pow(b1, 4.)*ff + pow(b2, 4.)*0.1*ff;
+	float ff = 0.25 + bm;
+	float3 b3 = pow(b1, 2.)*ff + pow(b2, 2.)*0.1*ff;
 	p += n * b3;
 	
 	p.zy = mul(p.zy, rot(tt*0.1));
 	//n.zy = mul(n.zy, rot(tt*0.1));
 	//p.y += lerp(-7., 0., liquide);
-	p += -n * (1. - liquide)*40.+b2*(1.-liquide)*10.;
-    OutputBuffer[id] = float4(p, asfloat(PcxEncodeColor(smoothstep(0.3, 0.7, c.y)*liquide)));
+	float li = pow(liquide, 0.1);
+	p += -n * smoothstep(1., 0., li)*40. + b1 * (1. - liquide)*20.;
+    OutputBuffer[id] = float4(p, asfloat(PcxEncodeColor(smoothstep(0.3, 0.7, c.y)*li*0.7)));
 }

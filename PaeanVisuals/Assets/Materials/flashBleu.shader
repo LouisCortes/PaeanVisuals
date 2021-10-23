@@ -1,4 +1,4 @@
-Shader "Unlit/point"
+Shader "Unlit/flashBleu"
 {
     Properties
     {
@@ -14,8 +14,6 @@ Shader "Unlit/point"
             CGPROGRAM
             #pragma vertex vert
             #pragma fragment frag
-            // make fog work
-            #pragma multi_compile_fog
 
             #include "UnityCG.cginc"
 
@@ -28,7 +26,6 @@ Shader "Unlit/point"
             struct v2f
             {
                 float2 uv : TEXCOORD0;
-                UNITY_FOG_COORDS(1)
                 float4 vertex : SV_POSITION;
             };
 
@@ -40,20 +37,15 @@ Shader "Unlit/point"
                 v2f o;
                 o.vertex = UnityObjectToClipPos(v.vertex);
                 o.uv = TRANSFORM_TEX(v.uv, _MainTex);
-                UNITY_TRANSFER_FOG(o,o.vertex);
                 return o;
             }
 
             fixed4 frag (v2f i) : SV_Target
             {
-			float ba =  tex2D(_MainTex, i.uv).y;
-			
-			
-			float	pt = tex2D(_MainTex, i.uv).x;
-			   
-			   float p1 = smoothstep(0.2,1.,pt)*smoothstep(0.3,0.7,ba);
-			
-                return float4(p1,p1,p1,0.);
+				float time = _Time.y;
+                float t1 = smoothstep(0.4,0.6,tex2D(_MainTex, float2(time*2.,time*0.01+0.3)).x);
+				float t2 = smoothstep(0.4, 0.6, tex2D(_MainTex, float2(time*0.5, time*0.01 +0.6)).x);
+                return t2*t1*float4 (0.,0.,1.,1.);
             }
             ENDCG
         }

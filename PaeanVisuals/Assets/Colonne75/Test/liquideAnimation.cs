@@ -41,8 +41,9 @@ public class liquideAnimation : MonoBehaviour
 
         var kernel = _computeShader.FindKernel("Main");
         _computeShader.SetFloat("audio1", _audio1+osc.audio1);
-        _computeShader.SetFloat("audio2", _audio2+osc.audio2*osc.address02*osc.fac2*osc.mid2*10);
+        _computeShader.SetFloat("audio2", _audio2+osc.audio2*osc.address02*osc.fac2*osc.mid2);
         _computeShader.SetFloat("liquide", _liquide+osc.liquide3);
+        _computeShader.SetFloat("rot", osc.rotationv);
         _computeShader.SetFloat("wpx", obj.transform.position.x);
         _computeShader.SetFloat("wpy", obj.transform.position.y);
         _computeShader.SetFloat("wpz", obj.transform.position.z);
