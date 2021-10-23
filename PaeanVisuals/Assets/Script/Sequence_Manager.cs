@@ -44,7 +44,7 @@ public class Sequence_Manager : MonoBehaviour
     public void ChangeSpeed()
     {
         SpeedValue++;
-        if (SpeedValue> 4){
+        if (SpeedValue> 3){
             SpeedValue = 1;
         }
     }
@@ -153,17 +153,28 @@ public class Sequence_Manager : MonoBehaviour
                 Compo.Subdivision();
             }
         }else{
-            if (A){
+            if (A)
+            {
                 Compo.ScreenA();
-            }else if (B){
+            }
+            else if (B){
                 Compo.ScreenB();
-            }else{
+            }
+            else if (B && A){
+                Compo.SetupFullLandscape();
+            }else
+            {
                 int R; R = Random.Range(0, 6);
-                if (R == 0){
+                if (R == 0)
+                {
                     Compo.ScreenB();
-                }else if (R == 1){
+                }
+                else if (R == 1)
+                {
                     Compo.ScreenA();
-                }else{
+                }
+                else
+                {
                     Compo.SetupFullLandscape();
                 }
             }
