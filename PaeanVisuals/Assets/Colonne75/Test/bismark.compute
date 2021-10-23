@@ -47,20 +47,14 @@ void Main(uint id : SV_DispatchThreadID)
 	float3 pp = p + float3(wpx,wpy,wpz);
 	float lc = smoothstep(0.8, 1.8, length(pp.y + 1.));
 
-    half3 c = PcxDecodeColor(asuint(pt.w));
-	float3 n = (c - 0.5)*2.;
+    //half3 c = PcxDecodeColor(asuint(pt.w));
 
-	float3 b1 = float3(no(pp*0.3 + time) - 0.5, no(pp*0.3 - time) - 0.5, no(pp*0.3 + float3(time, -time, time)) - 0.5);
-	float3 b2 = float3(no(pp*2. + time*3.) - 0.5, no(pp*2. - time * 3.) - 0.5, no(pp*2. + float3(time, -time, time)*3.) - 0.5);
-	float3 b3 = b1*20. + b2 * lerp(3.5, 0.8, pow(liquide, 0.25));
-	p += b3*liquide;
-	float3 bs = pow(float3(noise.SampleLevel(_LinearRepeat, pp.zy*0.1+time*0.1, 0.).x, noise.SampleLevel(_LinearRepeat, pp.xz*0.1+time*0.1, 0.).x,
-		noise.SampleLevel(_LinearRepeat, pp.xy*0.1+float2(time,-time)*0.1, 0.).x), float3(2., 2., 2.))*20.;
-	p += n * max(audio1* (pow(noise.SampleLevel(_LinearRepeat, float2(time*0.02, time*2.), 0.).x, 5.)), audio2)*lerp(bs,b3,liquide);
 
-	//float c1 =smoothstep(0.3,0.7,abs(b1.x) + abs(b1.y) + abs(b1.z));
-	float ts = lerp(smoothstep(0.3,0.7,noise.SampleLevel(_LinearRepeat, pp.y*0.075 - time *( 0.05) - audio3- noise.SampleLevel(_LinearRepeat, float2(time,time*0.01),0.).x*audio4, 0.).x),
-		1., sonar); 
+	float3 bs = pow(float3(noise.SampleLevel(_LinearRepeat, pp.zy*0.05+time*0.1, 0.).x, noise.SampleLevel(_LinearRepeat, pp.xz*0.05+time*0.1, 0.).x,
+		noise.SampleLevel(_LinearRepeat, pp.xy*0.05+float2(time,-time)*0.1, 0.).x), float3(2., 2., 2.))*20.;
+	p += max(audio1* (pow(noise.SampleLevel(_LinearRepeat, float2(time*0.02, time*2.), 0.).x, 5.)), audio2)*bs*0.5;
+
+	float ts = smoothstep(0.3, 0.7, noise.SampleLevel(_LinearRepeat, pp.z*0.05 - time * 0.02 - audio3 * 0.1 - noise.SampleLevel(_LinearRepeat, float2(time, time*0.01), 0.).x*audio4*0.1, 0.).x);
 
     OutputBuffer[id] = float4(p, asfloat(PcxEncodeColor(ts)));
 }

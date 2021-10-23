@@ -10,6 +10,7 @@ public class PointAnimation : MonoBehaviour
     public float _audio1 = 0;
     public float _audio2 = 0;
     public float _audio3 = 0;
+    public float _audio4 = 0;
     public float _liquide = 0;
     public float _sonar = 0;
     public Texture noise;
@@ -43,6 +44,7 @@ public class PointAnimation : MonoBehaviour
         _computeShader.SetFloat("audio1", _audio1);
         _computeShader.SetFloat("audio2", _audio2);
         _computeShader.SetFloat("audio3", _audio3);
+        _computeShader.SetFloat("audio4", _audio4);
         _computeShader.SetFloat("liquide", _liquide);
         _computeShader.SetFloat("sonar", _sonar);
         _computeShader.SetFloat("wpx", obj.transform.position.x);

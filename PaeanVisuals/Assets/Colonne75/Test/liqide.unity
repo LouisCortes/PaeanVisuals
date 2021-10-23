@@ -372,7 +372,7 @@ PrefabInstance:
     - target: {fileID: 2193108355455862019, guid: 4044dab20daab4548ba2f86ae1082a40,
         type: 3}
       propertyPath: _pointSize
-      value: 0.051
+      value: 0.015
       objectReference: {fileID: 0}
     - target: {fileID: 3158693167397919778, guid: 4044dab20daab4548ba2f86ae1082a40,
         type: 3}
@@ -457,7 +457,7 @@ PrefabInstance:
     - target: {fileID: 6301872260903572041, guid: 4044dab20daab4548ba2f86ae1082a40,
         type: 3}
       propertyPath: _pointSize
-      value: 0.051
+      value: 0.015
       objectReference: {fileID: 0}
     - target: {fileID: 8849457080477478464, guid: 4044dab20daab4548ba2f86ae1082a40,
         type: 3}
